@@ -1,15 +1,17 @@
 Package: galacticEdTools
-Title: What the Package Does (One Line, Title Case)
+Title: Tools for inspiring K-16 students to become interdisciplinary experts and agents of change for a better tomorrow
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Matt",
+           family = "Wilkins",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+           email = "matt@galacticpolymath.com",
+           comment = c(ORCID = "0000-0002-3162-6749"))
+Description: Tools for K-16 education and scicomm, developed to support Galactic Polymath Education Studio's
+lessons, and made available to everyone. Functions do a variety of things, from making it easy to generate a
+presentation-ready phylogeny that's ready for biology presentations in minutes to code that turns any ggplot graph
+into a fun puzzle by enciphering the graph labels. And lots more to come!
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
