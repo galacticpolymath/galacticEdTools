@@ -1,12 +1,14 @@
 Package: galacticEdTools
 Title: Tools for inspiring K-16 students to become interdisciplinary experts and agents of change for a better tomorrow
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person(given = "Matt",
            family = "Wilkins",
            role = c("aut", "cre"),
            email = "matt@galacticpolymath.com",
-           comment = c(ORCID = "0000-0002-3162-6749"))
+           comment = c(ORCID = "0000-0002-3162-6749")),
+    person(given = "Galactic", family="Polymath",
+            role="fnd") )
 Description: Tools for K-16 education and scicomm, developed to support Galactic Polymath Education Studio's
     lessons, and made available to everyone. Functions do a variety of things, from making it easy to generate a
     phylogeny that's ready for biology presentations in minutes to code that turns any ggplot graph
@@ -17,3 +19,15 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 URL: https://galacticpolymath.github.io/galacticEdTools
+Imports:
+  WikipediR,
+  datelife,
+  fs,
+  ggimage,
+  ggplot2,
+  ggtree,
+  magick,
+  pbapply,
+  rotl,
+  rvest,
+  taxize
