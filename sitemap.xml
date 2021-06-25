@@ -3,4 +3,16 @@
   <url>
     <loc>https://galacticpolymath.github.io/galacticEdTools/index.html</loc>
   </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getPhyloNames.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getPhyloNames_noCache.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getWikiPic.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/showPhylo.html</loc>
+  </url>
 </urlset>
