@@ -11,7 +11,7 @@
 #' @param aspectRatio doesn't actually work yet; the output phylogeny is always square for the moment
 #' @param pic what type of species image do you want to plot? options="wiki" (Wikipedia page profile image), "phylopic" (species' silhouette from the PhyloPic repository), "cust" (custom images: must be named .jpg or .png with names matching speciesNames in the picSaveDir folder), or "none"
 #' @param dotsConnectText do you want a dotted line to go from the text to the labels? default=F
-#' @param picSize how big to scale images in arbitrary units; default=0.08
+#' @param picSize how big to scale images, where 1=100%; .5=50%; default=1
 #' @param picSaveDir location for saving downloaded images; default=paste0(tempdir(),"/showPhylo")
 #' @param optPicWidth picture width in pixels for optimized versions of images saved if using pic="cust"; default= 200
 #' @param picBorderWidth for pic="wiki" or "cust," what size border would you like around your image (as a %); default=10
@@ -29,7 +29,7 @@
 #' @param quiet suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=T
 #' @md
 #' @export
-showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=.08,picSaveDir=paste0(tempdir(),"/showPhylo"),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.1,b=.02,l=.02),clearCache=F,quiet=T){
+showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir=paste0(tempdir(),"/showPhylo"),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.2,b=.02,l=.02),clearCache=F,quiet=T){
     if(missing(nameType)){stop("\nPlease supply the type of names you're providing; i.e. nameType= either 'sci' or 'common'")}
     #allow for abbreviated nameType specification
     if(substr(nameType,1,1)=="s"){nameType <- "sci"}else{nameType <- "common"}
@@ -224,8 +224,24 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     }#end custom image code
 
 
+    #interpret user plotMar specifications, accepting partial entries
+    plotMar_defaults<-c(t=.02,r=.2,b=.02,l=.02)
+    if(length(plotMar)!=4){
+      #for partial entries, check for names, then fill in with plotMar defaults
+      if(is.null(names(plotMar))){
+        message("! You must supply margin names with custom plotMar; e.g. plotMar=c(r=.25) or  a full set of dimension: plotMar=c(0,.25,0,0)")
+        warning("Ignoring incorrectly specified plotMar")
+        plotMar_final<-plotMar_defaults
+      }else{
+        #if correctly specified...
+        plotMar_final<-plotMar_defaults
+        plotMar_final[which(names(plotMar_defaults)%in%names(plotMar))]<-plotMar
+      }
+      #else, if 4 coordinates specified, simply store them
+    }else{plotMar_final<-plotMar}
 
     # Plot that beautiful tree :) ---------------------------------------------
+
     #Define custom theme to override a lot of ggtree's styling (if we want to plot)
     theme_phylo<-ggplot2::theme(plot.margin=ggplot2::margin(plotMar,unit="npc"),
                                 panel.border=ggplot2::element_blank())
@@ -238,8 +254,9 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     timescale_rounded <- ceiling(timescale/10)*10
     yscale<-ggplot2::layer_scales(g0)$y$get_limits()
     textOffset=labelOffset*timescale
+    picSized=0.08*picSize
     picOffset=textOffset/2
-    backgroundRec<-data.frame(xmin=timescale+picOffset-(picSize*timescale*.7),xmax=timescale+picOffset+(picSize*timescale*.7),
+    backgroundRec<-data.frame(xmin=timescale+picOffset-(picSized*timescale*.7),xmax=timescale+picOffset+(picSized*timescale*.7),
                               ymin=yscale[1]-.5,ymax=yscale[2]+.5)
 
 
@@ -258,10 +275,10 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
       {
         if(pic=="phylopic"){
           ggtree::geom_tiplab(image=pic_uid_final$uid,geom="phylopic",color=textCol,hjust=0.5,
-                      size=picSize,offset=picOffset,alpha=1)}else{}
+                      size=picSized,offset=picOffset,alpha=1)}else{}
       }+{
         if(addImg){
-          ggtree::geom_tiplab(image=imgLoc,geom="image",size=picSize,offset=picOffset,alpha=1,hjust=0.5,asp=1)
+          ggtree::geom_tiplab(image=imgLoc,geom="image",size=picSized,offset=picOffset,alpha=1,hjust=0.5,asp=1)
         }else{}
       }+{
         if(dateTree){
