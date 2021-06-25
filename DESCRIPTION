@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-3162-6749"))
 Description: Tools for K-16 education and scicomm, developed to support Galactic Polymath Education Studio's
     lessons, and made available to everyone. Functions do a variety of things, from making it easy to generate a
-    presentation-ready phylogeny that's ready for biology presentations in minutes to code that turns any ggplot graph
+    phylogeny that's ready for biology presentations in minutes to code that turns any ggplot graph
     into a fun puzzle by enciphering the graph labels. And lots more to come!
 License: MIT + file LICENSE
 Encoding: UTF-8
