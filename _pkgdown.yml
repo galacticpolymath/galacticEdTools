@@ -1,3 +1,5 @@
+url: https://galacticpolymath.github.io/galacticEdTools
+
 template:
   params:
-    bootswatch: materia
+    bootswatch: cerulean
