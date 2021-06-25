@@ -12,20 +12,21 @@ showPhylo(
   aspectRatio = 1,
   pic = "wiki",
   dotsConnectText = F,
-  picSize = 0.08,
-  picSaveDir = paste0(tempdir(), "/showPhylo"),
+  picSize = 1,
+  picSaveDir,
   optPicWidth = 200,
   picBorderWidth = 10,
   picBorderCol = "#363636",
   openDir = F,
   xAxisPad = 0.2,
   xTitlePad = 20,
+  numXlabs = 8,
   textScalar = 1,
   xTitleScalar = 1,
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.1, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.23, b = 0.02, l = 0.02),
   clearCache = F,
   quiet = T
 )
@@ -45,9 +46,9 @@ showPhylo(
 
 \item{dotsConnectText}{do you want a dotted line to go from the text to the labels? default=F}
 
-\item{picSize}{how big to scale images in arbitrary units; default=0.08}
+\item{picSize}{how big to scale images, where 1=100\%; .5=50\%; default=1}
 
-\item{picSaveDir}{location for saving downloaded images; default=paste0(tempdir(),"/showPhylo")}
+\item{picSaveDir}{location for saving downloaded images; default=fs::path(tempdir(),"showPhylo")}
 
 \item{optPicWidth}{picture width in pixels for optimized versions of images saved if using pic="cust"; default= 200}
 
@@ -60,6 +61,8 @@ showPhylo(
 \item{xAxisPad}{spacing between the phylogeny and the x-axis (scale is 1 is the distance between two sister taxa); default=.2}
 
 \item{xTitlePad}{spacing between x-axis title and x numbers; default=20}
+
+\item{numXlabs}{the number of year markers on the x-axis; default=8}
 
 \item{textScalar}{multiplier of text size for labels and axis numbers; default=1}
 

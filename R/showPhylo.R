@@ -12,13 +12,14 @@
 #' @param pic what type of species image do you want to plot? options="wiki" (Wikipedia page profile image), "phylopic" (species' silhouette from the PhyloPic repository), "cust" (custom images: must be named .jpg or .png with names matching speciesNames in the picSaveDir folder), or "none"
 #' @param dotsConnectText do you want a dotted line to go from the text to the labels? default=F
 #' @param picSize how big to scale images, where 1=100%; .5=50%; default=1
-#' @param picSaveDir location for saving downloaded images; default=paste0(tempdir(),"/showPhylo")
+#' @param picSaveDir location for saving downloaded images; default=fs::path(tempdir(),"showPhylo")
 #' @param optPicWidth picture width in pixels for optimized versions of images saved if using pic="cust"; default= 200
 #' @param picBorderWidth for pic="wiki" or "cust," what size border would you like around your image (as a %); default=10
 #' @param picBorderCol color of image border; default="#363636" (a dark, near-black color)
 #' @param openDir for pic="wiki" or "cust," do you want to open the picSaveDir after processing files? default=F
 #' @param xAxisPad spacing between the phylogeny and the x-axis (scale is 1 is the distance between two sister taxa); default=.2
 #' @param xTitlePad spacing between x-axis title and x numbers; default=20
+#' @param numXlabs the number of year markers on the x-axis; default=8
 #' @param textScalar multiplier of text size for labels and axis numbers; default=1
 #' @param xTitleScalar multiplier of x-axis title size; default=1
 #' @param phyloThickness how thick to make the phylogeny lines; default=1.2
@@ -28,9 +29,13 @@
 #' @param clearCache delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=F
 #' @param quiet suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=T
 #' @md
+#' @import ggtree datelife
 #' @export
-showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir=paste0(tempdir(),"/showPhylo"),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.2,b=.02,l=.02),clearCache=F,quiet=T){
+#'
+showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.23,b=.02,l=.02),clearCache=F,quiet=T){
     if(missing(nameType)){stop("\nPlease supply the type of names you're providing; i.e. nameType= either 'sci' or 'common'")}
+    if(missing(picSaveDir)){picSaveDir<-fs::path(tempdir(),"showPhylo")}
+
     #allow for abbreviated nameType specification
     if(substr(nameType,1,1)=="s"){nameType <- "sci"}else{nameType <- "common"}
     # 1. Lookup, error check, & compile a df of sci and common names --------------
@@ -115,7 +120,7 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     #initialize addIMg
     addImg=F
     if(pic=="wiki"){
-      wikiPics<-getWikiPic(tree_final$tip.label.backup,picSaveDir = picSaveDir,clearCache=clearCache)
+      wikiPics<-getWikiPic(tree_final$tip.label.backup,picSaveDir = picSaveDir,clearCache=clearCache,openDir=openDir)
       wikiPics$name<-tree_final$tip.label.backup
       #If scientific name didn't come up with anything, try common name
       if(sum(is.na(wikiPics$img_loc))>0){
@@ -136,7 +141,13 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
           if(is.na(x)){
             NA
           }else{
+            oldfile<-x
             newfile_border<-fs::path(picSaveDir,paste0(gsub("^(.*)\\..*$","\\1",basename(x)), "_border.jpg"))
+            #check if this file already exists
+            if(file.exists(newfile_border)){
+              message(" -",paste0(basename(x),"_border.jpg  : Already Exists"))
+              newfile_border
+            }else{
             img<-magick::image_read(x)
             img<-magick::image_border(img,picBorderCol,paste0(picBorderWidth,"%x",picBorderWidth,"%"))
             # #Rescale to desired pixel width
@@ -147,6 +158,7 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
             #write bordered file
             magick::image_write(img,newfile_border)
             newfile_border
+            }
           }
         })
         #output paths to bordered images
@@ -243,7 +255,7 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     # Plot that beautiful tree :) ---------------------------------------------
 
     #Define custom theme to override a lot of ggtree's styling (if we want to plot)
-    theme_phylo<-ggplot2::theme(plot.margin=ggplot2::margin(plotMar,unit="npc"),
+    theme_phylo<-ggplot2::theme(plot.margin=ggplot2::margin(plotMar_final,unit="npc"),
                                 panel.border=ggplot2::element_blank())
 
     #Define basic tree plot before modifying in steps
@@ -254,7 +266,7 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     timescale_rounded <- ceiling(timescale/10)*10
     yscale<-ggplot2::layer_scales(g0)$y$get_limits()
     textOffset=labelOffset*timescale
-    picSized=0.08*picSize
+    picSized=0.15*picSize
     picOffset=textOffset/2
     backgroundRec<-data.frame(xmin=timescale+picOffset-(picSized*timescale*.7),xmax=timescale+picOffset+(picSized*timescale*.7),
                               ymin=yscale[1]-.5,ymax=yscale[2]+.5)
@@ -262,8 +274,8 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
 
 
     #Rescale to have a 50% buffer on the right to add text
-    g <- g0+ggplot2::scale_x_continuous(breaks=seq(timescale,0,-timescale/10),
-                                      labels=round(seq(0,timescale,timescale/10)))  +
+    g <- g0+ggplot2::scale_x_continuous(breaks=seq(timescale,0,-timescale/(numXlabs-1)),
+                                      labels=round(seq(0,timescale,timescale/(numXlabs-1))))  +
       ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')+
       #Add text labels
       ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=T,offset=textOffset,align=dotsConnectText,
@@ -296,3 +308,8 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
     }else{g}
 
 }
+#
+# showPhylo(c("giraffe","monarch butterfly","house fly","electric eel","blue bottle fly","mantisfly"),nameType="c",plotMar=c(r=.32),picSize=1,labelOffset = .45)
+# ggsave("test.jpg")
+#
+# showPhylo(speciesNames=c("lion","ocelot","puma","leopard","jaguar","domestic cat"),nameType="c")

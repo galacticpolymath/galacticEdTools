@@ -2,4 +2,7 @@
 
 export(getPhyloNames)
 export(getPhyloNames_noCache)
+export(getWikiPic)
 export(showPhylo)
+import(datelife)
+import(ggtree)

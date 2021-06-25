@@ -10,6 +10,7 @@
 #' @param quiet suppress verbose feedback? default=T
 #' @param openDir open the picSaveDir location to browse images in finder/windows explorer? default=F
 #' @param clearCache WARNING delete the picSaveDir? This will delete the whole directory, so never set picSaveDir to getwd(); default=F
+#' @export
 #'
 getWikiPic<-function(x,width=220,picSaveDir=tempdir(),quiet=T,openDir=F,clearCache=F){
   message("\n",rep("-",50),"\n  Downloading Wikipedia Pics\n",rep("-",50))
@@ -32,7 +33,7 @@ getWikiPic<-function(x,width=220,picSaveDir=tempdir(),quiet=T,openDir=F,clearCac
                   }
 
                 dlTest <- try(utils::download.file(img.url,savefilename,quiet=quiet),silent=quiet)
-                if(inherits(dlTest,"try-error")){
+                if(dlTest==1| inherits(dlTest,"try-error")){
                   message("\n Img download failed for '",ttl,"'.\n")
                   savefilename <- NA
                   }else{ message("\n Img saved for ",ttl,": ",basename(img.url),"\n")}#tell user original filename (or error)
