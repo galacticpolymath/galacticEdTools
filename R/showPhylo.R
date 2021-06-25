@@ -32,7 +32,7 @@
 #' @import ggtree datelife
 #' @export
 #'
-showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.23,b=.02,l=.02),clearCache=F,quiet=T){
+showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.32,b=.02,l=.02),clearCache=F,quiet=T){
     if(missing(nameType)){stop("\nPlease supply the type of names you're providing; i.e. nameType= either 'sci' or 'common'")}
     if(missing(picSaveDir)){picSaveDir<-fs::path(tempdir(),"showPhylo")}
 
@@ -67,13 +67,13 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
 
     # Dating the tree ---------------------------------------------------------
     if(dateTree){
-      #tryCatch({
+      tryCatch({
         message(rep("-",55),"\n Attempting to scale the tree to divergence times...\n",rep("-",55))
         message(" Tip: If it takes more than a few seconds, it's probably going to fail.\n")
         tree_final<-datelife::datelife_search(tree,summary_format="phylo_median")
 
-       #},error=function(e) {message("\n! Tree dating FAILED !\n Try setting quiet=F, removing taxa, or setting dateTree=F.\n")
-        # stop()})
+       },error=function(e) {
+        stop("\n! Tree dating FAILED !\n Try setting quiet=F to get more warnings, removing taxa, or setting dateTree=F.\n")})
     }else{tree_final<-tree}
 
     # This modifies tip.labels destructively ----------------------------------
@@ -279,8 +279,8 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
       ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')+
       #Add text labels
       ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=T,offset=textOffset,align=dotsConnectText,
-                  color=textCol,label.padding=ggplot2::unit(1,"lines"),size=6*textScalar)  +
-      #ggplot2::coord_fixed(3.1)+
+                  color=textCol,size=6*textScalar)  + #,label.padding=ggplot2::unit(1,"lines")
+      # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
 
       #add semitransparent rectangle between dotted line and phylopic
       #geom_rect(inherit.aes=F,data=backgroundRec,aes(xmin=xmin,ymin=ymin, xmax=xmax,ymax=ymax),fill="white",alpha=.7)+
@@ -310,6 +310,6 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=0.3,aspectRatio
 }
 #
 # showPhylo(c("giraffe","monarch butterfly","house fly","electric eel","blue bottle fly","mantisfly"),nameType="c",plotMar=c(r=.32),picSize=1,labelOffset = .45)
-# ggsave("test.jpg")
+#ggsave("test.jpg",width=7,height=10)
 #
 # showPhylo(speciesNames=c("lion","ocelot","puma","leopard","jaguar","domestic cat"),nameType="c")
