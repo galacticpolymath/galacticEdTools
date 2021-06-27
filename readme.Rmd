@@ -9,7 +9,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  warning=FALSE, message=FALSE
 )
 ```
 
@@ -25,7 +26,7 @@ GalacticEdTools is an [<img src="man/figures/Rlogo.svg" alt="R-logo" width="24px
 
 You can install the released version of galacticEdTools from [GitHub](https://github.com/galacticpolymath/galacticEdTools) with:
 
-``` {r load-package}
+``` {r, "load-package", results="hide", eval=F}
 # install.packages("devtools") #install devtools if you don't have it
 devtools::install_github("galacticpolymath/galacticEdTools")
 #you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)
@@ -41,29 +42,30 @@ Ever wanted to make a phylogeny to—for example—show that birds are *actually
 So let's pick some dinosaurs, a dino-actin' bird like the common grackle, and a really improbable bird like the red-billed streamertail hummingbird. I'll make a vector of these species' scientific names.
 
 
-``` {r read-in-species, include=F}
-#Think up some species for your lesson on bird evolution from dinosaur ancestors (dinos typically go by their scientific names)
-speciesNames <- c("Stegosaurus","Velociraptor","Tyrannosaurus rex", "Trochilus polytmus","Quiscalus quiscula")
+``` {r, "read-in-species", results="hide", eval=F}
+# Think up some species for your lesson on bird evolution from dinosaur ancestors 
+# (dinos typically go by their scientific names)
+speciesNames <- c("Stegosaurus","Velociraptor","Tyrannosaurus rex", 
+                  "Trochilus polytmus","Quiscalus quiscula")
 
-#Now,let's make a phylogeny for these species, declare that these are scientific names, and tell it not to scale the tree to divergence times
+# Now,let's make a phylogeny for these species, declare that these are 
+# scientific names, and tell it not to scale the tree to divergence times
 dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
 ```
 And with no changes to the plot, here's what it should look like.
-``` {r first-dinophylo}
+``` {r first-dinophylo, eval=F}
 plot(dinos)
 ```
+<img src="man/figures/README-first-dinophylo-1.png" width="100%" />
 
+By default, pic="wiki", meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use [phyloPics](http://phylopic.org/) (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhylo() to learn about more customizations.
 
-By default, pic="wiki", meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use phyloPics (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhyloPic() to learn about more customizations.
-
-``` {r include=F}
+``` {r include=F, eval=F}
 dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
-```
-
-```{r phyloPic-dino-phylogeny}
 plot(dino2)
 ```
 
+<img src="man/figures/README-phyloPic-dino-phylogeny-1.png" width="100%" />
 
 
 

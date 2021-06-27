@@ -27,15 +27,10 @@ You can install the released version of galacticEdTools from
 ``` r
 # install.packages("devtools") #install devtools if you don't have it
 devtools::install_github("galacticpolymath/galacticEdTools")
-#> Using github PAT from envvar GITHUB_PAT
-#> Skipping install of 'galacticEdTools' from a github remote, the SHA1 (b1afa7e2) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 #you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)
 
 #load it
 require(galacticEdTools)
-#> Loading required package: galacticEdTools
-#> Loading required package: datelife
 ```
 
 ## Example
@@ -51,6 +46,17 @@ So let’s pick some dinosaurs, a dino-actin’ bird like the common
 grackle, and a really improbable bird like the red-billed streamertail
 hummingbird. I’ll make a vector of these species’ scientific names.
 
+``` r
+# Think up some species for your lesson on bird evolution from dinosaur ancestors 
+# (dinos typically go by their scientific names)
+speciesNames <- c("Stegosaurus","Velociraptor","Tyrannosaurus rex", 
+                  "Trochilus polytmus","Quiscalus quiscula")
+
+# Now,let's make a phylogeny for these species, declare that these are 
+# scientific names, and tell it not to scale the tree to divergence times
+dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
+```
+
 And with no changes to the plot, here’s what it should look like.
 
 ``` r
@@ -60,12 +66,9 @@ plot(dinos)
 <img src="man/figures/README-first-dinophylo-1.png" width="100%" />
 
 By default, pic=“wiki”, meaning taxonomic images are pulled in from the
-appertaining Wikipedia entry (if available). You can also use phyloPics
-(silhouettes, as shown below), or supply your own images. Check out the
-vignette for showPhyloPic() to learn about more customizations.
-
-``` r
-plot(dino2)
-```
+appertaining Wikipedia entry (if available). You can also use
+[phyloPics](http://phylopic.org/) (silhouettes, as shown below), or
+supply your own images. Check out the vignette for showPhylo() to learn
+about more customizations.
 
 <img src="man/figures/README-phyloPic-dino-phylogeny-1.png" width="100%" />
