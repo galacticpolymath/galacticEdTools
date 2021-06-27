@@ -9,13 +9,14 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-GalacticEdTools is an R Stats package to support K-16 education and
-scicomm. Largely, these are functions developed to support lessons
-created by [Galactic Polymath Education
-Studio](www.galacticpolymath.com), and have been made available to the R
-community. Functions do a variety of things, from making it easy to
-generate a phylogeny that’s ready for biology presentations in minutes
-to turning any ggplot graph into a fun puzzle by enciphering the graph
+GalacticEdTools is an
+[<img src="man/figures/Rlogo.svg" alt="R-logo" width="24px" height="auto">](https://www.r-project.org/)
+package to support K-16 education and scicomm. This code was developed
+by [Galactic Polymath Education Studio](www.galacticpolymath.com) to
+solve teaching and visualization challenges associated with our lessons.
+Functions do a variety of things, from making it easy to generate a
+dated phylogeny that’s ready for biology presentations in minutes to
+turning any ggplot graph into a fun puzzle by enciphering the graph
 labels. There’s lots more to come\!
 
 ## Installation
@@ -29,9 +30,7 @@ You can install the released version of galacticEdTools from
 #you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)
 
 #load it
-require(galacticEdTools) 
-#> Loading required package: galacticEdTools
-#> Loading required package: datelife
+# require(galacticEdTools) 
 ```
 
 ## Example
@@ -50,10 +49,8 @@ hummingbird. I’ll make a vector of these species’ scientific names.
 And with no changes to the plot, here’s what it should look like.
 
 ``` r
-plot(dinos)
+#plot(dinos)
 ```
-
-<img src="man/figures/README-first-dinophylo-1.png" width="100%" />
 
 By default, pic=“wiki”, meaning taxonomic images are pulled in from the
 appertaining Wikipedia entry (if available). You can also use phyloPics
@@ -61,7 +58,5 @@ appertaining Wikipedia entry (if available). You can also use phyloPics
 vignette for showPhyloPic() to learn about more customizations.
 
 ``` r
-plot(dino2)
+#plot(dino2)
 ```
-
-<img src="man/figures/README-phyloPic-dino-phylogeny-1.png" width="100%" />

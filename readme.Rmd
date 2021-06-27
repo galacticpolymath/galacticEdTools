@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-GalacticEdTools is an R Stats package to support K-16 education and scicomm. Largely, these are functions developed to support lessons created by [Galactic Polymath Education Studio](www.galacticpolymath.com), and have been made available to the R community. Functions do a variety of things, from making it easy to generate a phylogeny that's ready for biology presentations in minutes to turning any ggplot graph into a fun puzzle by enciphering the graph labels. There's lots more to come!
+GalacticEdTools is an [<img src="man/figures/Rlogo.svg" alt="R-logo" width="24px" height="auto">](https://www.r-project.org/) package to support K-16 education and scicomm. This code was developed by [Galactic Polymath Education Studio](www.galacticpolymath.com) to solve teaching and visualization challenges associated with our lessons. Functions do a variety of things, from making it easy to generate a dated phylogeny that's ready for biology presentations in minutes to turning any ggplot graph into a fun puzzle by enciphering the graph labels. There's lots more to come!
 
 ## Installation
 
@@ -46,22 +46,22 @@ So let's pick some dinosaurs, a dino-actin' bird like the common grackle, and a 
 speciesNames <- c("Stegosaurus","Velociraptor","Tyrannosaurus rex", "Trochilus polytmus","Quiscalus quiscula")
 
 #Now,let's make a phylogeny for these species, declare that these are scientific names, and tell it not to scale the tree to divergence times
-dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
+#dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
 ```
 And with no changes to the plot, here's what it should look like.
 ``` {r first-dinophylo}
-plot(dinos)
+#plot(dinos)
 ```
 
 
 By default, pic="wiki", meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use phyloPics (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhyloPic() to learn about more customizations.
 
 ``` {r include=F}
-dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
+#dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
 ```
 
 ```{r phyloPic-dino-phylogeny}
-plot(dino2)
+#plot(dino2)
 ```
 
 
