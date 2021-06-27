@@ -31,7 +31,7 @@ You can install the released version of galacticEdTools from [GitHub](https://gi
 #you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)
 
 #load it
-require(galacticEdTools) 
+# require(galacticEdTools) 
 ```
 
 ## Example
@@ -54,15 +54,16 @@ plot(dinos)
 ```
 
 
+By default, pic="wiki", meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use phyloPics (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhyloPic() to learn about more customizations.
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+``` {r include=F}
+dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r phyloPic-dino-phylogeny}
+plot(dino2)
+```
+
+
 
 

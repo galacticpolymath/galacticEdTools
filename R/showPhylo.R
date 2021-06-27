@@ -37,14 +37,27 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio
     if(missing(picSaveDir)){picSaveDir<-fs::path(tempdir(),"showPhylo")}
 
     #allow for abbreviated nameType specification
-    if(substr(nameType,1,1)=="s"){nameType <- "sci"}else{nameType <- "common"}
+    nameType_l<-substr(nameType,1,1)
+    if(!nameType_l%in%c("s","c")){stop("nameType must be one of 's' or 'c' for scientific or common names, respectively")}
+    nameType<-switch(nameType_l,s="sci",c="common")
     # 1. Lookup, error check, & compile a df of sci and common names --------------
     spp<-getPhyloNames(speciesNames,nameType,clearCache = clearCache,quiet=quiet)
 
+    #allow for abbreviated pic specification (and test it)
+    pic_l<-substr(pic,1,1)
+    if(!pic_l%in%c("w","p","c","n")){stop("pic must be one of 'w' 'p' 'c' or 'n' for Wikipedia, Phylopic, custom or none, respectively.")}
+    pic<-switch(pic_l,w="wiki",p="phylopic",c="cust",n="none")
+
     #Now search for matches to scientific names in Open Tree of Life
+    ## Provide error catching framework b/c sometimes the OTL server is down
     message("\n Trying to match scientific names with Open Tree of Life")
     message("\n *You may be asked to choose a number if there are multiple matches.\n")
+    prob_rotl<-tryCatch({
     tol_taxa<-rotl::tnrs_match_names(spp$scientific_name,do_approximate_matching = F)
+    },error=function(e){message("\n! Open Tree of Life lookup failed.");e}
+    )
+    if("error"%in%class(prob_rotl)){stop(prob_rotl)}
+
     message(rep("-",35),"\nOTL matching results\n",rep("-",35))
     print(tol_taxa[,])
     message(rep("-",35))

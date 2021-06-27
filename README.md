@@ -55,11 +55,13 @@ plot(dinos)
 
 <img src="man/figures/README-first-dinophylo-1.png" width="100%" />
 
-## Including Plots
+By default, pic=“wiki”, meaning taxonomic images are pulled in from the
+appertaining Wikipedia entry (if available). You can also use phyloPics
+(silhouettes, as shown below), or supply your own images. Check out the
+vignette for showPhyloPic() to learn about more customizations.
 
-You can also embed plots, for example:
+``` r
+plot(dino2)
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+<img src="man/figures/README-phyloPic-dino-phylogeny-1.png" width="100%" />
