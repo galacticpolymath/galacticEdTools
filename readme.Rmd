@@ -27,16 +27,16 @@ You can install the released version of galacticEdTools from [GitHub](https://gi
 
 ``` {r load-package}
 # install.packages("devtools") #install devtools if you don't have it
-# devtools::install_github("galacticpolymath/galacticEdTools")
+devtools::install_github("galacticpolymath/galacticEdTools")
 #you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)
 
 #load it
-# require(galacticEdTools) 
+require(galacticEdTools)
 ```
 
 ## Example
 
-Ever wanted to make a phylogeny to, say, show birds are *actually* dinosaurs? Did you end up freehanding it in Powerpoint? To teach evolution, we need to be able to make scientifically accurate trees on the fly. The showPhylo() function aims to make this as simple as possible, freeing you up to focus on building out the lesson around this evolutionary visualization.
+Ever wanted to make a phylogeny to—for example—show that birds are *actually* dinosaurs? Did you end up freehanding it in Powerpoint? To teach evolution, we need to be able to make scientifically accurate trees on the fly. The showPhylo() function aims to make this as simple as possible, freeing you up to focus on building out the lesson around this evolutionary visualization.
 
 So let's pick some dinosaurs, a dino-actin' bird like the common grackle, and a really improbable bird like the red-billed streamertail hummingbird. I'll make a vector of these species' scientific names.
 
@@ -46,22 +46,22 @@ So let's pick some dinosaurs, a dino-actin' bird like the common grackle, and a 
 speciesNames <- c("Stegosaurus","Velociraptor","Tyrannosaurus rex", "Trochilus polytmus","Quiscalus quiscula")
 
 #Now,let's make a phylogeny for these species, declare that these are scientific names, and tell it not to scale the tree to divergence times
-#dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
+dinos<-showPhylo(speciesNames,nameType="sci",dateTree=F)
 ```
 And with no changes to the plot, here's what it should look like.
 ``` {r first-dinophylo}
-#plot(dinos)
+plot(dinos)
 ```
 
 
 By default, pic="wiki", meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use phyloPics (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhyloPic() to learn about more customizations.
 
 ``` {r include=F}
-#dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
+dino2<-showPhylo(speciesNames,"sci",dateTree=F,pic="phylopic")
 ```
 
 ```{r phyloPic-dino-phylogeny}
-#plot(dino2)
+plot(dino2)
 ```
 
 

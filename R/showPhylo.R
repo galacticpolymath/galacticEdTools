@@ -114,8 +114,12 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio
 
         if(!file.exists(tmpfile_uid)){
         message(rep("-",45),"\n  Looking for PhyloPics for your species...(slow)\n",rep("-",45))
-        pic_uid<-do.call(rbind,  pbapply::pblapply(tree_final$tip.label.backup,function(x) ggimage::phylopic_uid(x)) )
+        phylopic_error<-tryCatch({
+          pic_uid<-do.call(rbind,  pbapply::pblapply(tree_final$tip.label.backup,function(x) ggimage::phylopic_uid(x)) )
+        },error=function(e){message("PhyloPic did not work for some reason: ",e)}
+        )
         saveRDS(pic_uid,tmpfile_uid)
+        pic_uid_final <- pic_uid
         }else{
         #if we've already cached phylo info, compare new names and see if we can just tack on a few more
         pic_uid_cached<-readRDS(tmpfile_uid)
