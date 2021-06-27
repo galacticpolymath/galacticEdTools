@@ -1,6 +1,6 @@
 Package: galacticEdTools
 Title: Tools for inspiring K-16 students to become interdisciplinary experts and agents of change for a better tomorrow
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person(given = "Matt",
            family = "Wilkins",
@@ -22,18 +22,19 @@ URL: https://galacticpolymath.github.io/galacticEdTools
 Depends:
   datelife
 Imports:
-  WikipediR,
-  BiocManager,
-  fs,
-  ggimage,
-  ggplot2,
-  ggtree,
-  magick,
-  pbapply,
-  rotl,
-  remotes,
-  rvest,
-  taxize
+    WikipediR,
+    BiocManager,
+    fs,
+    ggimage,
+    ggplot2,
+    ggtree,
+    magick,
+    pbapply,
+    rotl,
+    remotes,
+    rvest,
+    taxize,
+    lifecycle
 Remotes:
   github::phylotastic/datelife,
   bioc::ggtree

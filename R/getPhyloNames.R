@@ -60,7 +60,7 @@ getPhyloNames<-function(speciesNames,nameType,clearCache=F,quiet=T){
          nrow(taxa_final)==sum(grepl("found",taxa_final[,2]))){stop("\nSomething's weird here. Did you set the right nameType?\n")}
 
       #warn if sci and common names match
-      if(sum((taxa_final[,1]==taxa_final[,2]))>0){warning("Double check output. You've got some matching scientific and common names. Did you supply the correct nameType?")
+      if(sum(taxa_final[,1]==taxa_final[,2],na.rm=T)>0){warning("Double check output. You've got some matching scientific and common names. Did you supply the correct nameType?")
         test2=F
         }else{test2=T}
 

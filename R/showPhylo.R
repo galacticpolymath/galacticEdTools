@@ -32,7 +32,7 @@
 #' @import ggtree datelife
 #' @export
 #'
-showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.32,b=.02,l=.02),clearCache=F,quiet=T){
+showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=F,quiet=T){
     if(missing(nameType)){stop("\nPlease supply the type of names you're providing; i.e. nameType= either 'sci' or 'common'")}
     if(missing(picSaveDir)){picSaveDir<-fs::path(tempdir(),"showPhylo")}
 
@@ -60,10 +60,16 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio
 
 
     # Make tree from scientific names in tol_taxa -----------------------------
-    tryCatch(
+    prob<-tryCatch(
       tree<-if(quiet){suppressWarnings(rotl::tol_induced_subtree(rotl::ott_id(tol_taxa),label="name"))
             }else{rotl::tol_induced_subtree(rotl::ott_id(tol_taxa),label="name")},
-      error=function(e) message("\n! Tree Build FAILED\n* The Tree of Life Open Taxonomy system doesn't work super well with extinct organisms sometimes. Try removing them from your set."))
+      error=function(e) {
+        message("\n! Tree Build FAILED\n* The Tree of Life Open Taxonomy system doesn't work super well with extinct organisms sometimes. Try removing them from your set.")
+        e})
+    if("error"%in%class(prob)){
+      problematic<-gsub(".*'ott(\\d*)'.*","\\1",prob$message)
+      message("Possible problem: ",tol_taxa$searchNames.user[which(tol_taxa$ott_id%in%problematic)])
+      }
 
     # Dating the tree ---------------------------------------------------------
     if(dateTree){
@@ -279,7 +285,7 @@ showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio
       ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')+
       #Add text labels
       ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=T,offset=textOffset,align=dotsConnectText,
-                  color=textCol,size=6*textScalar)  + #,label.padding=ggplot2::unit(1,"lines")
+                  color=textCol,size=5*textScalar)  + #,label.padding=ggplot2::unit(1,"lines")
       # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
 
       #add semitransparent rectangle between dotted line and phylopic

@@ -24,11 +24,11 @@ getPhyloNames_noCache<-function(speciesNames,nameType,quiet=T){
                                       }else{taxize::comm2sci(x,simplify=FALSE,db="eol")[[1]]}
                                 tmp<-tmpList$name[1]
 
-                              if(is.null(tmp)){tmp<-"no common name found"
+                              if(is.null(tmp)){tmp<-NA
                                 }else{message("\n ! ",nameType," name for ",x," not found in NCBI; using top hit in EOL: ",tmp,"\n")}
                             }
 
-                          if(length(tmp[[1]])==0){tmp<-"no sci. name found"}
+                          if(length(tmp[[1]])==0){tmp<-NA}
                           message("\n  -", x,"  =  ",tmp,"\n")
                           unlist(tmp)
                           })
@@ -42,7 +42,7 @@ getPhyloNames_noCache<-function(speciesNames,nameType,quiet=T){
                                       }else{taxize::sci2comm(x,simplify=FALSE,db="eol")[[1]]}
                                 tmp<-subset(tmpList,tmpList$language=="en")$vernacularname[1]
 
-                              if(is.null(tmp)){tmp<-"no common name found"}
+                              if(is.null(tmp)){tmp<-NA}
                             }
                             message("\n  -", x,"  =  ",tmp,"\n")
                             unlist(tmp)
