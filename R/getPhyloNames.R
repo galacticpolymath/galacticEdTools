@@ -12,6 +12,9 @@
 #' @export
 #'
 getPhyloNames<-function(speciesNames,nameType,clearCache=F,quiet=T){
+  #allow for abbreviated nameType specification
+      if(substr(nameType,1,1)=="s"){nameType <- "sci"}else{nameType <- "common"}
+
 #check for cached species names, cuz taxize is slooooow
   tmpfile_names<-fs::path(tempdir(),"phylonamescache",ext="rds")
 
