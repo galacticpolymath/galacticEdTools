@@ -25,7 +25,7 @@ An [<img src="man/figures/Rlogo.svg" alt="R-stats logo" width="24px" height="aut
 
 ## Installation
 
-### *Before you start (or if you run into errors), consider updating [R to ver 4.1.0 or better](https://mirror.las.iastate.edu/CRAN/) and [Rstudio ver 1.4.1717 or better](https://www.rstudio.com/products/rstudio/download/).
+> *Before you start (or if you run into errors), consider updating [R to ver 4.1.0 or better](https://mirror.las.iastate.edu/CRAN/) and [Rstudio ver 1.4.1717 or better](https://www.rstudio.com/products/rstudio/download/).
 
 The package is not on CRAN yet, but you can install the latest version from [GitHub](https://github.com/galacticpolymath/galacticEdTools) with:
 
