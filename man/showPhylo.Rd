@@ -8,7 +8,7 @@ showPhylo(
   speciesNames,
   nameType,
   dateTree = T,
-  labelOffset = 0.3,
+  labelOffset = 0.45,
   aspectRatio = 1,
   pic = "wiki",
   dotsConnectText = F,
@@ -26,7 +26,7 @@ showPhylo(
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.23, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.36, b = 0.02, l = 0.02),
   clearCache = F,
   quiet = T
 )

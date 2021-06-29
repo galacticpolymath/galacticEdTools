@@ -16,28 +16,31 @@ getPhyloNames<-function(speciesNames,nameType,clearCache=F,quiet=T){
       if(substr(nameType,1,1)=="s"){nameType <- "sci"}else{nameType <- "common"}
 
 #check for cached species names, cuz taxize is slooooow
-  tmpfile_names<-fs::path(tempdir(),"phylonamescache",ext="rds")
+  taxa_cache<-fs::path(tempdir(),"phylonamescache",ext="rds")
 
   #Delete cache file if requested
-  if(clearCache){unlink(tmpfile_names,recursive=T);message("\n@cache cleared\n")}
+  if(clearCache){unlink(taxa_cache,recursive=T);message("\n@cache cleared\n")}
 
     #If there's no cache, look things up
-    if(!file.exists(tmpfile_names)){
+    if(!file.exists(taxa_cache)){
       taxa_final<-getPhyloNames_noCache(speciesNames,nameType,quiet=quiet)
       test1=T #We'll consider saving this to cache
 
     #if there is a cache, see if it needs to be updated with new rows
     }else{
-      taxa_cached<-readRDS(tmpfile_names)
+      taxa_cached<-readRDS(taxa_cache)
       message("\nChecking cached species records\n")
-      species_missing<-speciesNames[which(is.na(match(speciesNames,taxa_cached[,switch(nameType,
+      species_missing<-speciesNames[which(is.na(match(speciesNames,
+                                                      taxa_cached[,switch(nameType,
                                                                                 sci="scientific_name",
                                                                                 common="common_name")])))]
       #subset cached by the requested species records
       if(length(species_missing)==0){
+        #if there are no species missing from cached records, cached=taxa
         taxa<-taxa_cached
         test1=F
       }else{
+        #if there are missing species, get them, and add them to cached
         taxa_new<-getPhyloNames_noCache(species_missing,nameType,quiet=quiet)
         taxa<-rbind(taxa_cached,taxa_new)
         #I'll wait till later to write RDS, b/c I want to see if these are valid entries
@@ -77,7 +80,7 @@ getPhyloNames<-function(speciesNames,nameType,clearCache=F,quiet=T){
 
       #save to cache if all 3 tests pass
       if(test1&test2&test3){
-        saveRDS(taxa_final,tmpfile_names)
+        saveRDS(taxa_final,taxa_cache)
         message("\n@cache updated")
         }else{
           if(test1==F){message("\n@Records already in cache")
