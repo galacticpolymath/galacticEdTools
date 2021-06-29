@@ -1,6 +1,6 @@
 Package: galacticEdTools
 Title: Tools for inspiring K-16 students to become interdisciplinary experts and agents of change for a better tomorrow
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: c(
     person(given = "Matt",
            family = "Wilkins",
