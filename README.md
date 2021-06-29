@@ -21,6 +21,8 @@ labels. There’s lots more to come!
 
 ## Installation
 
+### \*Before you start (or if you run into errors), consider updating [R to ver 4.1.0 or better](https://mirror.las.iastate.edu/CRAN/) and [Rstudio ver 1.4.1717 or better](https://www.rstudio.com/products/rstudio/download/).
+
 The package is not on CRAN yet, but you can install the latest version
 from [GitHub](https://github.com/galacticpolymath/galacticEdTools) with:
 
@@ -31,7 +33,7 @@ devtools::install_github("galacticpolymath/galacticEdTools")
 
 #load it
 require(galacticEdTools)
-require(datelife)
+#require(datelife) If you get an error about taxa not being found in any chronograms, try this
 ```
 
 ## Example
