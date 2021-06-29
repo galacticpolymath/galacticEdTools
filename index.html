@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">galacticEdTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -73,39 +73,54 @@
 <a href="#galacticedtools" class="anchor"></a>galacticEdTools</h1></div>
 <!-- badges: start -->
 
-<p>GalacticEdTools is an <a href="https://www.r-project.org/"><img src="reference/figures/Rlogo.svg" alt="R-logo" width="24px" height="auto"></a> package to support K-16 education and scicomm. This code was developed by <a href="www.galacticpolymath.com">Galactic Polymath Education Studio</a> to solve teaching and visualization challenges associated with our lessons. Functions do a variety of things, from making it easy to generate a dated phylogeny that’s ready for biology presentations in minutes to turning any ggplot graph into a fun puzzle by enciphering the graph labels. There’s lots more to come!</p>
+<p>An <a href="https://www.r-project.org/"><img src="reference/figures/Rlogo.svg" alt="R-stats logo" width="24px" height="auto"></a> package to support K-16 education and scicomm. This code was developed by <a href="www.galacticpolymath.com">Galactic Polymath Education Studio</a> to solve teaching and visualization challenges associated with our lessons. The functions do a variety of things, from making it easy to generate a dated phylogeny that’s ready for biology presentations in minutes to turning any ggplot graph into a fun puzzle by enciphering the graph labels. There’s lots more to come!</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of galacticEdTools from <a href="https://github.com/galacticpolymath/galacticEdTools">GitHub</a> with:</p>
+<p>The package is not on CRAN yet, but you can install the latest version from <a href="https://github.com/galacticpolymath/galacticEdTools">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools") #install devtools if you don't have it</span>
+<code class="sourceCode R"><span class="co"># install.packages("devtools") #you need devtools to install from github</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"galacticpolymath/galacticEdTools"</span><span class="op">)</span>
-<span class="co">#you may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)</span>
+<span class="co">#* may have to install a fair number of dependencies/updates (I'll work on streamlining this at some point)</span>
 
 <span class="co">#load it</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://galacticpolymath.github.io/galacticEdTools">galacticEdTools</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://galacticpolymath.github.io/galacticEdTools">galacticEdTools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/phylotastic/datelife">datelife</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>Ever wanted to make a phylogeny to—for example—show that birds are <em>actually</em> dinosaurs? Did you end up freehanding it in Powerpoint? To teach evolution, we need to be able to make scientifically accurate trees on the fly. The showPhylo() function aims to make this as simple as possible, freeing you up to focus on building out the lesson around this evolutionary visualization.</p>
-<p>So let’s pick some dinosaurs, a dino-actin’ bird like the common grackle, and a really improbable bird like the red-billed streamertail hummingbird. I’ll make a vector of these species’ scientific names.</p>
+<p>The impetus for this package was the need to make a figure showing that the many animals we call “panthers” are actually really distantly related cat species. Our genetic rescue lesson, sponsored by <a href="http://swfitz.com/">Dr. Sarah Fitzpatrick’s lab</a>, uses the example of the Florida panther as a charismatic application of her research (which mostly uses guppies as a model for understanding how gene flow can save small, highly inbred populations from extinction). The figure below was essential for explaining that 1) black panthers are not a species at all, but the (uncommon) dark morph of either a leopard or jaguar, and 2) that these big cats diverged from Florida panthers (which are actually pumas/cougars/mountain lions) around 16 million years ago.</p>
+<p>This type of dated phylogenetic tree should be an essential teaching tool for so many lessons in biology, but it requires a lot of time, programming skill, and know-how to create. Our show_phylo() function makes it possible in just a couple lines of code. It’s essentially a convenience wrapper that merges functionality from several R packages: chiefly <a href="https://github.com/ropensci/taxize">taxize</a>, <a href="https://github.com/phylotastic/datelife">datelife</a>, <a href="https://github.com/YuLab-SMU/ggtree">ggtree</a>, <a href="https://github.com/tidyverse/ggplot2">ggplot2</a>, <a href="https://github.com/sckott/rphylopic">phylopic</a>, <a href="https://github.com/Ironholds/WikipediR">WikipediR</a> &amp; many others.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Think up some species for your lesson on bird evolution from dinosaur ancestors </span>
-<span class="co"># (dinos typically go by their scientific names)</span>
-<span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Stegosaurus"</span>,<span class="st">"Velociraptor"</span>,<span class="st">"Tyrannosaurus rex"</span>, 
-                  <span class="st">"Trochilus polytmus"</span>,<span class="st">"Quiscalus quiscula"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># I want to show that Florida panthers are highly diverged from leopards and jaguars,</span>
+<span class="co"># and are actually (a bit) more closely related to domestic cats</span>
+<span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"puma"</span>,<span class="st">"leopard"</span>,<span class="st">"jaguar"</span>,<span class="st">"domestic cat"</span><span class="op">)</span>
 
-<span class="co"># Now,let's make a phylogeny for these species, declare that these are </span>
-<span class="co"># scientific names, and tell it not to scale the tree to divergence times</span>
-<span class="va">dinos</span><span class="op">&lt;-</span><span class="fu"><a href="reference/showPhylo.html">showPhylo</a></span><span class="op">(</span><span class="va">speciesNames</span>,nameType<span class="op">=</span><span class="st">"sci"</span>,dateTree<span class="op">=</span><span class="cn">F</span><span class="op">)</span></code></pre></div>
+<span class="co"># Now,let's make a phylogeny for these species. Just declare that these are </span>
+<span class="co"># common names, and showPhylo should make some reasonable assumptions to make a pretty plot,</span>
+<span class="co"># and by default add scientific names and the cover pictures from Wikipedia using our </span>
+<span class="co"># getWikiPic() function.</span>
+<span class="va">cats</span><span class="op">&lt;-</span><span class="fu"><a href="reference/showPhylo.html">showPhylo</a></span><span class="op">(</span><span class="va">speciesNames</span>,nameType<span class="op">=</span><span class="st">"common"</span><span class="op">)</span></code></pre></div>
 <p>And with no changes to the plot, here’s what it should look like.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">dinos</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-first-dinophylo-1.png" width="100%"></p>
-<p>By default, pic=“wiki”, meaning taxonomic images are pulled in from the appertaining Wikipedia entry (if available). You can also use <a href="http://phylopic.org/">phyloPics</a> (silhouettes, as shown below), or supply your own images. Check out the vignette for showPhylo() to learn about more customizations.</p>
-<p><img src="reference/figures/README-phyloPic-dino-phylogeny-1.png" width="100%"></p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cats</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-first-catphylo-1.png" width="100%"></p>
+<p>By default, pic=“wiki”, but we can also use pic=“phylopic” to get species silhouettes from the <a href="http://phylopic.org/">phyloPics image repository</a>. You can also supply your own images with pic=“cust”. Check out the vignette for showPhylo() to learn about more customizations. (not done yet)</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cats2</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-second-catphylo-1.png" width="100%"></p>
+</div>
+<div id="is-this-package-useful-to-you-there-are-several-ways-you-can-support-its-continued-development" class="section level2">
+<h2 class="hasAnchor">
+<a href="#is-this-package-useful-to-you-there-are-several-ways-you-can-support-its-continued-development" class="anchor"></a>Is this package useful to you? There are several ways you can support its continued development.</h2>
+<ol>
+<li>Use it! And tag <img src="reference/figures/twitter_logo.png" style="padding-right: 2px" width="16px" alt="twitter logo"><a href="https://twitter.com/GalacticPM">@galacticPM</a> &amp; <img src="reference/figures/twitter_logo.png" style="padding-right: 2px" width="16px" alt="twitter logo"><a href="https://twitter.com/mattwilkinsbio">@mattwilkinsbio</a> in a Tweet showcasing what you made.</li>
+<li>
+<a href="https://eepurl.com/g_kQ4T">Sign up for our mailing list</a> and let G5-16 teachers in your network know about our <a href="https://www.galacticpolymath.com">free lessons and tools</a>.</li>
+<li>If you’re a researcher who needs to do outreach, <a href="https://www.galacticpolymath.com/hire-us">hire us</a> to make your Broader Impacts an easier lift, with higher production, and greater reach.</li>
+<li>Help us out! We want to streamline the transfer of knowledge from Academia into K-12 schools by offering unbelievably high quality, interdisciplinary lessons that are free for teachers. As a self-funded startup, we depend on volunteer and friendly contract labor from skilled developers (react.js, HTML, CSS, R, D3), graphic designers, artists, education experts and social media influencers. If you want to be part of the GP team, reach out to <a href="mailto:matt@galacticpolymath.com" class="email">matt@galacticpolymath.com</a>.</li>
+</ol>
 </div>
 </div>
   </div>
