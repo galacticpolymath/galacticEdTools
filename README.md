@@ -62,7 +62,7 @@ chiefly [taxize](https://github.com/ropensci/taxize),
 [datelife](https://github.com/phylotastic/datelife),
 [ggtree](https://github.com/YuLab-SMU/ggtree),
 [ggplot2](https://github.com/tidyverse/ggplot2),
-[phylopic](https://github.com/sckott/rphylopic),
+[rphylopic](https://github.com/sckott/rphylopic),
 [WikipediR](https://github.com/Ironholds/WikipediR) & many others.
 
 ``` r
@@ -88,14 +88,20 @@ plot(cats)
 By default, pic=“wiki”, but we can also use pic=“phylopic” to get
 species silhouettes from the [phyloPics image
 repository](http://phylopic.org/). You can also supply your own images
-with pic=“cust”. Check out the vignette for showPhylo() to learn about
-more customizations. (not done yet)
+with pic=“cust”.
+
+``` r
+cats2<-showPhylo(speciesNames,"c",pic="phylopic")
+```
 
 ``` r
 plot(cats2)
 ```
 
 <img src="man/figures/README-second-catphylo-1.png" width="100%" />
+
+Check out the vignette for showPhylo() to learn about more
+customizations. (not done yet)
 
 ## Is this package useful to you? There are several ways you can support its continued development.
 
