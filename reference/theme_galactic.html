@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • galacticEdTools</title>
+<title>theme_galactic — theme_galactic • galacticEdTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="theme_galactic — theme_galactic" />
+<meta property="og:description" content="A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets" />
 
 
 
@@ -68,7 +69,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,78 +111,92 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>theme_galactic</h1>
+    
+    <div class="hidden name"><code>theme_galactic.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>theme_galactic</span><span class='op'>(</span>
+  grid.thickness.maj <span class='op'>=</span> <span class='fl'>0.7</span>,
+  grid.thickness.min <span class='op'>=</span> <span class='fl'>0.4</span>,
+  grid.col <span class='op'>=</span> <span class='st'>"#C3C3C3"</span>,
+  border.thickness <span class='op'>=</span> <span class='fl'>1</span>,
+  border.col <span class='op'>=</span> <span class='st'>"#6D6D6D"</span>,
+  font <span class='op'>=</span> <span class='st'>"Montserrat"</span>,
+  regular.wt <span class='op'>=</span> <span class='fl'>400</span>,
+  bold.wt <span class='op'>=</span> <span class='fl'>700</span>,
+  font.cex <span class='op'>=</span> <span class='fl'>1</span>,
+  axis.lab.col <span class='op'>=</span> <span class='st'>"#363636"</span>,
+  axis.text.col <span class='op'>=</span> <span class='st'>"#6D6D6D"</span>,
+  axis.tick.length <span class='op'>=</span> <span class='fl'>10</span>,
+  plot.margin <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>margin</a></span><span class='op'>(</span>t <span class='op'>=</span> <span class='fl'>10</span>, r <span class='op'>=</span> <span class='fl'>10</span>, b <span class='op'>=</span> <span class='fl'>10</span>, l <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="enciphR.html">enciphR()</a></code> </p>
-        </td>
-        <td><p>enciphR</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getPhyloNames.html">getPhyloNames()</a></code> </p>
-        </td>
-        <td><p>getPhyloNames</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getPhyloNames_noCache.html">getPhyloNames_noCache()</a></code> </p>
-        </td>
-        <td><p>getPhyloNames_noCache</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getWikiPic.html">getWikiPic()</a></code> </p>
-        </td>
-        <td><p>getWikiPic</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ggciphR.html">ggciphR()</a></code> </p>
-        </td>
-        <td><p>ggciphR</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="showPhylo.html">showPhylo()</a></code> </p>
-        </td>
-        <td><p>showPhylo</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_galactic.html">theme_galactic()</a></code> </p>
-        </td>
-        <td><p>theme_galactic</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>grid.thickness.maj</th>
+      <td><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8</p></td>
+    </tr>
+    <tr>
+      <th>grid.thickness.min</th>
+      <td><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6</p></td>
+    </tr>
+    <tr>
+      <th>grid.col</th>
+      <td><p>What color do you want the grid to be? Default: same as font (#363636)</p></td>
+    </tr>
+    <tr>
+      <th>border.thickness</th>
+      <td><p>How heavy do you want the plot border to be?</p></td>
+    </tr>
+    <tr>
+      <th>border.col</th>
+      <td><p>Color of plot border. Default: same as font (#363636)</p></td>
+    </tr>
+    <tr>
+      <th>font</th>
+      <td><p>Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google()</p></td>
+    </tr>
+    <tr>
+      <th>regular.wt</th>
+      <td><p>font weight for regular font style</p></td>
+    </tr>
+    <tr>
+      <th>bold.wt</th>
+      <td><p>font weight for bold text</p></td>
+    </tr>
+    <tr>
+      <th>font.cex</th>
+      <td><p>a simple multiplier for scaling all text</p></td>
+    </tr>
+    <tr>
+      <th>axis.lab.col</th>
+      <td><p>color of axis labels (and title)</p></td>
+    </tr>
+    <tr>
+      <th>axis.text.col</th>
+      <td><p>color of axis text (numbers, dates, etc)</p></td>
+    </tr>
+    <tr>
+      <th>axis.tick.length</th>
+      <td><p>length of axis ticks (in pt units)</p></td>
+    </tr>
+    <tr>
+      <th>plot.margin</th>
+      <td><p>easy access to ggplot margins</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
