@@ -1,6 +1,6 @@
 #' theme_galactic
 #'
-#' A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets
+#' A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
 #'
 #' @param grid.thickness.maj How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8
 #' @param grid.thickness.min How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6
@@ -11,6 +11,7 @@
 #' @param regular.wt font weight for regular font style
 #' @param bold.wt font weight for bold text
 #' @param font.cex a simple multiplier for scaling all text
+#' @param font.face style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)
 #' @param axis.lab.col color of axis labels (and title)
 #' @param axis.text.col color of axis text (numbers, dates, etc)
 #' @param axis.tick.length length of axis ticks (in pt units)
@@ -18,17 +19,17 @@
 #' @export
 
 
-theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#C3C3C3",border.thickness=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=10,plot.margin=ggplot2::margin(t=10,r=10,b=10,l=10)){
+theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#C3C3C3",border.thickness=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=10,plot.margin=ggplot2::margin(t=20,r=20,b=10,l=20)){
   gpPal=NULL
   utils::data(gpPal,package="galacticPubs")
-  showtext::showtext_auto()
-  fam=font
+
     #Only try to download font if online and not already available
   if(is.na(match(font,sysfonts::font_families()))){
     isOnline=RCurl::url.exists("https://www.google.com")
     if(isOnline){
-        tryCatch(
-        sysfonts::font_add_google(name=font,family=fam,regular.wt=regular.wt,bold.wt=bold.wt),
+        tryCatch({
+        showtext::showtext_auto()
+        sysfonts::font_add_google(name=font,family=font,regular.wt=regular.wt,bold.wt=bold.wt)},
         error=function(e) cat("\nFont: '",font,"' unavailable."))
     }else{
         cat("\nYou don't seem to be online. Can't download your requested font.")
@@ -43,14 +44,18 @@ ggplot2::theme_linedraw()+ #base theme to modify
     panel.grid.major=ggplot2::element_line(size=grid.thickness.maj,colour = grid.col),
     panel.grid.minor=ggplot2::element_line(size=grid.thickness.min,colour = grid.col),
     plot.margin=plot.margin,
-    plot.title=ggplot2::element_text(family=font,size=30*font.cex,face="bold",color=axis.lab.col),
+    plot.title=ggplot2::element_text(family=font,size=30*font.cex,
+                                     face=if(length(font.face)==1){font.face}else{font.face[1]},
+                                     color=axis.lab.col),
     plot.subtitle=ggplot2::element_text(family=font,size=22*font.cex,color=gpPal[[1]]$hex[5]),
-    axis.title=ggplot2::element_text(family=font,size=28*font.cex,face="plain",color=axis.lab.col),
+    axis.title=ggplot2::element_text(family=font,size=28*font.cex,color=axis.lab.col),
     axis.text=ggplot2::element_text(family=font,size=18*font.cex,color=axis.text.col),
     axis.ticks=ggplot2::element_line(color=grid.col,size=grid.thickness.maj),
     axis.ticks.length=ggplot2::unit(axis.tick.length,"pt"),
-    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 10, r = 0, b = 0, l = 0)),
-    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 20, r = 10, b = 0, l = 0)),
+    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 10, r = 0, b = 0, l = 0),
+                                         face=if(length(font.face)==1){font.face}else{font.face[2]}),
+    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 20, r = 10, b = 0, l = 0),
+                                         face=if(length(font.face)==1){font.face}else{font.face[3]}),
     legend.text=ggplot2::element_text(family=font,color=axis.text.col,size=18*font.cex),
     legend.title=ggplot2::element_text(family=font,color=axis.lab.col,face="bold",size=18*font.cex),
     legend.position = "right", legend.text.align = 0, legend.background =ggplot2::element_blank()

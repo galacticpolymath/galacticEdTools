@@ -14,10 +14,11 @@ theme_galactic(
   regular.wt = 400,
   bold.wt = 700,
   font.cex = 1,
+  font.face = 1,
   axis.lab.col = "#363636",
   axis.text.col = "#6D6D6D",
   axis.tick.length = 10,
-  plot.margin = ggplot2::margin(t = 10, r = 10, b = 10, l = 10)
+  plot.margin = ggplot2::margin(t = 20, r = 20, b = 10, l = 20)
 )
 }
 \arguments{
@@ -39,6 +40,8 @@ theme_galactic(
 
 \item{font.cex}{a simple multiplier for scaling all text}
 
+\item{font.face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)}
+
 \item{axis.lab.col}{color of axis labels (and title)}
 
 \item{axis.text.col}{color of axis text (numbers, dates, etc)}
@@ -48,5 +51,5 @@ theme_galactic(
 \item{plot.margin}{easy access to ggplot margins}
 }
 \description{
-A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets
+A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
 }
