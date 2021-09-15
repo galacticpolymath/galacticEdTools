@@ -1,0 +1,11 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Misc",
+         title = "galacticEdTools: R functions for K-16 Education",
+         author = c(person("Wilkins", "Matt")),
+         year = year,
+         note = note,
+         url = c("https://galacticpolymath.github.io/galacticEdTools/"),
+         header = "To cite the galacticEdTools R package:"
+)
