@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">galacticEdTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>The impetus for this package was the need to make a figure showing that the many animals we call “panthers” are actually really distantly related cat species. Our genetic rescue lesson, sponsored by <a href="http://swfitz.com/">Dr. Sarah Fitzpatrick’s lab</a>, uses the example of the Florida panther as a charismatic application of her research (which mostly uses guppies as a model for understanding how gene flow can save small, highly inbred populations from extinction). The figure below was essential for explaining that 1) black panthers are not a species at all, but the (uncommon) dark morph of either a leopard or jaguar, and 2) that these big cats diverged from Florida panthers (which are actually pumas/cougars/mountain lions) around 16 million years ago.</p>
-<p>This type of dated phylogenetic tree should be an essential teaching tool for so many lessons in biology, but it requires a lot of time, programming skill, and know-how to create. Our show_phylo() function makes it possible in just a couple lines of code. It’s essentially a convenience wrapper that merges functionality from several R packages: chiefly <a href="https://github.com/ropensci/taxize">taxize</a>, <a href="https://github.com/phylotastic/datelife">datelife</a>, <a href="https://github.com/YuLab-SMU/ggtree">ggtree</a>, <a href="https://github.com/tidyverse/ggplot2">ggplot2</a>, <a href="https://github.com/sckott/rphylopic">phylopic</a>, <a href="https://github.com/Ironholds/WikipediR">WikipediR</a> &amp; many others.</p>
+<p>This type of dated phylogenetic tree should be an essential teaching tool for so many lessons in biology, but it requires a lot of time, programming skill, and know-how to create. Our show_phylo() function makes it possible in just a couple lines of code. It’s essentially a convenience wrapper that merges functionality from several R packages: chiefly <a href="https://github.com/ropensci/taxize">taxize</a>, <a href="https://github.com/phylotastic/datelife">datelife</a>, <a href="https://github.com/YuLab-SMU/ggtree">ggtree</a>, <a href="https://github.com/tidyverse/ggplot2">ggplot2</a>, <a href="https://github.com/sckott/rphylopic">rphylopic</a>, <a href="https://github.com/Ironholds/WikipediR">WikipediR</a> &amp; many others.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># I want to show that Florida panthers are highly diverged from leopards and jaguars,</span>
 <span class="co"># and are actually (a bit) more closely related to domestic cats</span>
@@ -109,10 +109,13 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cats</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-first-catphylo-1.png" width="100%"></p>
-<p>By default, pic=“wiki”, but we can also use pic=“phylopic” to get species silhouettes from the <a href="http://phylopic.org/">phyloPics image repository</a>. You can also supply your own images with pic=“cust”. Check out the vignette for showPhylo() to learn about more customizations. (not done yet)</p>
+<p>By default, pic=“wiki”, but we can also use pic=“phylopic” to get species silhouettes from the <a href="http://phylopic.org/">phyloPics image repository</a>. You can also supply your own images with pic=“cust”.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cats2</span><span class="op">&lt;-</span><span class="fu"><a href="reference/showPhylo.html">showPhylo</a></span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"phylopic"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cats2</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-second-catphylo-1.png" width="100%"></p>
+<p>Check out the vignette for showPhylo() to learn about more customizations. (not done yet)</p>
 </div>
 <div id="is-this-package-useful-to-you-there-are-several-ways-you-can-support-its-continued-development" class="section level2">
 <h2 class="hasAnchor">
@@ -134,6 +137,12 @@
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+</ul>
+</div>
+<div class="citation">
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing galacticEdTools</a></li>
 </ul>
 </div>
 <div class="developers">

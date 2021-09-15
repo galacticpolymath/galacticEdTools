@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>getWikiPic — getWikiPic • galacticEdTools</title>
+<title>enciphR — enciphR • galacticEdTools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="getWikiPic — getWikiPic" />
-<meta property="og:description" content="Get the thumbnail image from any Wikipedia page" />
+<meta property="og:title" content="enciphR — enciphR" />
+<meta property="og:description" content="encipher any text string using an alphabetic shift" />
 
 
 
@@ -113,56 +113,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>getWikiPic</h1>
+    <h1>enciphR</h1>
     
-    <div class="hidden name"><code>getWikiPic.Rd</code></div>
+    <div class="hidden name"><code>enciphR.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the thumbnail image from any Wikipedia page</p>
+    <p>encipher any text string using an alphabetic shift</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getWikiPic</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  width <span class='op'>=</span> <span class='fl'>220</span>,
-  picSaveDir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
-  quiet <span class='op'>=</span> <span class='cn'>T</span>,
-  openDir <span class='op'>=</span> <span class='cn'>F</span>,
-  clearCache <span class='op'>=</span> <span class='cn'>F</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>enciphR</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>alg</span>, key <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>search term for finding a Wikipedia page</p></td>
+      <td><p>string to be enciphered</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>the width of the downloaded image in pixels; default=220</p></td>
+      <th>alg</th>
+      <td><p>algorithm for cipher (e.g. 1 to shift all letter forward 1 <code>[A-&gt;B]</code>; -2 to shift all letters back 2 places <code>[A-&gt;Y]</code>)</p></td>
     </tr>
     <tr>
-      <th>picSaveDir</th>
-      <td><p>the location to download images to; default=tempdir(); use paste0(getwd(),"/wiki") to save to a subfolder in your working directory or file.choose() to pic a location on the fly</p></td>
-    </tr>
-    <tr>
-      <th>quiet</th>
-      <td><p>suppress verbose feedback? default=T</p></td>
-    </tr>
-    <tr>
-      <th>openDir</th>
-      <td><p>open the picSaveDir location to browse images in finder/windows explorer? default=F</p></td>
-    </tr>
-    <tr>
-      <th>clearCache</th>
-      <td><p>WARNING delete the picSaveDir? This will delete the whole directory, so never set picSaveDir to getwd(); default=F</p></td>
+      <th>key</th>
+      <td><p>do you want a key to be included in output?; default=F; If key=T, output will be a list, rather than a vector.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Downloads the top right image in the infobox of a wikipage determined by your search term. Also caches this image so if you ask for the same image again, it doesn't download it.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

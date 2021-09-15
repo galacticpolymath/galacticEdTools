@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>getWikiPic — getWikiPic • galacticEdTools</title>
+<title>blank_labs — blank_labs • galacticEdTools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="getWikiPic — getWikiPic" />
-<meta property="og:description" content="Get the thumbnail image from any Wikipedia page" />
+<meta property="og:title" content="blank_labs — blank_labs" />
+<meta property="og:description" content="A function to replace axis labels and/or graph title with light gray prompts for each field." />
 
 
 
@@ -113,57 +113,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>getWikiPic</h1>
+    <h1>blank_labs</h1>
     
-    <div class="hidden name"><code>getWikiPic.Rd</code></div>
+    <div class="hidden name"><code>blank_labs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the thumbnail image from any Wikipedia page</p>
+    <p>A function to replace axis labels and/or graph title with light gray prompts for each field.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getWikiPic</span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  width <span class='op'>=</span> <span class='fl'>220</span>,
-  picSaveDir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>,
-  quiet <span class='op'>=</span> <span class='cn'>T</span>,
-  openDir <span class='op'>=</span> <span class='cn'>F</span>,
-  clearCache <span class='op'>=</span> <span class='cn'>F</span>
+    <pre class="usage"><span class='fu'>blank_labs</span><span class='op'>(</span>
+  x_txt <span class='op'>=</span> <span class='st'>"ADD X-AXIS LABEL"</span>,
+  y_txt <span class='op'>=</span> <span class='st'>"ADD Y-AXIS LABEL"</span>,
+  title_txt <span class='op'>=</span> <span class='st'>"ADD FIGURE TITLE"</span>,
+  txt_col <span class='op'>=</span> <span class='st'>"gray92"</span>,
+  font.face <span class='op'>=</span> <span class='fl'>4</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>search term for finding a Wikipedia page</p></td>
+      <th>x_txt</th>
+      <td><p>X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>width</th>
-      <td><p>the width of the downloaded image in pixels; default=220</p></td>
+      <th>y_txt</th>
+      <td><p>Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>picSaveDir</th>
-      <td><p>the location to download images to; default=tempdir(); use paste0(getwd(),"/wiki") to save to a subfolder in your working directory or file.choose() to pic a location on the fly</p></td>
+      <th>title_txt</th>
+      <td><p>Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>quiet</th>
-      <td><p>suppress verbose feedback? default=T</p></td>
+      <th>txt_col</th>
+      <td><p>Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)</p></td>
     </tr>
     <tr>
-      <th>openDir</th>
-      <td><p>open the picSaveDir location to browse images in finder/windows explorer? default=F</p></td>
-    </tr>
-    <tr>
-      <th>clearCache</th>
-      <td><p>WARNING delete the picSaveDir? This will delete the whole directory, so never set picSaveDir to getwd(); default=F</p></td>
+      <th>font.face</th>
+      <td><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 4</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Downloads the top right image in the infobox of a wikipage determined by your search term. Also caches this image so if you ask for the same image again, it doesn't download it.</p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mpg</span>,y<span class='op'>=</span><span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='theme_galactic.html'>theme_galactic</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='blank_labs-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mpg</span>,y<span class='op'>=</span><span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='theme_galactic.html'>theme_galactic</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'>blank_labs</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='blank_labs-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
