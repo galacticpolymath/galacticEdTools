@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>theme_galactic — theme_galactic • galacticEdTools</title>
+<title>blank_labs — blank_labs • galacticEdTools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="theme_galactic — theme_galactic" />
-<meta property="og:description" content="A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)" />
+<meta property="og:title" content="blank_labs — blank_labs" />
+<meta property="og:description" content="A function to replace axis labels and/or graph title with light gray prompts for each field." />
 
 
 
@@ -113,94 +113,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>theme_galactic</h1>
+    <h1>blank_labs</h1>
     
-    <div class="hidden name"><code>theme_galactic.Rd</code></div>
+    <div class="hidden name"><code>blank_labs.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)</p>
+    <p>A function to replace axis labels and/or graph title with light gray prompts for each field.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>theme_galactic</span><span class='op'>(</span>
-  grid.thickness.maj <span class='op'>=</span> <span class='fl'>0.7</span>,
-  grid.thickness.min <span class='op'>=</span> <span class='fl'>0.4</span>,
-  grid.col <span class='op'>=</span> <span class='st'>"#C3C3C3"</span>,
-  border.thickness <span class='op'>=</span> <span class='fl'>1</span>,
-  border.col <span class='op'>=</span> <span class='st'>"#6D6D6D"</span>,
-  font <span class='op'>=</span> <span class='st'>"Montserrat"</span>,
-  regular.wt <span class='op'>=</span> <span class='fl'>400</span>,
-  bold.wt <span class='op'>=</span> <span class='fl'>700</span>,
-  font.cex <span class='op'>=</span> <span class='fl'>1</span>,
-  font.face <span class='op'>=</span> <span class='fl'>1</span>,
-  axis.lab.col <span class='op'>=</span> <span class='st'>"#363636"</span>,
-  axis.text.col <span class='op'>=</span> <span class='st'>"#6D6D6D"</span>,
-  axis.tick.length <span class='op'>=</span> <span class='fl'>10</span>,
-  plot.margin <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>margin</a></span><span class='op'>(</span>t <span class='op'>=</span> <span class='fl'>20</span>, r <span class='op'>=</span> <span class='fl'>20</span>, b <span class='op'>=</span> <span class='fl'>10</span>, l <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>blank_labs</span><span class='op'>(</span>
+  x_txt <span class='op'>=</span> <span class='st'>"ADD X-AXIS LABEL"</span>,
+  y_txt <span class='op'>=</span> <span class='st'>"ADD Y-AXIS LABEL"</span>,
+  title_txt <span class='op'>=</span> <span class='st'>"ADD FIGURE TITLE"</span>,
+  txt_col <span class='op'>=</span> <span class='st'>"gray92"</span>,
+  font.face <span class='op'>=</span> <span class='fl'>4</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>grid.thickness.maj</th>
-      <td><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8</p></td>
+      <th>x_txt</th>
+      <td><p>X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>grid.thickness.min</th>
-      <td><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6</p></td>
+      <th>y_txt</th>
+      <td><p>Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>grid.col</th>
-      <td><p>What color do you want the grid to be? Default: same as font (#363636)</p></td>
+      <th>title_txt</th>
+      <td><p>Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></td>
     </tr>
     <tr>
-      <th>border.thickness</th>
-      <td><p>How heavy do you want the plot border to be?</p></td>
-    </tr>
-    <tr>
-      <th>border.col</th>
-      <td><p>Color of plot border. Default: same as font (#363636)</p></td>
-    </tr>
-    <tr>
-      <th>font</th>
-      <td><p>Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google()</p></td>
-    </tr>
-    <tr>
-      <th>regular.wt</th>
-      <td><p>font weight for regular font style</p></td>
-    </tr>
-    <tr>
-      <th>bold.wt</th>
-      <td><p>font weight for bold text</p></td>
-    </tr>
-    <tr>
-      <th>font.cex</th>
-      <td><p>a simple multiplier for scaling all text</p></td>
+      <th>txt_col</th>
+      <td><p>Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)</p></td>
     </tr>
     <tr>
       <th>font.face</th>
-      <td><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)</p></td>
-    </tr>
-    <tr>
-      <th>axis.lab.col</th>
-      <td><p>color of axis labels (and title)</p></td>
-    </tr>
-    <tr>
-      <th>axis.text.col</th>
-      <td><p>color of axis text (numbers, dates, etc)</p></td>
-    </tr>
-    <tr>
-      <th>axis.tick.length</th>
-      <td><p>length of axis ticks (in pt units)</p></td>
-    </tr>
-    <tr>
-      <th>plot.margin</th>
-      <td><p>easy access to ggplot margins</p></td>
+      <td><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 4</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='input'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mpg</span>,y<span class='op'>=</span><span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='theme_galactic.html'>theme_galactic</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in find.package(package, lib.loc, verbose = verbose): there is no package called ‘galacticPubs’</span></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>mtcars</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>mpg</span>,y<span class='op'>=</span><span class='va'>hp</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'><a href='theme_galactic.html'>theme_galactic</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span><span class='fu'>blank_labs</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in find.package(package, lib.loc, verbose = verbose): there is no package called ‘galacticPubs’</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
