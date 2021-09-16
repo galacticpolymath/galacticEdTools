@@ -5,10 +5,11 @@
 \title{theme_galactic}
 \usage{
 theme_galactic(
-  grid.thickness.maj = 0.7,
-  grid.thickness.min = 0.4,
-  grid.col = "#C3C3C3",
-  border.thickness = 1,
+  base.theme = "linedraw",
+  grid.wt.maj = 0.7,
+  grid.wt.min = 0.4,
+  grid.col = NA,
+  border.wt = 1,
   border.col = "#6D6D6D",
   font = "Montserrat",
   regular.wt = 400,
@@ -22,17 +23,19 @@ theme_galactic(
 )
 }
 \arguments{
-\item{grid.thickness.maj}{How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8}
+\item{base.theme}{ggplot2 base theme to be modified; default="linedraw"; other options are "gray", "bw","light","dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}}
 
-\item{grid.thickness.min}{How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6}
+\item{grid.wt.maj}{How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8}
 
-\item{grid.col}{What color do you want the grid to be? Default: same as font (#363636)}
+\item{grid.wt.min}{How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6}
 
-\item{border.thickness}{How heavy do you want the plot border to be?}
+\item{grid.col}{What color do you want the grid to be? Default: NA (maintain base theme); options are "gp_gray" or any custom color}
+
+\item{border.wt}{How heavy do you want the plot border to be?}
 
 \item{border.col}{Color of plot border. Default: same as font (#363636)}
 
-\item{font}{Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google()}
+\item{font}{Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google() or the \href{https://fonts.google.com/}{Google font gallery}}
 
 \item{regular.wt}{font weight for regular font style}
 
@@ -52,4 +55,26 @@ theme_galactic(
 }
 \description{
 A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
+}
+\examples{
+require(ggplot2)
+#default plotting
+(g<-ggplot(mtcars,aes(wt,mpg,col=as.factor(gear)))+geom_point())
+#add ggplot themeing (intended to look good and be readable by
+#data novices in printed & projected formats)
+g+theme_galactic()
+#change the base theme
+g+theme_galactic(base.theme="dark")
+#doesn't look great, let's change the palette (and the font while we're at it)
+(g2 <- g+theme_galactic(base.theme="dark",font="Architects Daughter" )+
+scale_colour_viridis_d(option="C"))
+#let's add a title and change the legend title
+(g3 <- g2+
+labs(title="What a good lookin' plot", col=expression(atop("Number","of gears")),parse=TRUE))
+#Make all the text bigger with one multiplier (useful for quickly scaling
+#for a different output size)
+g3+theme_galactic(font.cex=2,grid.col="gp_gray")
+# Note we lost all our customizations because we overwrote our theme.
+#Add more space to the right side of the margin
+g3+theme_galactic(font.cex=2,plot.margin=margin(t=20,r=60,b=5,l=10))
 }

@@ -2,12 +2,13 @@
 #'
 #' A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
 #'
-#' @param grid.thickness.maj How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8
-#' @param grid.thickness.min How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6
-#' @param grid.col What color do you want the grid to be? Default: same as font (#363636)
-#' @param border.thickness How heavy do you want the plot border to be?
+#' @param base.theme ggplot2 base theme to be modified; default="linedraw"; other options are "gray", "bw","light","dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}
+#' @param grid.wt.maj How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8
+#' @param grid.wt.min How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6
+#' @param grid.col What color do you want the grid to be? Default: NA (maintain base theme); options are "gp_gray" or any custom color
+#' @param border.wt How heavy do you want the plot border to be?
 #' @param border.col  Color of plot border. Default: same as font (#363636)
-#' @param font Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google()
+#' @param font Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google() or the \href{https://fonts.google.com/}{Google font gallery}
 #' @param regular.wt font weight for regular font style
 #' @param bold.wt font weight for bold text
 #' @param font.cex a simple multiplier for scaling all text
@@ -16,11 +17,32 @@
 #' @param axis.text.col color of axis text (numbers, dates, etc)
 #' @param axis.tick.length length of axis ticks (in pt units)
 #' @param plot.margin easy access to ggplot margins
+#' @examples
+#' require(ggplot2)
+#' #default plotting
+#' (g<-ggplot(mtcars,aes(wt,mpg,col=as.factor(gear)))+geom_point())
+#' #add ggplot themeing (intended to look good and be readable by
+#' #data novices in printed & projected formats)
+#' g+theme_galactic()
+#' #change the base theme
+#' g+theme_galactic(base.theme="dark")
+#' #doesn't look great, let's change the palette (and the font while we're at it)
+#' (g2 <- g+theme_galactic(base.theme="dark",font="Architects Daughter" )+
+#' scale_colour_viridis_d(option="C"))
+#' #let's add a title and change the legend title
+#' (g3 <- g2+
+#' labs(title="What a good lookin' plot", col=expression(atop("Number","of gears")),parse=TRUE))
+#' #Make all the text bigger with one multiplier (useful for quickly scaling
+#' #for a different output size)
+#' g3+theme_galactic(font.cex=2,grid.col="gp_gray")
+#' # Note we lost all our customizations because we overwrote our theme.
+#' #Add more space to the right side of the margin
+#' g3+theme_galactic(font.cex=2,plot.margin=margin(t=20,r=60,b=5,l=10))
 #' @export
 
-
-theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#C3C3C3",border.thickness=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
+theme_galactic<-function(base.theme="linedraw",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
   gpPal=NULL
+  if(!is.na(grid.col)&grid.col=="gp_gray"){grid.col= "#C3C3C3"}
   utils::data(gpPal,package="galacticPubs")
   showtext::showtext_auto()
     #Only try to download font if online and not already available
@@ -36,12 +58,14 @@ theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#
   }
 
 
-ggplot2::theme_linedraw()+ #base theme to modify
+# Main ggplot layer -------------------------------------------------------
+
+#base theme to modify
+eval(parse(text=paste0("ggplot2::theme_",base.theme,"()")))+
+  #Add other theme mods
   ggplot2::theme(
     text=ggplot2::element_text(family=font),
-    panel.border=ggplot2::element_rect(size=border.thickness,colour=border.col),
-    panel.grid.major=ggplot2::element_line(size=grid.thickness.maj,colour = grid.col),
-    panel.grid.minor=ggplot2::element_line(size=grid.thickness.min,colour = grid.col),
+    #panel.border=ggplot2::element_rect(size=border.wt,colour=border.col),
     plot.margin=plot.margin,
     plot.title=ggplot2::element_text(family=font,size=30*font.cex,
                                      face=if(length(font.face)==1){font.face}else{font.face[1]},
@@ -49,16 +73,22 @@ ggplot2::theme_linedraw()+ #base theme to modify
     plot.subtitle=ggplot2::element_text(family=font,size=22*font.cex,color=gpPal[[1]]$hex[5]),
     axis.title=ggplot2::element_text(family=font,size=28*font.cex,color=axis.lab.col),
     axis.text=ggplot2::element_text(family=font,size=18*font.cex,color=axis.text.col),
-    axis.ticks=ggplot2::element_line(color=grid.col,size=grid.thickness.maj),
+    axis.ticks=ggplot2::element_line(color=grid.col,size=grid.wt.maj),
     axis.ticks.length=ggplot2::unit(axis.tick.length,"pt"),
     axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 5, r = 0, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[2]}),
     axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0, r = 3, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[3]}),
+    #only change grid.col if requested (due to incompatibility across themes)
+    panel.grid.major=ggplot2::element_line(size=grid.wt.maj,if(!is.na(grid.col)){colour = grid.col}else{}),
+    panel.grid.minor=ggplot2::element_line(size=grid.wt.min,if(!is.na(grid.col)){colour = grid.col}else{}),
     legend.text=ggplot2::element_text(family=font,color=axis.text.col,size=18*font.cex),
     legend.title=ggplot2::element_text(family=font,color=axis.lab.col,face="bold",size=18*font.cex),
-    legend.position = "right", legend.text.align = 0, legend.background =ggplot2::element_blank()
-  )
+    legend.position = "right", legend.text.align = 0, legend.background =ggplot2::element_blank() )
+
+
+
+
 }
 
 gpLogo<-function(ggObj,xNPC=.9,yNPC=.9,which="horiz_logoWords_GradWhite",size=.1,cloudinaryString=NULL){
