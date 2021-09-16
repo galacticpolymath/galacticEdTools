@@ -2,7 +2,7 @@
 #'
 #' A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
 #'
-#' @param base.theme ggplot2 base theme to be modified; default="linedraw"; other options are "gray", "bw","light","dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}
+#' @param base.theme ggplot2 base theme to be modified; default="gray"; other options are  "bw","light","linedraw", "dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}
 #' @param grid.wt.maj How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8
 #' @param grid.wt.min How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6
 #' @param grid.col What color do you want the grid to be? Default: NA (maintain base theme); options are "gp_gray" or any custom color
@@ -40,7 +40,7 @@
 #' g3+theme_galactic(font.cex=2,plot.margin=margin(t=20,r=60,b=5,l=10))
 #' @export
 
-theme_galactic<-function(base.theme="linedraw",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
+theme_galactic<-function(base.theme="gray",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
   gpPal=NULL
   if(!is.na(grid.col)&grid.col=="gp_gray"){grid.col= "#C3C3C3"}
   utils::data(gpPal,package="galacticPubs")
