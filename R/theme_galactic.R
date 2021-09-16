@@ -19,16 +19,15 @@
 #' @export
 
 
-theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#C3C3C3",border.thickness=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=10,plot.margin=ggplot2::margin(t=20,r=20,b=10,l=20)){
+theme_galactic<-function(grid.thickness.maj=.7,grid.thickness.min=.4,grid.col="#C3C3C3",border.thickness=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
   gpPal=NULL
   utils::data(gpPal,package="galacticPubs")
-
+  showtext::showtext_auto()
     #Only try to download font if online and not already available
   if(is.na(match(font,sysfonts::font_families()))){
     isOnline=RCurl::url.exists("https://www.google.com")
     if(isOnline){
         tryCatch({
-        showtext::showtext_auto()
         sysfonts::font_add_google(name=font,family=font,regular.wt=regular.wt,bold.wt=bold.wt)},
         error=function(e) cat("\nFont: '",font,"' unavailable."))
     }else{
@@ -52,9 +51,9 @@ ggplot2::theme_linedraw()+ #base theme to modify
     axis.text=ggplot2::element_text(family=font,size=18*font.cex,color=axis.text.col),
     axis.ticks=ggplot2::element_line(color=grid.col,size=grid.thickness.maj),
     axis.ticks.length=ggplot2::unit(axis.tick.length,"pt"),
-    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 10, r = 0, b = 0, l = 0),
+    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 5, r = 0, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[2]}),
-    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 20, r = 10, b = 0, l = 0),
+    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0, r = 3, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[3]}),
     legend.text=ggplot2::element_text(family=font,color=axis.text.col,size=18*font.cex),
     legend.title=ggplot2::element_text(family=font,color=axis.lab.col,face="bold",size=18*font.cex),

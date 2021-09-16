@@ -17,8 +17,8 @@ theme_galactic(
   font.face = 1,
   axis.lab.col = "#363636",
   axis.text.col = "#6D6D6D",
-  axis.tick.length = 10,
-  plot.margin = ggplot2::margin(t = 20, r = 20, b = 10, l = 20)
+  axis.tick.length = 6,
+  plot.margin = ggplot2::margin(t = 20, r = 20, b = 5, l = 20)
 )
 }
 \arguments{
