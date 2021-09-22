@@ -9,7 +9,8 @@ scale_x_yearmonth(
   breaks.mnth = 1,
   mnth.size = 12,
   yr.var = "Year",
-  yr.size = 16
+  yr.size = 16,
+  ...
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ scale_x_yearmonth(
 \item{yr.var}{Variable name for year; default= "Year"}
 
 \item{yr.size}{Font size of year labels; default=16 (pts)}
+
+\item{...}{other arguments for \code{\link[ggplot2]{scale_x_date}}}
 }
 \description{
 Makes y-axis have year as a bottom facet, with abbreviated months as minor axis-labels.

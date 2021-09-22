@@ -5,7 +5,7 @@
 \title{theme_galactic}
 \usage{
 theme_galactic(
-  base.theme = "linedraw",
+  base.theme = "gray",
   grid.wt.maj = 0.7,
   grid.wt.min = 0.4,
   grid.col = NA,
@@ -14,16 +14,21 @@ theme_galactic(
   font = "Montserrat",
   regular.wt = 400,
   bold.wt = 700,
-  font.cex = 1,
+  text.cex = 1,
   font.face = 1,
+  title.col = "#363636",
   axis.lab.col = "#363636",
   axis.text.col = "#6D6D6D",
   axis.tick.length = 6,
-  plot.margin = ggplot2::margin(t = 20, r = 20, b = 5, l = 20)
+  pad.title = 5,
+  pad.xlab = 5,
+  pad.ylab = 12,
+  pad.legend = 0,
+  pad.outer = c(20, 5, 5, 5)
 )
 }
 \arguments{
-\item{base.theme}{ggplot2 base theme to be modified; default="linedraw"; other options are "gray", "bw","light","dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}}
+\item{base.theme}{ggplot2 base theme to be modified; default="gray"; other options are  "bw","light","linedraw", "dark","minimal","classic" and "void" as listed \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{in this gallery}}
 
 \item{grid.wt.maj}{How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8}
 
@@ -41,7 +46,7 @@ theme_galactic(
 
 \item{bold.wt}{font weight for bold text}
 
-\item{font.cex}{a simple multiplier for scaling all text}
+\item{text.cex}{Controls size of text; if a single value, a simple multiplier for scaling all text; if 4 values, a multiplier for title, axis labels, axis values, and legend title; default=1 (don't rescale font sizes)}
 
 \item{font.face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)}
 
@@ -51,7 +56,15 @@ theme_galactic(
 
 \item{axis.tick.length}{length of axis ticks (in pt units)}
 
-\item{plot.margin}{easy access to ggplot margins}
+\item{pad.title}{padding between title and plot; default=5 in "pt" units}
+
+\item{pad.xlab}{padding between x-axis values and x label; default=5 in "pt" units}
+
+\item{pad.ylab}{padding between x-axis values and x label; default=12 in "pt" units}
+
+\item{pad.legend}{padding between legend title and key; default=0 in "pt" units}
+
+\item{pad.outer}{set outer plot margins; default= c(20,5,5,5) for top, right, bottom, left in "pt" units}
 }
 \description{
 A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
@@ -65,7 +78,8 @@ require(ggplot2)
 g+theme_galactic()
 #change the base theme
 g+theme_galactic(base.theme="dark")
-#doesn't look great, let's change the palette (and the font while we're at it)
+#doesn't look great, let's change the palette to a color-blind-friendly
+#Viridis theme (and the font while we're at it)
 (g2 <- g+theme_galactic(base.theme="dark",font="Architects Daughter" )+
 scale_colour_viridis_d(option="C"))
 #let's add a title and change the legend title
@@ -73,8 +87,13 @@ scale_colour_viridis_d(option="C"))
 labs(title="What a good lookin' plot", col=expression(atop("Number","of gears")),parse=TRUE))
 #Make all the text bigger with one multiplier (useful for quickly scaling
 #for a different output size)
-g3+theme_galactic(font.cex=2,grid.col="gp_gray")
+g3+theme_galactic(text.cex=2,grid.col="gp_gray")
 # Note we lost all our customizations because we overwrote our theme.
 #Add more space to the right side of the margin
-g3+theme_galactic(font.cex=2,plot.margin=margin(t=20,r=60,b=5,l=10))
+g3+theme_galactic(text.cex=0.8,pad.outer=c(50,40,50,30))+ggtitle("Changed Outer Plot Margins")
+# Change the size of each type of text
+g3+theme_galactic(text.cex=c(0.8,1.1,0.5,1.2))+ggtitle("Custom Text Sizing")
+# Change padding between text labels and graph elements
+g3+theme_galactic(text.cex=c(.8,1,1,1),pad.title=30,pad.xlab=0,pad.ylab=35,pad.legend=0)+
+ggtitle("Custom padding for elements")
 }

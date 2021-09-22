@@ -9,6 +9,7 @@
 #' @param mnth.size Font size of month labels; default=12 (pts)
 #' @param yr.size Font size of year labels; default=16 (pts)
 #' @param yr.var Variable name for year; default= "Year"
+#' @param ... other arguments for \code{\link[ggplot2]{scale_x_date}}
 #' @examples
 
 #' require(ggplot2)
@@ -34,13 +35,13 @@
 #' g3+scale_x_yearmonth(abbrev=3,breaks.mnth=4,yr.var="year")+geom_smooth()
 #' @export
 
-scale_x_yearmonth=function(abbrev=1,breaks.mnth=1,mnth.size=12,yr.var="Year",yr.size=16){
+scale_x_yearmonth=function(abbrev=1,breaks.mnth=1,mnth.size=12,yr.var="Year",yr.size=16,...){
   dte_formatter <- function(x) {
     #formatter for axis labels:
     mth <- substr(format(x, "%b"),1,abbrev)
     mth
   }
-list(ggplot2::scale_x_date(date_breaks=paste0(breaks.mnth," months"),labels=dte_formatter),
+list(ggplot2::scale_x_date(date_breaks=paste0(breaks.mnth," months"),labels=dte_formatter,...),
     ggplot2::theme(strip.background=ggplot2::element_blank(),strip.placement="outside",panel.spacing.x=unit(0,"lines"),
                    panel.border=ggplot2::element_rect(colour="#363636",fill="transparent",size=.35),
                    strip.text=ggplot2::element_text(colour = "#363636",size=yr.size),

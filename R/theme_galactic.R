@@ -11,12 +11,17 @@
 #' @param font Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google() or the \href{https://fonts.google.com/}{Google font gallery}
 #' @param regular.wt font weight for regular font style
 #' @param bold.wt font weight for bold text
-#' @param font.cex a simple multiplier for scaling all text
 #' @param font.face style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)
-#' @param axis.lab.col color of axis labels (and title)
+#' @param text.cex Controls size of text; if a single value, a simple multiplier for scaling all text; if 4 values, a multiplier for title, axis labels, axis values, and legend title; default=1 (don't rescale font sizes)
+#' @param title.col color of title and subtitle (if present)
+#' @param axis.lab.col color of axis labels
 #' @param axis.text.col color of axis text (numbers, dates, etc)
 #' @param axis.tick.length length of axis ticks (in pt units)
-#' @param plot.margin easy access to ggplot margins
+#' @param pad.title padding between title and plot; default=5 in "pt" units
+#' @param pad.xlab padding between x-axis values and x label; default=5 in "pt" units
+#' @param pad.ylab padding between x-axis values and x label; default=12 in "pt" units
+#' @param pad.legend padding between legend title and key; default=0 in "pt" units
+#' @param pad.outer set outer plot margins; default= c(20,5,5,5) for top, right, bottom, left in "pt" units
 #' @examples
 #' require(ggplot2)
 #' #default plotting
@@ -26,7 +31,8 @@
 #' g+theme_galactic()
 #' #change the base theme
 #' g+theme_galactic(base.theme="dark")
-#' #doesn't look great, let's change the palette (and the font while we're at it)
+#' #doesn't look great, let's change the palette to a color-blind-friendly
+#' #Viridis theme (and the font while we're at it)
 #' (g2 <- g+theme_galactic(base.theme="dark",font="Architects Daughter" )+
 #' scale_colour_viridis_d(option="C"))
 #' #let's add a title and change the legend title
@@ -34,16 +40,20 @@
 #' labs(title="What a good lookin' plot", col=expression(atop("Number","of gears")),parse=TRUE))
 #' #Make all the text bigger with one multiplier (useful for quickly scaling
 #' #for a different output size)
-#' g3+theme_galactic(font.cex=2,grid.col="gp_gray")
+#' g3+theme_galactic(text.cex=2,grid.col="gp_gray")
 #' # Note we lost all our customizations because we overwrote our theme.
 #' #Add more space to the right side of the margin
-#' g3+theme_galactic(font.cex=2,plot.margin=margin(t=20,r=60,b=5,l=10))
+#' g3+theme_galactic(text.cex=0.8,pad.outer=c(50,40,50,30))+ggtitle("Changed Outer Plot Margins")
+#' # Change the size of each type of text
+#' g3+theme_galactic(text.cex=c(0.8,1.1,0.5,1.2))+ggtitle("Custom Text Sizing")
+#' # Change padding between text labels and graph elements
+#' g3+theme_galactic(text.cex=c(.8,1,1,1),pad.title=30,pad.xlab=0,pad.ylab=35,pad.legend=0)+
+#' ggtitle("Custom padding for elements")
 #' @export
 
-theme_galactic<-function(base.theme="gray",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,font.cex=1,font.face=1,axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,plot.margin=ggplot2::margin(t=20,r=20,b=5,l=20)){
-  gpPal=NULL
+theme_galactic<-function(base.theme="gray",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,text.cex=1,font.face=1,title.col="#363636",axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,pad.title=5,pad.xlab=5,pad.ylab=12,pad.legend=0,pad.outer=c(20,5,5,5)){
+
   if(!is.na(grid.col)&grid.col=="gp_gray"){grid.col= "#C3C3C3"}
-  utils::data(gpPal,package="galacticPubs")
   showtext::showtext_auto()
     #Only try to download font if online and not already available
   if(is.na(match(font,sysfonts::font_families()))){
@@ -57,6 +67,9 @@ theme_galactic<-function(base.theme="gray",grid.wt.maj=.7,grid.wt.min=.4,grid.co
     }
   }
 
+  n_tcex_pars<-length(text.cex)
+  if(n_tcex_pars!=1&n_tcex_pars!=4){stop("text.cex must be of length 1 or 4")}
+
 
 # Main ggplot layer -------------------------------------------------------
 
@@ -66,27 +79,26 @@ eval(parse(text=paste0("ggplot2::theme_",base.theme,"()")))+
   ggplot2::theme(
     text=ggplot2::element_text(family=font),
     #panel.border=ggplot2::element_rect(size=border.wt,colour=border.col),
-    plot.margin=plot.margin,
-    plot.title=ggplot2::element_text(family=font,size=30*font.cex,
+    plot.margin=eval(parse(text=paste("ggplot2::margin(",paste(pad.outer,collapse=","),")",collapse="",sep=""))),
+    plot.title=ggplot2::element_text(family=font,size=30*ifelse(n_tcex_pars==1,text.cex,text.cex[1]),
                                      face=if(length(font.face)==1){font.face}else{font.face[1]},
-                                     color=axis.lab.col),
-    plot.subtitle=ggplot2::element_text(family=font,size=22*font.cex,color=gpPal[[1]]$hex[5]),
-    axis.title=ggplot2::element_text(family=font,size=28*font.cex,color=axis.lab.col),
-    axis.text=ggplot2::element_text(family=font,size=18*font.cex,color=axis.text.col),
+                                     color=title.col, margin = ggplot2::margin(t = 0, r = 0, b = pad.title, l = 0)),
+    plot.subtitle=ggplot2::element_text(family=font,size=22*ifelse(n_tcex_pars==1,text.cex,text.cex[1]),color=title.col),
+    axis.title=ggplot2::element_text(family=font,size=28*ifelse(n_tcex_pars==1,text.cex,text.cex[2]),color=axis.lab.col),
+    axis.text=ggplot2::element_text(family=font,size=18*ifelse(n_tcex_pars==1,text.cex,text.cex[3]),color=axis.text.col),
     axis.ticks=ggplot2::element_line(color=grid.col,size=grid.wt.maj),
     axis.ticks.length=ggplot2::unit(axis.tick.length,"pt"),
-    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = 5, r = 0, b = 0, l = 0),
+    axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = pad.xlab, r = 0, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[2]}),
-    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0, r = 3, b = 0, l = 0),
+    axis.title.y = ggplot2::element_text(margin = ggplot2::margin(t = 0, r = pad.ylab, b = 0, l = 0),
                                          face=if(length(font.face)==1){font.face}else{font.face[3]}),
     #only change grid.col if requested (due to incompatibility across themes)
     panel.grid.major=ggplot2::element_line(size=grid.wt.maj,if(!is.na(grid.col)){colour = grid.col}else{}),
     panel.grid.minor=ggplot2::element_line(size=grid.wt.min,if(!is.na(grid.col)){colour = grid.col}else{}),
-    legend.text=ggplot2::element_text(family=font,color=axis.text.col,size=18*font.cex),
-    legend.title=ggplot2::element_text(family=font,color=axis.lab.col,face="bold",size=18*font.cex),
+    legend.text=ggplot2::element_text(family=font,color=axis.text.col,size=18*ifelse(n_tcex_pars==1,text.cex,text.cex[4])),
+    legend.title=ggplot2::element_text(family=font,color=axis.lab.col,face="bold",size=18*ifelse(n_tcex_pars==1,text.cex,text.cex[4]),
+                                       margin = ggplot2::margin(t = 0, r = 0, b = pad.legend, l = 0)),
     legend.position = "right", legend.text.align = 0, legend.background =ggplot2::element_blank() )
-
-
 
 
 }
