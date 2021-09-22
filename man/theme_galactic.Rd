@@ -9,6 +9,7 @@ theme_galactic(
   grid.wt.maj = 0.7,
   grid.wt.min = 0.4,
   grid.col = NA,
+  bg.col = NA,
   border.wt = 1,
   border.col = "#6D6D6D",
   font = "Montserrat",
@@ -36,6 +37,8 @@ theme_galactic(
 
 \item{grid.col}{What color do you want the grid to be? Default: NA (maintain base theme); options are "gp_gray" or any custom color}
 
+\item{bg.col}{Background color for plot area; default=NA (base theme default)}
+
 \item{border.wt}{How heavy do you want the plot border to be?}
 
 \item{border.col}{Color of plot border. Default: same as font (#363636)}
@@ -50,7 +53,9 @@ theme_galactic(
 
 \item{font.face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)}
 
-\item{axis.lab.col}{color of axis labels (and title)}
+\item{title.col}{color of title and subtitle (if present)}
+
+\item{axis.lab.col}{color of axis labels}
 
 \item{axis.text.col}{color of axis text (numbers, dates, etc)}
 
@@ -76,24 +81,36 @@ require(ggplot2)
 #add ggplot themeing (intended to look good and be readable by
 #data novices in printed & projected formats)
 g+theme_galactic()
+
 #change the base theme
 g+theme_galactic(base.theme="dark")
+
 #doesn't look great, let's change the palette to a color-blind-friendly
 #Viridis theme (and the font while we're at it)
-(g2 <- g+theme_galactic(base.theme="dark",font="Architects Daughter" )+
-scale_colour_viridis_d(option="C"))
+g+theme_galactic(font="Architects Daughter" )+
+scale_colour_viridis_d(option="inferno")+geom_point(size=3)
+
+#Still not happy with the contrast...somewhere between the grays we've tried
+(g2 <- g+theme_galactic(font="Architects Daughter",bg.col="gray70")+
+scale_colour_viridis_d(option="inferno")+geom_point(size=3))
+
 #let's add a title and change the legend title
 (g3 <- g2+
 labs(title="What a good lookin' plot", col=expression(atop("Number","of gears")),parse=TRUE))
+
 #Make all the text bigger with one multiplier (useful for quickly scaling
 #for a different output size)
-g3+theme_galactic(text.cex=2,grid.col="gp_gray")
+g3+theme_galactic(text.cex=2,grid.col="gp_gray")+ggtitle("That's too big")
 # Note we lost all our customizations because we overwrote our theme.
+
 #Add more space to the right side of the margin
-g3+theme_galactic(text.cex=0.8,pad.outer=c(50,40,50,30))+ggtitle("Changed Outer Plot Margins")
+g3+theme_galactic(text.cex=0.8,pad.outer=c(50,40,50,30))+ggtitle("Increased Outer Plot Margins")
+
 # Change the size of each type of text
-g3+theme_galactic(text.cex=c(0.8,1.1,0.5,1.2))+ggtitle("Custom Text Sizing")
+g3+theme_galactic(text.cex=c(0.6,1.1,0.5,1.2))+labs(title="60\% Title Text Size",
+y="Axes are 110\% Text Size", x="↑ Axis Values 50\%↑ ",col="120\% Legend\nText Size")
+
 # Change padding between text labels and graph elements
-g3+theme_galactic(text.cex=c(.8,1,1,1),pad.title=30,pad.xlab=0,pad.ylab=35,pad.legend=0)+
-ggtitle("Custom padding for elements")
+g3+theme_galactic(text.cex=c(.8,1,1,1),pad.title=30,
+pad.xlab=0,pad.ylab=35,pad.legend=0)+ggtitle("Custom padding for elements")
 }

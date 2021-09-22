@@ -33,6 +33,15 @@
 #' @export
 #'
 showPhylo<-function(speciesNames,nameType,dateTree=T,labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=F,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=F,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=F,quiet=T){
+
+  #Check for extra missing dependencies
+  missingpkgs<-unlist(sapply(c("magick","rvest"),function(pkg){
+   if (!requireNamespace(pkg, quietly = TRUE)) {pkg}else{NULL}
+    }))
+  if(length(missingpkgs>0)){
+  message("Extra dependencies missing:\n\t-",paste0(missingpkgs,collapse="\n\t-"))
+  message("Consider running: install.packages(pkgs=c(",paste0("'",missingpkgs,"'",collapse=", "),"))")
+  }
     if(missing(nameType)){stop("\nPlease supply the type of names you're providing; i.e. nameType= either 'sci' or 'common'")}
     if(missing(picSaveDir)){picSaveDir<-fs::path(tempdir(),"showPhylo")}
 
