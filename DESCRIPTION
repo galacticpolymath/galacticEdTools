@@ -21,27 +21,27 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 URL: https://galacticpolymath.github.io/galacticEdTools
 Depends:
-  datelife
 Imports:
-    WikipediR,
-    BiocManager,
     fs,
     ggimage,
     ggplot2,
-    ggtree,
-    magick,
     pbapply,
     png,
     RCurl,
-    rotl,
     remotes,
-    rvest,
     showtext,
     sysfonts,
-    taxize,
     lifecycle
 Suggests:
-    stringr
+    datelife,
+    WikipediR,
+    stringr,
+    BiocManager,
+    ggtree,
+    taxize,
+    magick,
+    rotl,
+    rvest
 Remotes:
   github::phylotastic/datelife,
   bioc::ggtree
