@@ -104,6 +104,9 @@
 #'
 showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
 
+  #for testing
+  #list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
+
 
   #Check for extra missing dependencies
   missingpkgs<-unlist(sapply(c("magick"),function(pkg){
@@ -184,12 +187,18 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     #in case of weird names with parentheticals; e.g. Phyllopteryx (genus in Deuterostomia)
     tol_names_cleaned<-gsub("(.*) ?[(].*[)](.*)","\\1\\2",tol_taxa$unique_name)
     tipIndx<-match(tree_final$tip.label.backup,gsub(" ","_",tol_names_cleaned))
-    sci_tmp<-gsub(" ","~",tol_names_cleaned[tipIndx])
-    com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
-    tree_final$tip.label<-switch(labelType,b= paste0("atop(bolditalic(",sci_tmp,"),'",
-                                              gsub("([^~()*]*'[^~()*]*)","\"\\1\"",fixed=F,com_tmp)    ,"')"),
-                                           c= gsub("[()]","",com_tmp),
-                                           s= sci_tmp)
+    # sci_tmp<-gsub(" ","~",tol_names_cleaned[tipIndx])
+    # com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
+    sci_tmp<-tol_names_cleaned[tipIndx]
+    com_tmp<-tol_taxa$common_name[tipIndx]
+    sc_tmp<-lapply(paste0("'bolditalic(",sci_tmp,")' \n(",com_tmp,")''"),function(x) str2expression(x))
+    tree_final$tip.label<-switch(labelType,b= sc_tmp,
+                                           c= paste0("(",com_tmp,")"),
+                                           s= expression(bolditalic(sci_tmp)))
+    # tree_final$tip.label<-switch(labelType,b= paste0("atop(bolditalic(",sci_tmp,"),'",
+    #                                           gsub("([^~()*]*'[^~()*]*)","\"\\1\"",fixed=F,com_tmp)    ,"')"),
+    #                                        c= gsub("[()]","",com_tmp),
+    #                                        s= sci_tmp)
 
 
     # Look up and cache phylopic image UIDs in an efficient manner ------------
@@ -388,7 +397,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
                                       labels=round(seq(0,timescale,timescale/(numXlabs-1))))  +
       ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')+
       #Add text labels
-      ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=T,offset=textOffset,align=dotsConnectText,
+      ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=F,offset=textOffset,align=dotsConnectText,
                   color=textCol,size=5*textScalar)  + #,label.padding=ggplot2::unit(1,"lines")
       # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
 
