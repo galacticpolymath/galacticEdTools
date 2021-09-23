@@ -92,11 +92,14 @@
 #'
 #'
 #' #OK, let's simplify it, add divergence time and get some pics back
-#' g3<-showPhylo(noms[c(1,3,5,6,7)], "c")
+#' (g3<-showPhylo(noms[c(1,3,5,6,7)], "c" ))
 #' g3+geom_highlight(mapping=aes(subset=node==4),fill="salmon")+
 #' labs(title="Phylogeny showing how weird rock hyraxes are:",
 #' subtitle="They look like groundhogs, but are much closer related to elephants")+
 #' theme(plot.title=element_text(size=18))
+#'
+#' #to get the right output dimensions, you may need to play around with setting height & width
+#' # e.g. ggsave("hyrax.jpeg",height=3,width=3)
 #'
 showPhylo<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,...){
 

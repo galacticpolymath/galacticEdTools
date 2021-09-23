@@ -21,6 +21,7 @@ RoxygenNote: 7.1.2
 URL: https://galacticpolymath.github.io/galacticEdTools
 Depends:
     datelife (>= 0.3.2)
+biocViews:
 Imports:
     fs (>= 1.5.0),
     ggimage (>= 0.2.9),

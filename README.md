@@ -39,69 +39,13 @@ require(galacticEdTools)
 #require(datelife) If you get an error about taxa not being found in any chronograms, try this
 ```
 
-## Example
+## What you can do with galacticEdTools?
 
-The impetus for this package was the need to make a figure showing that
-the many animals we call “panthers” are actually really distantly
-related cat species. Our genetic rescue lesson, sponsored by [Dr. Sarah
-Fitzpatrick’s lab](http://swfitz.com/), uses the example of the Florida
-panther as a charismatic application of her research (which mostly uses
-guppies as a model for understanding how gene flow can save small,
-highly inbred populations from extinction). The figure below was
-essential for explaining that 1) black panthers are not a species at
-all, but the (uncommon) dark morph of either a leopard or jaguar, and 2)
-that these big cats diverged from Florida panthers (which are actually
-pumas/cougars/mountain lions) around 16 million years ago.
+#### Make a dated phylogeny for teaching about evolution in just a line or two with showPhylo()
 
-This type of dated phylogenetic tree should be an essential teaching
-tool for so many lessons in biology, but it requires a lot of time,
-programming skill, and know-how to create. Our show\_phylo() function
-makes it possible in just a couple lines of code. It’s essentially a
-convenience wrapper that merges functionality from several R packages:
-chiefly [taxize](https://github.com/ropensci/taxize),
-[datelife](https://github.com/phylotastic/datelife),
-[ggtree](https://github.com/YuLab-SMU/ggtree),
-[ggplot2](https://github.com/tidyverse/ggplot2),
-[rphylopic](https://github.com/sckott/rphylopic),
-[WikipediR](https://github.com/Ironholds/WikipediR) & many others.
+<img src="man/figures/hyrax.jpeg">
 
-``` r
-# I want to show that Florida panthers are highly diverged from leopards and jaguars,
-# and are actually (a bit) more closely related to domestic cats
-speciesNames <- c("puma","leopard","jaguar","domestic cat")
-
-# Now,let's make a phylogeny for these species. Just declare that these are 
-# common names, and showPhylo should make some reasonable assumptions to make a pretty plot,
-# and by default add scientific names and the cover pictures from Wikipedia using our 
-# getWikiPic() function.
-cats<-showPhylo(speciesNames,nameType="common")
-```
-
-And with no changes to the plot, here’s what it should look like.
-
-``` r
-plot(cats)
-```
-
-<img src="man/figures/README-first-catphylo-1.png" width="100%" />
-
-By default, pic=“wiki”, but we can also use pic=“phylopic” to get
-species silhouettes from the [phyloPics image
-repository](http://phylopic.org/). You can also supply your own images
-with pic=“cust”.
-
-``` r
-cats2<-showPhylo(speciesNames,"c",pic="phylopic")
-```
-
-``` r
-plot(cats2)
-```
-
-<img src="man/figures/README-second-catphylo-1.png" width="100%" />
-
-Check out the vignette for showPhylo() to learn about more
-customizations. (not done yet)
+## And a growing number of other things. Check out the [Reference Section](https://galacticpolymath.github.io/galacticEdTools/reference/index.html)
 
 ## Is this package useful to you? There are several ways you can support its continued development.
 
