@@ -101,7 +101,7 @@ speciesNames <- c("puma","leopard","jaguar","domestic cat")
 
 #Make a dated phylogeny with them (by default, median divergence times are estimated
 #using the datelife package and images are added from Wikipedia)
-showPhylo(speciesNames,"c")
+invisible(showPhylo(speciesNames,"c"))
 
 #If a particular combination of organisms lacks divergence time data (particularly extinct species),
 #causing an error

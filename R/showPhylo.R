@@ -31,6 +31,7 @@
 #' @param plotMar margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.1,b=.02,l=.02) for top, right, bottom, left
 #' @param clearCache delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE
 #' @param quiet suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE
+#' @param silent suppress all console output? (Mainly for R documentation); Default=FALSE
 #' @param ... pass other parameters to \code{\link[ggtree]{ggtree}}
 #' @md
 #' @import ggtree datelife
@@ -101,7 +102,8 @@
 #' #to get the right output dimensions, you may need to play around with setting height & width
 #' # e.g. ggsave("hyrax.jpeg",height=3,width=3)
 #'
-showPhylo<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,...){
+showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
+
 
   #Check for extra missing dependencies
   missingpkgs<-unlist(sapply(c("magick"),function(pkg){
@@ -416,8 +418,21 @@ showPhylo<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffse
     }else{g}
 
 }
+
+#Run the code through helper function to handle suppression of all output (silent mode)
+showPhylo<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
+  #Don't fully understand why this works, but we're passing all arguments into backend function
+  mycall<-match.call()
+  mycall[[1]]<-as.symbol("showPhylo_backend")
+
+  if(silent){
+  invisible(capture.output(suppressMessages(g<-eval(mycall))))
+    plot(g)
+  }else{eval(mycall)}
+}
+
 #
-# showPhylo(c("giraffe","monarch butterfly","house fly","electric eel","blue bottle fly","mantisfly"),nameType="c",plotMar=c(r=.32),picSize=1,labelOffset = .45)
+# showPhylo(c("giraffe","monarch butterfly","house fly","electric eel","blue bottle fly","mantisfly"),nameType="c",plotMar=c(r=.32),picSize=1,labelOffset = .45,silent=T,dateTree=F)
 #ggsave("test.jpg",width=7,height=10)
 #
 # showPhylo(speciesNames=c("lion","ocelot","puma","leopard","jaguar","domestic cat"),nameType="c")

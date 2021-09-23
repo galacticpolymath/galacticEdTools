@@ -284,7 +284,7 @@
 
 <span class='co'>#Make a dated phylogeny with them (by default, median divergence times are estimated</span>
 <span class='co'>#using the datelife package and images are added from Wikipedia)</span>
-<span class='fu'>showPhylo</span><span class='op'>(</span><span class='va'>speciesNames</span>,<span class='st'>"c"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'>showPhylo</span><span class='op'>(</span><span class='va'>speciesNames</span>,<span class='st'>"c"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; taxize options
 #&gt;   taxon_state_messages: TRUE</div><div class='output co'>#&gt; <span class='message'>Looking for scientific names in NCBI:</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>  -puma  =  Puma concolor</span></div><div class='output co'>#&gt; <span class='message'></span>
@@ -327,7 +327,7 @@
 #&gt; <span class='message'> Img saved for Panthera_pardus: 220px-African_leopard_male_%28cropped%29.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Panthera_onca: 220px-Standing_jaguar.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Felis_catus: 260px-Cat_poster_1.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'> Img saved for Puma_concolor: 220px-Mountain_Lion_in_Glacier_National_Park.jpg</span></div><div class='img'><img src='showPhylo-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'> Img saved for Puma_concolor: 220px-Mountain_Lion_in_Glacier_National_Park.jpg</span></div><div class='input'>
 <span class='co'>#If a particular combination of organisms lacks divergence time data (particularly extinct species),</span>
 <span class='co'>#causing an error</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
@@ -373,7 +373,7 @@
 #&gt; <span class='message'> Img saved for Tyrannosaurus: 250px-Tyrannosaurus_Rex_Holotype.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Hippocampus_abdominalis: 220px-Sketchbook_of_fishes_-_18._%28Pot_bellied%29_Sea_horse_-_William_Buelow_Gould%2C_c1832.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Phycodurus_eques: 220px-Leafy_Seadragon_on_Kangaroo_Island.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'> Img saved for Regalecus_russelii: 220px-Regalecus_russelii_Academia_Sinica.jpg</span></div><div class='img'><img src='showPhylo-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'> Img saved for Regalecus_russelii: 220px-Regalecus_russelii_Academia_Sinica.jpg</span></div><div class='img'><img src='showPhylo-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#Instead of Wikipedia images for each species, we can try to find a phylopic (silhouette)</span>
 <span class='fu'>showPhylo</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"potbellied seahorse"</span>,<span class='st'>"leafy seadragon"</span>,<span class='st'>"oarfish"</span>,
 <span class='st'>"Tyrannosaurus"</span><span class='op'>)</span>,<span class='st'>"c"</span>,dateTree<span class='op'>=</span><span class='cn'>FALSE</span>,pic<span class='op'>=</span><span class='st'>"phylopic"</span><span class='op'>)</span>
@@ -408,7 +408,7 @@
 #&gt; 3      FALSE                                      1
 #&gt; 4      FALSE extinct, incertae_sedis              1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/65 (  0) ?sProgress [================================] 65/65 (100)  0s                                                            </div><div class='output co'>#&gt; <span class='message'>---------------------------------------------</span>
 #&gt; <span class='message'>  Looking for PhyloPics for your species...(slow)</span>
-#&gt; <span class='message'>---------------------------------------------</span></div><div class='img'><img src='showPhylo-3.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'>---------------------------------------------</span></div><div class='img'><img src='showPhylo-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#In the case above, the butterfly was the wrong image, so we could try searching using the genus,</span>
 <span class='co'># (note: change nameType to "scientific");</span>
 <span class='fu'>showPhylo</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Hippocampus"</span>,<span class='st'>"phycodurus"</span>,<span class='st'>"Regalecus"</span>,<span class='st'>"Tyrannosaurus"</span><span class='op'>)</span>,
@@ -446,7 +446,7 @@
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>  -Hippocampus</span>
 #&gt; <span class='message'>  -Phycodurus</span>
-#&gt; <span class='message'>  -Regalecus</span></div><div class='img'><img src='showPhylo-4.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='message'>  -Regalecus</span></div><div class='img'><img src='showPhylo-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#Not great, but \href{http://phylopic.org/}{phylopic} is open source,</span>
 <span class='co'>#so you can upload your own silhouette</span>
 
@@ -497,7 +497,7 @@
 #&gt; 5      FALSE                             1
 #&gt; 6      FALSE                             1
 #&gt; 7      FALSE                             1
-#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-5.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#Doesn't look great, so we can connect the tree tips with the text</span>
 <span class='co'>#and make the tree blue (why not?); Also, let's just show common names</span>
 <span class='fu'>showPhylo</span><span class='op'>(</span><span class='va'>noms</span>,<span class='st'>"c"</span>,pic<span class='op'>=</span><span class='st'>"n"</span>,dateTree<span class='op'>=</span><span class='cn'>FALSE</span>,phyloCol<span class='op'>=</span><span class='st'>"royalblue1"</span>,dotsConnectText<span class='op'>=</span><span class='cn'>TRUE</span>,nameType<span class='op'>=</span><span class='st'>"c"</span><span class='op'>)</span>
@@ -535,7 +535,7 @@
 #&gt; 5      FALSE                             1
 #&gt; 6      FALSE                             1
 #&gt; 7      FALSE                             1
-#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-6.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#Now let's shorten the gap between the tree and the text, and increase text size</span>
 <span class='op'>(</span><span class='va'>g</span><span class='op'>&lt;-</span><span class='fu'>showPhylo</span><span class='op'>(</span><span class='va'>noms</span>,<span class='st'>"c"</span>,pic<span class='op'>=</span><span class='st'>"n"</span>,dateTree<span class='op'>=</span><span class='cn'>FALSE</span>,phyloCol<span class='op'>=</span><span class='st'>"royalblue1"</span>,dotsConnectText<span class='op'>=</span><span class='cn'>TRUE</span>,
 nameType<span class='op'>=</span><span class='st'>"c"</span>,labelOffset<span class='op'>=</span><span class='fl'>.2</span>,textScalar<span class='op'>=</span><span class='fl'>1.2</span><span class='op'>)</span><span class='op'>)</span>
@@ -573,17 +573,17 @@ nameType<span class='op'>=</span><span class='st'>"c"</span>,labelOffset<span cl
 #&gt; 5      FALSE                             1
 #&gt; 6      FALSE                             1
 #&gt; 7      FALSE                             1
-#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-7.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; 8      FALSE                             1</div><div class='output co'>#&gt; <span class='message'>-----------------------------------</span></div><div class='output co'>#&gt; Progress [----------------------------------] 0/74 (  0) ?sProgress [================================] 74/74 (100)  0s                                                            </div><div class='img'><img src='showPhylo-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#once we're satisfied with the tree, we can edit it like any other ggplot</span>
 <span class='op'>(</span><span class='va'>g2</span><span class='op'>&lt;-</span><span class='va'>g</span><span class='op'>+</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title<span class='op'>=</span><span class='st'>"Phylogeny showing how weird rock hyraxes are:"</span>,
 subtitle<span class='op'>=</span><span class='st'>"They look like groundhogs, but are much closer related to elephants"</span><span class='op'>)</span><span class='op'>+</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>18</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>)</span>
-</div><div class='img'><img src='showPhylo-8.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='showPhylo-7.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#we can also use \href{https://yulab-smu.top/treedata-book/chapter5.html}{ggtree functions}</span>
 <span class='co'>#(like \code{\link[ggtree]{geom_highlight}} to do all sorts of</span>
 <span class='co'>#stuff, like highlight our key species (you can figure out which node that is here with g2$data)</span>
 <span class='va'>g2</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/pkg/ggtree/man/geom-hilight.html'>geom_highlight</a></span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>subset<span class='op'>=</span><span class='va'>node</span><span class='op'>==</span><span class='fl'>6</span><span class='op'>)</span>,fill<span class='op'>=</span><span class='st'>"salmon"</span><span class='op'>)</span>
-</div><div class='img'><img src='showPhylo-9.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='showPhylo-8.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'>#OK, let's simplify it, add divergence time and get some pics back</span>
 <span class='op'>(</span><span class='va'>g3</span><span class='op'>&lt;-</span><span class='fu'>showPhylo</span><span class='op'>(</span><span class='va'>noms</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>6</span>,<span class='fl'>7</span><span class='op'>)</span><span class='op'>]</span>, <span class='st'>"c"</span> <span class='op'>)</span><span class='op'>)</span>
@@ -627,11 +627,11 @@ subtitle<span class='op'>=</span><span class='st'>"They look like groundhogs, bu
 #&gt; <span class='message'> Img saved for Sciurus_carolinensis: 220px-Eastern_Grey_Squirrel.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Suricata_suricatta: 220px-Meerkat_%28Suricata_suricatta%29_Tswalu.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'> Img saved for Procavia_capensis: 220px-Rock_hyrax_%28Procavia_capensis%29_2.jpg</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'> Img saved for Loxodonta: 220px-African_Elephant_%28Loxodonta_africana%29_male_%2817289351322%29.jpg</span></div><div class='img'><img src='showPhylo-10.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>g3</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/pkg/ggtree/man/geom-hilight.html'>geom_highlight</a></span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>subset<span class='op'>=</span><span class='va'>node</span><span class='op'>==</span><span class='fl'>4</span><span class='op'>)</span>,fill<span class='op'>=</span><span class='st'>"salmon"</span><span class='op'>)</span><span class='op'>+</span>
+#&gt; <span class='message'> Img saved for Loxodonta: 220px-African_Elephant_%28Loxodonta_africana%29_male_%2817289351322%29.jpg</span></div><div class='img'><img src='showPhylo-9.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>g3</span><span class='op'>+</span><span class='fu'><a href='https://rdrr.io/pkg/ggtree/man/geom-hilight.html'>geom_highlight</a></span><span class='op'>(</span>mapping<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>subset<span class='op'>=</span><span class='va'>node</span><span class='op'>==</span><span class='fl'>4</span><span class='op'>)</span>,fill<span class='op'>=</span><span class='st'>"salmon"</span><span class='op'>)</span><span class='op'>+</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title<span class='op'>=</span><span class='st'>"Phylogeny showing how weird rock hyraxes are:"</span>,
 subtitle<span class='op'>=</span><span class='st'>"They look like groundhogs, but are much closer related to elephants"</span><span class='op'>)</span><span class='op'>+</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>18</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='showPhylo-11.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='showPhylo-10.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#to get the right output dimensions, you may need to play around with setting height &amp; width</span>
 <span class='co'># e.g. ggsave("hyrax.jpeg",height=3,width=3)</span>
 
