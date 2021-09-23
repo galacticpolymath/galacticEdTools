@@ -19,6 +19,8 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 URL: https://galacticpolymath.github.io/galacticEdTools
+Depends:
+    datelife (>= 0.3.2)
 Imports:
     fs (>= 1.5.0),
     ggimage (>= 0.2.9),
@@ -28,9 +30,9 @@ Imports:
     RCurl (>= 1.98),
     remotes (>= 2.0.0),
     lifecycle (>= 1.0.0),
-    datelife (>= 0.3.2),
     ggtree (>= 3.0.4),
     rotl (>= 3.0.11),
+    rvest (>= 1.0.1),
     showtext (>= 0.9.0),
     stringr (>= 1.4.0),
     sysfonts (>= 0.8.5),
@@ -38,8 +40,7 @@ Imports:
     WikipediR (>= 1.5.0),
 Suggests:
     BiocManager (>= 1.30.16),
-    magick (>= 2.7.3),
-    rvest (>= 1.0.1)
+    magick (>= 2.7.3)
 Remotes:
     github::phylotastic/datelife (>= 0.3.2),
     bioc::ggtree (>= 3.0.4)
