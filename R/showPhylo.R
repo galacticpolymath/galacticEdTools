@@ -186,8 +186,8 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     tipIndx<-match(tree_final$tip.label.backup,gsub(" ","_",tol_names_cleaned))
     sci_tmp<-gsub(" ","~",tol_names_cleaned[tipIndx])
     com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
-    tree_final$tip.label<-switch(labelType,b= paste0("atop(bolditalic(",sci_tmp,"),",
-                                              gsub("([^~()*]*'[^~()*]*)","\"\\1\"",fixed=F,com_tmp)    ,")"),
+    tree_final$tip.label<-switch(labelType,b= paste0("atop(bolditalic(",sci_tmp,"),'",
+                                              gsub("([^~()*]*'[^~()*]*)","\"\\1\"",fixed=F,com_tmp)    ,"')"),
                                            c= gsub("[()]","",com_tmp),
                                            s= sci_tmp)
 
