@@ -32,6 +32,7 @@ Imports:
     remotes (>= 2.0.0),
     lifecycle (>= 1.0.0),
     ggtree (>= 3.0.4),
+    ggtext (>= 0.1.1),
     rotl (>= 3.0.11),
     rvest (>= 1.0.1),
     showtext (>= 0.9.0),
