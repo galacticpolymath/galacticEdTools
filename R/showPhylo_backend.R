@@ -5,10 +5,10 @@
 #' @inheritParams showPhylo
 
 
-showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
+showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.4,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
 
   # for testing
-  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.36,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
+  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.4,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
 
 
   # Check for extra missing dependencies
@@ -288,9 +288,11 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     if(openDir){system(paste0("open ",optImg_loc))}
     }# end custom image code
 
-
+    # ! IMPORTANT to keep this up to date with defaults set on function call
     # interpret user plotMar specifications, accepting partial entries
-    plotMar_defaults<-c(t=.02,r=.2,b=.02,l=.02)
+    plotMar_defaults<-c(t=.02,r=.4,b=.02,l=.02)
+    #***************
+
     if(length(plotMar)!=4){
       # for partial entries, check for names, then fill in with plotMar defaults
       if(is.null(names(plotMar))){
@@ -338,7 +340,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     # Add text labels
     x=y=label=xend=yend=NULL #So R check will shut up
     g <- g0+ ggtext::geom_richtext(data=label.df,ggplot2::aes(x=x,y=y,label=label),inherit.aes=FALSE,
-                               label.size=0,hjust=0,color=textCol,size=5*textScalar)+
+                               label.size=0,hjust=0,color=textCol,size=5.2*textScalar)+
            # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
       {
         if(dotsConnectText){
@@ -367,7 +369,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     if(dateTree){
     g+ggplot2::theme(axis.ticks.x=ggplot2::element_line(color=phyloCol),
                   axis.ticks.length.x=ggplot2::unit(3,"pt"),
-                  axis.title.x=ggplot2::element_text(margin=ggplot2::margin(xTitlePad,0,3,0),face="bold",size=26*textScalar),
+                  axis.title.x=ggplot2::element_text(margin=ggplot2::margin(xTitlePad,0,3,0),face="bold",size=20*textScalar,hjust=0),
                   axis.text.x=ggplot2::element_text(color=textCol,size=21*textScalar),
                   axis.line.x=ggplot2::element_line(color=phyloCol))
     }else{g}

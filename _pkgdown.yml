@@ -22,3 +22,7 @@ repo:
   url:
     home: https://github.com/galacticpolymath/galacticEdTools/
     source: https://github.com/galacticpolymath/galacticEdTools/blob/main/
+figures:
+  dev: grDevices::png
+  fig.width: ~
+  fig.height: ~

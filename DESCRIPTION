@@ -39,7 +39,7 @@ Imports:
     stringr (>= 1.4.0),
     sysfonts (>= 0.8.5),
     taxize (>= 0.9.99),
-    WikipediR (>= 1.5.0),
+    WikipediR (>= 1.5.0)
 Suggests:
     BiocManager (>= 1.30.16),
     magick (>= 2.7.3)

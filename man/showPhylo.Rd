@@ -27,7 +27,7 @@ showPhylo(
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.36, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.4, b = 0.02, l = 0.02),
   clearCache = FALSE,
   quiet = TRUE,
   silent = FALSE,
@@ -79,7 +79,7 @@ showPhylo(
 
 \item{textCol}{color of the axis and tip labels; default= "# 363636"}
 
-\item{plotMar}{margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.36,b=.02,l=.02) for top, right, bottom, left}
+\item{plotMar}{margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left}
 
 \item{clearCache}{delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE}
 
@@ -115,7 +115,7 @@ showPhylo(speciesNames,"c",silent=TRUE)
 \dontrun{
 showPhylo(c("potbellied seahorse","leafy seadragon",
 "oarfish","Tyrannosaurus"),"common",silent=TRUE)
-}
+
 # you can possibly still produce an undated phylogeny (cladogram) using the open tree of life data
 showPhylo(c("potbellied seahorse","leafy seadragon",
 "oarfish","Tyrannosaurus"),"c",dateTree=FALSE,silent=TRUE)
@@ -128,30 +128,30 @@ showPhylo(c("potbellied seahorse","leafy seadragon","oarfish",
 # (note: change nameType to "scientific");
 showPhylo(c("Hippocampus","phycodurus","Regalecus","Tyrannosaurus"),
 "scientific",dateTree=FALSE,pic="p",silent=TRUE)
-
+}
 # Not great, but phylopic is open source,
 # so you can upload your own silhouettes
 
 # If you have a ton of species, you can just say no pics
-noms<-c("rock hyrax","Hippopotamus","Eastern gray squirrel","Asian elephant",
+speciesNames<-c("rock hyrax","Hippopotamus","Eastern gray squirrel","Asian elephant",
 "African elephant","groundhog","meerkat","wolverine")
-showPhylo(noms,"c",pic="n",dateTree=FALSE,silent=TRUE)
+showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,silent=TRUE)
 
 # Doesn't look great, so we can connect the tree tips with the text
 # and make the tree blue (why not?); Also, let's just show common names
-showPhylo(noms,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",
+showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",
 labelType="c",silent=TRUE)
 
 
 # Now let's shorten the gap between the tree and the text, and increase text size,
 # also cushion the right margin
-(g<-showPhylo(noms,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",dotsConnectText=TRUE,
-labelType="c",labelOffset=.2,textScalar=1.2,plotMar=c(t=.02,r=.4,b=.02,l=.02) ,silent=TRUE))
+g<-showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",dotsConnectText=TRUE,
+labelType="c",labelOffset=.2,textScalar=1.2,plotMar=c(t=.02,r=.4,b=.02,l=.02) ,silent=TRUE)
 
 # once we're satisfied with the tree, we can edit it like any other ggplot
-(g2<-g+labs(title="Phylogeny showing how weird rock hyraxes are:",
+g2<-g+labs(title="Phylogeny showing how weird rock hyraxes are:",
 subtitle="They look like groundhogs, but are much closer related to elephants")+
-theme(plot.title=element_text(size=18) ) )
+theme(plot.title=element_text(size=18) )
 
 # we can also use ggtree functions to do all sorts of stuff like highlight our key species
 # (you can figure out which node that is here with g2$data)
@@ -159,11 +159,13 @@ g2+geom_highlight(mapping=aes(subset=node==6),fill="salmon")
 
 
 # OK, let's simplify it, add divergence time and get some pics back
-showPhylo(noms[c(1,3,5,6,7)], "c" ,silent=TRUE)+
+speciesNames <- speciesNames[c(1,3,5,6,7)]
+g3<-showPhylo(speciesNames, "c" ,silent=TRUE)+
 geom_highlight(mapping=aes(subset=node==4),fill="salmon")+
 labs(title="Phylogeny showing how weird rock hyraxes are:",
 subtitle="They look like groundhogs, but are much closer related to elephants")+
 theme(plot.title=element_text(size=18))
+
 
 # to get the right output dimensions, you may need to play around with setting height & width
 # e.g. ggsave("hyrax.jpeg",height=3,width=3)

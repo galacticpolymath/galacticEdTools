@@ -27,7 +27,7 @@ showPhylo_backend(
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.36, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.4, b = 0.02, l = 0.02),
   clearCache = FALSE,
   quiet = TRUE,
   silent = FALSE,
@@ -79,7 +79,7 @@ showPhylo_backend(
 
 \item{textCol}{color of the axis and tip labels; default= "# 363636"}
 
-\item{plotMar}{margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.36,b=.02,l=.02) for top, right, bottom, left}
+\item{plotMar}{margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left}
 
 \item{clearCache}{delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE}
 
