@@ -191,10 +191,10 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     # com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
     sci_tmp<-tol_names_cleaned[tipIndx]
     com_tmp<-tol_taxa$common_name[tipIndx]
-    sc_tmp<-lapply(paste0("'bolditalic(",sci_tmp,")' \n(",com_tmp,")''"),function(x) str2expression(x))
+    sc_tmp<-paste0("***",sci_tmp,"***<br>(",com_tmp,")")
     tree_final$tip.label<-switch(labelType,b= sc_tmp,
                                            c= paste0("(",com_tmp,")"),
-                                           s= expression(bolditalic(sci_tmp)))
+                                           s= paste0("***",bolditalic(sci_tmp),"***"))
     # tree_final$tip.label<-switch(labelType,b= paste0("atop(bolditalic(",sci_tmp,"),'",
     #                                           gsub("([^~()*]*'[^~()*]*)","\"\\1\"",fixed=F,com_tmp)    ,"')"),
     #                                        c= gsub("[()]","",com_tmp),
@@ -378,12 +378,12 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
                                 panel.border=ggplot2::element_blank())
 
     #Define basic tree plot before modifying in steps
-    g0<-ggtree::ggtree(tree_final,size=phyloThickness,color=phyloCol,...)+theme_phylo
+    g00<-ggtree::ggtree(tree_final,size=phyloThickness,color=phyloCol)+theme_phylo
 
     #Extract some info from base plot
-    timescale<-ggplot2::layer_scales(g0)$x$get_limits()[2]
+    timescale<-ggplot2::layer_scales(g00)$x$get_limits()[2]
     timescale_rounded <- ceiling(timescale/10)*10
-    yscale<-ggplot2::layer_scales(g0)$y$get_limits()
+    yscale<-ggplot2::layer_scales(g00)$y$get_limits()
     textOffset=labelOffset*timescale
     picSized=0.15*picSize
     picOffset=textOffset/2
@@ -391,16 +391,25 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
                               ymin=yscale[1]-.5,ymax=yscale[2]+.5)
 
 
-
     #Rescale to have a 50% buffer on the right to add text
-    g <- g0+ggplot2::scale_x_continuous(breaks=seq(timescale,0,-timescale/(numXlabs-1)),
+    g0 <- g00+ggplot2::scale_x_continuous(breaks=seq(timescale,0,-timescale/(numXlabs-1)),
                                       labels=round(seq(0,timescale,timescale/(numXlabs-1))))  +
-      ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')+
-      #Add text labels
-      ggtree::geom_tiplab(geom='text',vjust=0.5,hjust=0,parse=F,offset=textOffset,align=dotsConnectText,
-                  color=textCol,size=5*textScalar)  + #,label.padding=ggplot2::unit(1,"lines")
-      # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
+      ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')
 
+    #Extract info for text labels
+    label.df<-g0$data[which(g0$data$isTip==TRUE),]
+    label.df$xend<-label.df$x
+    label.df$x<-label.df$x+textOffset
+
+    #Add text labels
+    g <- g0+ ggtext::geom_richtext(data=label.df,aes(x=x,y=y,label=label),inherit.aes=FALSE,
+                               label.size=0,hjust=0,color=textCol,size=5*textScalar)+
+           # ggplot2::coord_fixed(aspectRatio,clip="off",ylim=c(yscale[1]-xAxisPad,yscale[2]))+
+      {
+        if(dotsConnectText){
+          ggplot2::geom_segment(data=label.df,aes(x=x,xend=xend,y=y,yend=y),linetype="dotted")
+        }
+      }+
       #add semitransparent rectangle between dotted line and phylopic
       #geom_rect(inherit.aes=F,data=backgroundRec,aes(xmin=xmin,ymin=ymin, xmax=xmax,ymax=ymax),fill="white",alpha=.7)+
       {
@@ -417,6 +426,8 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
         }else{}
       }
 
+
+# ggtext::geom_richtext(aes(x=x,y=y,label=label),data=g$data,inherit.aes=F,hjust=0,label.size=0)
     #dateTree formatting has to be in 2 steps cuz aPPARENTLY you can add 2 layers in 1 if/then :(
     if(dateTree){
     g+ggplot2::theme(axis.ticks.x=ggplot2::element_line(color=phyloCol),
