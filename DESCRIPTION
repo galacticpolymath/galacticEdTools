@@ -44,6 +44,6 @@ Suggests:
     BiocManager (>= 1.30.16),
     magick (>= 2.7.3)
 Remotes:
-    github::phylotastic/datelife (>= 0.3.2),
-    bioc::ggtree (>= 3.0.4)
+    github::phylotastic/datelife,
+    bioc::ggtree
 
