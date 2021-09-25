@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/index.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/blank_labs.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/enciphR.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getPhyloNames.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getPhyloNames_noCache.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/getWikiPic.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/ggciphR.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/scale_x_yearmonth.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/showPhylo.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/showPhylo_backend.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/theme_galactic.html</loc>
+  </url>
+</urlset>

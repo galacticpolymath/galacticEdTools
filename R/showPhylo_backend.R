@@ -5,10 +5,10 @@
 #' @inheritParams showPhylo
 
 
-showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.4,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
+showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
 
   # for testing
-  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.4,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
+  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
 
 
   # Check for extra missing dependencies
@@ -290,7 +290,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
 
     # ! IMPORTANT to keep this up to date with defaults set on function call
     # interpret user plotMar specifications, accepting partial entries
-    plotMar_defaults<-c(t=.02,r=.4,b=.02,l=.02)
+    plotMar_defaults<-c(t=.02,r=.5,b=.02,l=.02)
     #***************
 
     if(length(plotMar)!=4){
@@ -307,8 +307,9 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
       # else, if 4 coordinates specified, simply store them
     }else{plotMar_final<-plotMar}
 
+    #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
     # Plot that beautiful tree :) ---------------------------------------------
-
+    #\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
     # Define custom theme to override a lot of ggtree's styling (if we want to plot)
     theme_phylo<-ggplot2::theme(plot.margin=ggplot2::margin(plotMar_final,unit="npc"),
                                 panel.border=ggplot2::element_blank())
@@ -321,16 +322,16 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     timescale_rounded <- ceiling(timescale/10)*10
     yscale<-ggplot2::layer_scales(g00)$y$get_limits()
     textOffset=labelOffset*timescale
-    picSized=0.15*picSize
+    picSized=0.25*picSize
     picOffset=textOffset/2
-    backgroundRec<-data.frame(xmin=timescale+picOffset-(picSized*timescale*.7),xmax=timescale+picOffset+(picSized*timescale*.7),
-                              ymin=yscale[1]-.5,ymax=yscale[2]+.5)
+    # backgroundRec<-data.frame(xmin=timescale+picOffset-(picSized*timescale*.7),xmax=timescale+picOffset+(picSized*timescale*.7),
+    #                           ymin=yscale[1]-.5,ymax=yscale[2]+.5)
 
 
     # Rescale to have a 50% buffer on the right to add text
     g0 <- g00+ggplot2::scale_x_continuous(breaks=seq(timescale,0,-timescale/(numXlabs-1)),
-                                      labels=round(seq(0,timescale,timescale/(numXlabs-1))))  +
-      ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off')
+                                      labels=round(seq(0,timescale,timescale/(numXlabs-1))))  + #currently can't use ,limits=c(0,timescale)
+      ggplot2::coord_cartesian(ylim=c(yscale[1]-xAxisPad,yscale[2]),clip='off',xlim=c(0,timescale))
 
     # Extract info for text labels
     label.df<-g0$data[which(g0$data$isTip==TRUE),]
@@ -363,13 +364,12 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
         }else{}
       }
 
-
 # ggtext::geom_richtext(aes(x=x,y=y,label=label),data=g$data,inherit.aes=F,hjust=0,label.size=0)
     # dateTree formatting has to be in 2 steps cuz aPPARENTLY you can add 2 layers in 1 if/then :(
     if(dateTree){
     g+ggplot2::theme(axis.ticks.x=ggplot2::element_line(color=phyloCol),
                   axis.ticks.length.x=ggplot2::unit(3,"pt"),
-                  axis.title.x=ggplot2::element_text(margin=ggplot2::margin(xTitlePad,0,3,0),face="bold",size=20*textScalar,hjust=0),
+                  axis.title.x=ggplot2::element_text(margin=ggplot2::margin(xTitlePad,0,3,2),face=1,size=20*textScalar,hjust=0.5),
                   axis.text.x=ggplot2::element_text(color=textCol,size=21*textScalar),
                   axis.line.x=ggplot2::element_line(color=phyloCol))
     }else{g}

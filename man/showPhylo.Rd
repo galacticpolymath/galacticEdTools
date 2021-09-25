@@ -27,7 +27,7 @@ showPhylo(
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.4, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.5, b = 0.02, l = 0.02),
   clearCache = FALSE,
   quiet = TRUE,
   silent = FALSE,
@@ -115,10 +115,11 @@ showPhylo(speciesNames,"c",silent=TRUE)
 \dontrun{
 showPhylo(c("potbellied seahorse","leafy seadragon",
 "oarfish","Tyrannosaurus"),"common",silent=TRUE)
-
-# you can possibly still produce an undated phylogeny (cladogram) using the open tree of life data
+}
+# you can possibly still produce an undated phylogeny (cladogram) using the open
+# tree of life data; also modified plot margin to have more space for taxa labels
 showPhylo(c("potbellied seahorse","leafy seadragon",
-"oarfish","Tyrannosaurus"),"c",dateTree=FALSE,silent=TRUE)
+"oarfish","Tyrannosaurus"),"c",dateTree=FALSE,picSize=.8,silent=TRUE)
 
 # Instead of Wikipedia images for each species, we can try to find a phylopic (silhouette)
 showPhylo(c("potbellied seahorse","leafy seadragon","oarfish",
@@ -128,7 +129,7 @@ showPhylo(c("potbellied seahorse","leafy seadragon","oarfish",
 # (note: change nameType to "scientific");
 showPhylo(c("Hippocampus","phycodurus","Regalecus","Tyrannosaurus"),
 "scientific",dateTree=FALSE,pic="p",silent=TRUE)
-}
+
 # Not great, but phylopic is open source,
 # so you can upload your own silhouettes
 
@@ -138,15 +139,16 @@ speciesNames<-c("rock hyrax","Hippopotamus","Eastern gray squirrel","Asian eleph
 showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,silent=TRUE)
 
 # Doesn't look great, so we can connect the tree tips with the text
-# and make the tree blue (why not?); Also, let's just show common names
+# and make the tree blue (why not?); Also, let's just show common names,
+# and add more space in the right margin for all the text
 showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",
-labelType="c",silent=TRUE)
+labelType="c",plotMar=c(r=".6"),silent=TRUE)
 
 
-# Now let's shorten the gap between the tree and the text, and increase text size,
-# also cushion the right margin
+# We could also shorten the gap between the tree and the text, add connecting dots,
+# and increase text size
 g<-showPhylo(speciesNames,"c",pic="n",dateTree=FALSE,phyloCol="royalblue1",dotsConnectText=TRUE,
-labelType="c",labelOffset=.2,textScalar=1.2,plotMar=c(t=.02,r=.4,b=.02,l=.02) ,silent=TRUE)
+labelType="c",labelOffset=.2,textScalar=1.2 ,silent=TRUE)
 
 # once we're satisfied with the tree, we can edit it like any other ggplot
 g2<-g+labs(title="Phylogeny showing how weird rock hyraxes are:",
@@ -158,13 +160,17 @@ theme(plot.title=element_text(size=18) )
 g2+geom_highlight(mapping=aes(subset=node==6),fill="salmon")
 
 
-# OK, let's simplify it, add divergence time and get some pics back
+# OK, let's simplify it, add divergence time and get some pics back; also reduce pic size
+# and space between pic and text and only print 7 breaks in the x-scale
 speciesNames <- speciesNames[c(1,3,5,6,7)]
-g3<-showPhylo(speciesNames, "c" ,silent=TRUE)+
-geom_highlight(mapping=aes(subset=node==4),fill="salmon")+
+g3<-showPhylo(speciesNames, "c" ,silent=TRUE,picSize=.5,labelOffset=0.3,
+    numXlabs=7)
+
+# Last tweaks: let's highlight the hyrax branch and add our titles
+g3+geom_highlight(mapping=aes(subset=node==4),fill="salmon")+
 labs(title="Phylogeny showing how weird rock hyraxes are:",
 subtitle="They look like groundhogs, but are much closer related to elephants")+
-theme(plot.title=element_text(size=18))
+theme(plot.title=element_text(size=18),plot.subtitle=element_text(size=14))
 
 
 # to get the right output dimensions, you may need to play around with setting height & width

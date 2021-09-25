@@ -27,7 +27,7 @@ showPhylo_backend(
   phyloThickness = 1.2,
   phyloCol = "#363636",
   textCol = "#363636",
-  plotMar = c(t = 0.02, r = 0.4, b = 0.02, l = 0.02),
+  plotMar = c(t = 0.02, r = 0.5, b = 0.02, l = 0.02),
   clearCache = FALSE,
   quiet = TRUE,
   silent = FALSE,
