@@ -30,6 +30,7 @@
 #' @param textCol color of the axis and tip labels; default= "# 363636"
 #' @param plotMar margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left
 #' @param clearCache delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE
+#' @param datelifePartialMatch use use source trees even if they only match some of the desired taxa; affects the `partial` paramter in \code{\link[datelife]{datelife_search}}default= FALSE
 #' @param quiet suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE
 #' @param silent suppress all console output? (Mainly for R documentation); Default=FALSE
 #' @param ... pass other parameters to \code{\link[ggtree]{ggtree}} (not very compatible right now)
@@ -138,3 +139,5 @@ showPhylo<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffse
 # ggsave("test.jpg",width=7,height=10)
 #
 # showPhylo(speciesNames=c("lion","ocelot","puma","leopard","jaguar","domestic cat"),nameType="c")
+#
+# showPhylo(c("grizzly","black bear","giant panda","koala"),"c")+ggplot2::ggtitle("What we call bears")

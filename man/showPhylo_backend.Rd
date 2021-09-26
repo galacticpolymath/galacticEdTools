@@ -29,6 +29,7 @@ showPhylo_backend(
   textCol = "#363636",
   plotMar = c(t = 0.02, r = 0.5, b = 0.02, l = 0.02),
   clearCache = FALSE,
+  datelifePartialMatch = FALSE,
   quiet = TRUE,
   silent = FALSE,
   ...
@@ -82,6 +83,8 @@ showPhylo_backend(
 \item{plotMar}{margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left}
 
 \item{clearCache}{delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE}
+
+\item{datelifePartialMatch}{use use source trees even if they only match some of the desired taxa; affects the \code{partial} paramter in \code{\link[datelife]{datelife_search}}default= FALSE}
 
 \item{quiet}{suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE}
 

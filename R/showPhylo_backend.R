@@ -5,10 +5,10 @@
 #' @inheritParams showPhylo
 
 
-showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE,...){
+showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,datelifePartialMatch = FALSE,quiet=TRUE,silent=FALSE,...){
 
   # for testing
-  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
+  # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,datelifePartialMatch = FALSE,quiet=TRUE,silent=FALSE),envir=globalenv())
 
 
   # Check for extra missing dependencies
@@ -27,8 +27,8 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     if(!nameType_l%in%c("s","c")){stop("nameType must be one of 's' or 'c' for scientific or common names, respectively")}
     nameType<-switch(nameType_l,s="sci",c="common")
     # 1. Lookup, error check, & compile a df of sci and common names --------------
-    spp<-getPhyloNames(speciesNames,nameType,clearCache = clearCache,quiet=quiet)
-
+    spp0<-getPhyloNames(speciesNames,nameType,clearCache = clearCache,quiet=quiet)
+    spp<-spp0
     # allow for abbreviated pic specification (and test it)
     pic_l<-substr(pic,1,1)
     if(!pic_l%in%c("w","p","c","n")){stop("pic must be one of 'w' 'p' 'c' or 'n' for Wikipedia, Phylopic, custom or none, respectively.")}
@@ -38,6 +38,22 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     # # Provide error catching framework b/c sometimes the OTL server is down
     message("\n Trying to match scientific names with Open Tree of Life")
     message("\n *You may be asked to choose a number if there are multiple matches.\n")
+
+# get rid of subspecies if common name was supplied -----------------------
+    #Remove subspecies from search from here out (but maintain label at end)
+    #this should drastically improve chance of finding a tree
+      if(nameType=="common"){
+        #If at least one subspecies present, tell user it's being removed
+        if(sum(grepl("(^.* .*) .*$",spp$scientific_name))>0){
+        message("\n*Subspecies scientific names removed from search to maximize chance\n",
+                " of finding a hit on evolutionary data bases. If you want precise subspecies,\n",
+                " trees (rather than species-level tree), you should enter scientific names.\n",
+                " Subspecies names will appear on final figure.")
+        spp$scientific_name<-sapply(spp$scientific_name,function(x){gsub("(^.* .*) .*$","\\1",x)})
+        }
+      }
+
+
     prob_rotl<-tryCatch({
     tol_taxa<-rotl::tnrs_match_names(spp$scientific_name,do_approximate_matching = F)
     },error=function(e){message("\n! Open Tree of Life lookup failed.");e}
@@ -94,18 +110,27 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
       if(species_cached){
         tree_final<-datelife_cache_list[[match(tree_taxa,names(datelife_cache_list))]]
       }else{
-        tryCatch({
+        ######################
+        # Try to date the tree (with rudimentary error catching)
+        dateTreeSuccess<-tryCatch({
           message(rep("-",55),"\n Attempting to scale the tree to divergence times...\n",rep("-",55))
           message(" Tip: If it takes more than a few seconds, it's probably going to fail. (You may want to hit stop).\n")
-          tree_final<-datelife::datelife_search(tree,summary_format="phylo_median")
-          #Add tree_final to datelife_cache_list, with the names of taxa as the list element name
+          tree_final<-datelife::datelife_search(tree,summary_format="phylo_median",partial=datelifePartialMatch)
+          TRUE
+        },error=function(e) {
+          e
+          })
+        if("error"%in%class(dateTreeSuccess)){
+          stop("\n\n! Tree dating FAILED !\nTry setting quiet=F to get more warnings, removing one species at a time, or setting dateTree=F.\n\n")
+        }else{
+          #Add tree_final to datelife_cache_list, with the names of taxa as the list
+          #element name and delete big objects from environment to save memory
           datelife_cache_list[[length(datelife_cache_list)+1]] <- tree_final
           names(datelife_cache_list)[length(datelife_cache_list)]<-tree_taxa
           saveRDS(datelife_cache_list,tmpfile_datelife)
           rm(datelife_cache_list)#Remove cache to save space!
           rm(opentree_chronograms)#remove object created by datelife
-        },error=function(e) {
-          stop("\n\n! Tree dating FAILED !\nTry setting quiet=F to get more warnings, removing taxa, or setting dateTree=F.\n\n")})
+        }
       }
     #if tree doesn't need to be dated
     }else{tree_final<-tree}
@@ -122,7 +147,12 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     # sci_tmp<-gsub(" ","~",tol_names_cleaned[tipIndx])
     # com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
     sci_tmp<-tol_names_cleaned[tipIndx]
+    #Return subspecies names if they were removed
+    sci_tmp<-spp0$scientific_name[match(gsub("(^.* .*) .*$","\\1",spp0$scientific_name),sci_tmp)]
     com_tmp<-tol_taxa$common_name[tipIndx]
+
+
+
     sc_tmp<-paste0("***",sci_tmp,"***<br>(",com_tmp,")")
     tree_final$tip.label<-switch(labelType,b= sc_tmp,
                                            c= com_tmp,
