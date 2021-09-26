@@ -3,6 +3,7 @@
 #' helper function for showPhylo that does all the work
 #'
 #' @inheritParams showPhylo
+#' @keywords internal
 
 
 showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,datelifePartialMatch = TRUE,quiet=TRUE,silent=FALSE,...){

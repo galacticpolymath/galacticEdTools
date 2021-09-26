@@ -100,7 +100,7 @@ You have the ability to look up matching common or scientific names for taxa, pl
 The impetus for this package was the need to make a figure showing that the many animals we call "panthers" are actually really distantly related cat species. Our genetic rescue lesson, sponsored by \href{http://swfitz.com/}{Dr. Sarah Fitzpatrick's lab}, uses the example of the Florida panther as a charismatic application of her research (which mostly uses guppies as a model for understanding how gene flow can save small, highly inbred populations from extinction).
 }
 \examples{
-invisible({require(ggplot2);require(ggtree)})
+{require(ggplot2);require(ggtree)}
 # declare some species common names
 speciesNames <- c("puma","leopard","jaguar","domestic cat")
 

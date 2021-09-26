@@ -39,7 +39,7 @@
 #' @export
 #'
 #' @examples
-#' invisible({require(ggplot2);require(ggtree)})
+#' {require(ggplot2);require(ggtree)}
 #' # declare some species common names
 #' speciesNames <- c("puma","leopard","jaguar","domestic cat")
 #'

@@ -95,3 +95,4 @@ showPhylo_backend(
 \description{
 helper function for showPhylo that does all the work
 }
+\keyword{internal}
