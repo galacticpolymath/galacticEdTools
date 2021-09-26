@@ -39,13 +39,13 @@ require(galacticEdTools)
 #require(datelife) If you get an error about taxa not being found in any chronograms, try this
 ```
 
-## What you can do with galacticEdTools?
+## What can you do with galacticEdTools?
 
-#### Make a dated phylogeny for teaching about evolution in just a line or two with [`showPhylo()`](docs/reference/showPhylo.html)
+#### Make a dated phylogeny for teaching about evolution in just a line or two with [`showPhylo()`](showPhylo.html)
 
 <img src="man/figures/marsupials.png">
 
-## And a growing number of other things. Check out the [Reference Section](https://galacticpolymath.github.io/galacticEdTools/reference/index.html)
+## And a growing number of other things. Check out the [Reference Section](reference/index.html)
 
 ## Is this package useful to you? There are several ways you can support its continued development.
 

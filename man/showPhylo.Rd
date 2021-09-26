@@ -89,7 +89,7 @@ showPhylo(
 
 \item{...}{pass other parameters to \code{\link[ggtree]{ggtree}} (not very compatible right now)}
 
-\item{datelifePartialMatch}{use use source trees even if they only match some of the desired taxa; affects the \code{partial} paramter in \code{\link[datelife]{datelife_search}}default= FALSE}
+\item{datelifePartialMatch}{use use source trees even if they only match some of the desired taxa; affects the \code{partial} paramter in \code{\link[datelife]{datelife_search}}; default= TRUE}
 }
 \description{
 A \emph{relatively} simple function for generating presentation-ready phylogenies, given a set of common or scientific names. It works best for a few species, since the goal is to make a phylogeny for pedagogical purposes, so the focus is on details, not quantity.

@@ -30,7 +30,7 @@
 #' @param textCol color of the axis and tip labels; default= "# 363636"
 #' @param plotMar margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left
 #' @param clearCache delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE
-#' @param datelifePartialMatch use use source trees even if they only match some of the desired taxa; affects the `partial` paramter in \code{\link[datelife]{datelife_search}}default= FALSE
+#' @param datelifePartialMatch use use source trees even if they only match some of the desired taxa; affects the `partial` paramter in \code{\link[datelife]{datelife_search}}; default= TRUE
 #' @param quiet suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE
 #' @param silent suppress all console output? (Mainly for R documentation); Default=FALSE
 #' @param ... pass other parameters to \code{\link[ggtree]{ggtree}} (not very compatible right now)
@@ -56,7 +56,7 @@
 #' \dontrun{
 #' showPhylo(c("potbellied seahorse","leafy seadragon",
 #' "oarfish","Tyrannosaurus"),"common",silent=TRUE)
-#' }
+#'}
 #' # you can possibly still produce an undated phylogeny (cladogram) using the open
 #' # tree of life data; also modified plot margin to have more space for taxa labels
 #' showPhylo(c("potbellied seahorse","leafy seadragon",

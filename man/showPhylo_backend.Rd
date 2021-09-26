@@ -29,7 +29,7 @@ showPhylo_backend(
   textCol = "#363636",
   plotMar = c(t = 0.02, r = 0.5, b = 0.02, l = 0.02),
   clearCache = FALSE,
-  datelifePartialMatch = FALSE,
+  datelifePartialMatch = TRUE,
   quiet = TRUE,
   silent = FALSE,
   ...
@@ -84,7 +84,7 @@ showPhylo_backend(
 
 \item{clearCache}{delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE}
 
-\item{datelifePartialMatch}{use use source trees even if they only match some of the desired taxa; affects the \code{partial} paramter in \code{\link[datelife]{datelife_search}}default= FALSE}
+\item{datelifePartialMatch}{use use source trees even if they only match some of the desired taxa; affects the \code{partial} paramter in \code{\link[datelife]{datelife_search}}; default= TRUE}
 
 \item{quiet}{suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE}
 
