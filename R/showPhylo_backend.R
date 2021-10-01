@@ -8,6 +8,10 @@
 
 showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir,optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,datelifePartialMatch = TRUE,quiet=TRUE,silent=FALSE,...){
 
+  if(length(speciesNames)<3&dateTree==TRUE){
+    stop("\nYou must provide at least 3 species if you want to date divergence times on the tree.\n")
+  }
+
   # for testing
   # list2env(list(speciesNames=c("bandicoot","numbat","tasmanian devil","koala"),nameType="c",dateTree=TRUE,labelType="b",labelOffset=.45,aspectRatio=1,pic="wiki",dotsConnectText=FALSE,picSize=1,picSaveDir=tempdir(),optPicWidth=200,picBorderWidth=10,picBorderCol="#363636",openDir=FALSE,xAxisPad=.2,xTitlePad=20,numXlabs=8,textScalar=1,xTitleScalar=1,phyloThickness=1.2,phyloCol="#363636",textCol="#363636",plotMar=c(t=.02,r=.5,b=.02,l=.02),clearCache=FALSE,datelifePartialMatch = TRUE,quiet=TRUE,silent=FALSE),envir=globalenv())
 
@@ -43,18 +47,26 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
 # get rid of subspecies if common name was supplied -----------------------
     #Remove subspecies from search from here out (but maintain label at end)
     #this should drastically improve chance of finding a tree
-      if(nameType=="common"){
+      if(nameType=="common"&dateTree==TRUE){
         #If at least one subspecies present, tell user it's being removed
         if(sum(grepl("(^.* .*) .*$",spp$scientific_name))>0){
-        message("\n*Subspecies scientific names removed from search to maximize chance\n",
+        spp$scientific_name<-sapply(spp$scientific_name,function(x){gsub("(^.* .*) .*$","\\1",x)})
+        conspecifics<-duplicated(spp$scientific_name)
+        if(sum(conspecifics)>0){
+          stop({
+            cat("These are the same species:\n")
+            print(spp0[conspecifics,])
+            "Unable to date a tree at the subspecies level. Use dateTree=F or choose different species."
+            })
+          }
+         message("\n*Subspecies scientific names removed from search to maximize chance\n",
                 " of finding a hit on evolutionary data bases. If you want precise subspecies,\n",
                 " trees (rather than species-level tree), you should enter scientific names.\n",
                 " Subspecies names will appear on final figure.")
-        spp$scientific_name<-sapply(spp$scientific_name,function(x){gsub("(^.* .*) .*$","\\1",x)})
         }
       }
 
-
+    #Look up tree of life taxonomic names (And OTTs)
     prob_rotl<-tryCatch({
     tol_taxa<-rotl::tnrs_match_names(spp$scientific_name,do_approximate_matching = F)
     },error=function(e){message("\n! Open Tree of Life lookup failed.");e}
@@ -77,7 +89,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
 
     # Make tree from scientific names in tol_taxa -----------------------------
     prob<-tryCatch(
-      tree<-if(quiet){suppressWarnings(rotl::tol_induced_subtree(rotl::ott_id(tol_taxa),label="name"))
+      tree<-if(quiet){suppressWarnings(rotl::tol_induced_subtree(ott_ids=rotl::ott_id(tol_taxa),label="name"))
             }else{rotl::tol_induced_subtree(rotl::ott_id(tol_taxa),label="name")},
       error=function(e) {
         message("\n! Tree Build FAILED\n* The Tree of Life Open Taxonomy system doesn't work super well with extinct organisms sometimes. Try removing them from your set.")
