@@ -161,7 +161,7 @@ showPhylo_backend<-function(speciesNames,nameType,dateTree=TRUE,labelType="b",la
     # com_tmp<-paste0("(",gsub(" ","~",tol_taxa$common_name[tipIndx]),")")
     sci_tmp<-tol_names_cleaned[tipIndx]
     #Return subspecies names if they were removed
-    sci_tmp<-spp0$scientific_name[match(gsub("(^.* .*) .*$","\\1",spp0$scientific_name),sci_tmp)]
+    sci_tmp<-spp0$scientific_name[match(sci_tmp,gsub("(^.* .*) .*$","\\1",spp0$scientific_name))]
     com_tmp<-tol_taxa$common_name[tipIndx]
 
 
