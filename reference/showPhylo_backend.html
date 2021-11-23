@@ -130,7 +130,7 @@
     <pre class="usage"><span class='fu'>showPhylo_backend</span><span class='op'>(</span>
   <span class='va'>speciesNames</span>,
   <span class='va'>nameType</span>,
-  dateTree <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dateTree <span class='op'>=</span> <span class='cn'>FALSE</span>,
   labelType <span class='op'>=</span> <span class='st'>"b"</span>,
   labelOffset <span class='op'>=</span> <span class='fl'>0.45</span>,
   aspectRatio <span class='op'>=</span> <span class='fl'>1</span>,
@@ -171,7 +171,7 @@
     </tr>
     <tr>
       <th>dateTree</th>
-      <td><p>try to scale the tree to estimated divergence times? Uses <code><a href='https://rdrr.io/pkg/datelife/man/datelife_search.html'>datelife_search</a></code> with summary_format="phylo_median." default= T</p></td>
+      <td><p>try to scale the tree to estimated divergence times? Uses <code><a href='https://rdrr.io/pkg/datelife/man/datelife_search.html'>datelife_search</a></code> with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken</p></td>
     </tr>
     <tr>
       <th>labelType</th>
