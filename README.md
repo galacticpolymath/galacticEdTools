@@ -41,7 +41,7 @@ require(galacticEdTools)
 
 ## What can you do with galacticEdTools?
 
-#### Make a dated phylogeny for teaching about evolution in just a line or two with `showPhylo()`
+#### Make a dated phylogeny for teaching about evolution in just a line or two with [`showPhylo()`](https://galacticpolymath.github.io/galacticEdTools/reference/showPhylo.html)
 
 <img src="man/figures/marsupials.png">
 

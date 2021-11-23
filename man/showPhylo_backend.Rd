@@ -7,7 +7,7 @@
 showPhylo_backend(
   speciesNames,
   nameType,
-  dateTree = TRUE,
+  dateTree = FALSE,
   labelType = "b",
   labelOffset = 0.45,
   aspectRatio = 1,
@@ -40,7 +40,7 @@ showPhylo_backend(
 
 \item{nameType}{what type of name are you supplying? Either "sci" or "common"}
 
-\item{dateTree}{try to scale the tree to estimated divergence times? Uses \code{\link[datelife]{datelife_search}} with summary_format="phylo_median." default= T}
+\item{dateTree}{try to scale the tree to estimated divergence times? Uses \code{\link[datelife]{datelife_search}} with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken}
 
 \item{labelType}{which names to label tree "leaves"? Options= "s" for scientific, "c" for common, and "b" for both (default="b")}
 
