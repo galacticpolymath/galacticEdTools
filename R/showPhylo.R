@@ -8,7 +8,7 @@
 #'
 #' @param speciesNames a name or vector of common or scientific names of organisms of interest (in quotes)
 #' @param nameType what type of name are you supplying? Either "sci" or "common"
-#' @param dateTree try to scale the tree to estimated divergence times? Uses \code{\link[datelife]{datelife_search}} with summary_format="phylo_median." default= T
+#' @param dateTree try to scale the tree to estimated divergence times? Uses \code{\link[datelife]{datelife_search}} with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken
 #' @param labelType which names to label tree "leaves"? Options= "s" for scientific, "c" for common, and "b" for both (default="b")
 #' @param labelOffset how far from the tree tips do you want to put labels? default=0.3 (in proportion of x-axis units)
 #' @param aspectRatio doesn't actually work yet; the output phylogeny is always square for the moment
