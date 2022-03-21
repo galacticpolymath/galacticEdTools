@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/404.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/authors.html</loc>
+  </url>
+  <url>
     <loc>https://galacticpolymath.github.io/galacticEdTools/index.html</loc>
   </url>
   <url>
@@ -20,6 +32,9 @@
   </url>
   <url>
     <loc>https://galacticpolymath.github.io/galacticEdTools/reference/ggciphR.html</loc>
+  </url>
+  <url>
+    <loc>https://galacticpolymath.github.io/galacticEdTools/reference/index.html</loc>
   </url>
   <url>
     <loc>https://galacticpolymath.github.io/galacticEdTools/reference/scale_x_yearmonth.html</loc>
