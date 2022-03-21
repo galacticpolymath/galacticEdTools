@@ -102,6 +102,7 @@ eval(parse(text=paste0("ggplot2::theme_",base.theme,"()")))+
     plot.subtitle=ggplot2::element_text(family=font,size=22*ifelse(n_tcex_pars==1,text.cex,text.cex[1]),color=title.col),
     axis.title=ggplot2::element_text(family=font,size=28*ifelse(n_tcex_pars==1,text.cex,text.cex[2]),color=axis.lab.col),
     axis.text=ggplot2::element_text(family=font,size=18*ifelse(n_tcex_pars==1,text.cex,text.cex[3]),color=axis.text.col),
+    plot.caption=ggplot2::element_text(family=font,size=ifelse(n_tcex_pars==1,14*text.cex,14),color=axis.text.col),
     axis.ticks=ggplot2::element_line(color=grid.col,size=grid.wt.maj),
     axis.ticks.length=ggplot2::unit(axis.tick.length,"pt"),
     axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = pad.xlab, r = 0, b = 0, l = 0),
