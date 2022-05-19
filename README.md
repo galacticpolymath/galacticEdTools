@@ -4,6 +4,7 @@
 # galacticEdTools
 
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/379769787.svg)](https://zenodo.org/badge/latestdoi/379769787)
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
