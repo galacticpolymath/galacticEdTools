@@ -2,11 +2,13 @@
 #'
 #' A function to replace axis labels and/or graph title with light gray prompts for each field.
 #'
-#' @param x_txt X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite
+#' @param x_txt X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite.
 #' @param y_txt Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite
+#' @param x_val_txt For geom_boxplot or similar, replace factor labels (x-values) with this text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
+#' @param y_val_txt Replace y-axis values with custom text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
 #' @param title_txt Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite
 #' @param txt_col Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)
-#' @param font.face style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 4
+#' @param font_face style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x- and y-axis labels, and x- and y- values (in that order); default= 4
 #' @examples
 #' require(ggplot2)
 #' ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+theme_galactic()
@@ -14,30 +16,63 @@
 #' ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+theme_galactic()+blank_labs()
 #' @export
 
-blank_labs <- function(x_txt="ADD X-AXIS LABEL",
+blank_labs <- function( x_txt="ADD X-AXIS LABEL",
                         y_txt="ADD Y-AXIS LABEL",
+                        x_val_txt=NA,
+                        y_val_txt=NA,
                         title_txt="ADD FIGURE TITLE",
                         txt_col="gray92",
-                        font.face=4
+                        font_face=4,
+                        ...
                         )
 {
-    lab_args <- unlist(sapply(c("x","y","title"),function(i) if(!is.na(eval(parse(text=paste0(i,"_txt"))))){paste0(i,"=",i,"_txt")}) )
-    lab_args2 <- paste("labs(", paste0(lab_args,collapse=","), ")")
 
+    #Interpret fonts & colors supplied
+    font_face<-if(length(font_face==1)){rep(font_face,5)
+      }else{
+      c(font_face[1],font_face[2],font_face[2],font_face[3],font_face[3])
+    }
+    d0 <- dplyr::tibble(item=c("plot.title","axis.title.x","axis.title.y","axis.text.x","axis.text.y"),var=c("title_txt","x_txt","y_txt","x_val_txt","y_val_txt"),font_face=font_face,col=txt_col,lab_arg=c("title","x","y",NA,NA))
 
-    strng<-"ggplot2::element_text(colour=txt_col)"
-    theme_args<-unlist(sapply(c("x","y","title"),function(i) if(!is.na(eval(parse(text=paste0(i,"_txt"))))){
-                paste0(switch(i,x="axis.title.x",
-                                y="axis.title.y",
-                                title="plot.title"),"=",strng)}) )
-    theme_args2<-paste0("ggplot2::theme(",paste0(theme_args,collapse=","),")")
+    #filter out rows that have NA variables (i.e. that we don't want to alter)
+    #All items in d will be changed to custom "blank" text
+    d<-d0[which(sapply(d0$var,function(x) !is.na(eval(parse(text=x))))),]
 
-    font_theme_args<-paste0("ggplot2::theme(",
-                            "plot.title=ggplot2::element_text(face=",if(length(font.face)==1){font.face}else{font.face[1]},"),",
-                            "axis.title.x=ggplot2::element_text(face=",if(length(font.face)==1){font.face}else{font.face[2]},"),",
-                            "axis.title.y=ggplot2::element_text(face=",if(length(font.face)==1){font.face}else{font.face[3]},"))")
+    #LABELS
+    lab_args0 <-sapply(1:length(d$lab_arg), function(i) {
+                  di<-d[i,]
+                  if (!is.na(di$lab_arg)) {
+                    paste0(di$lab_arg,"='",eval(parse(text=di$var)),"'")
+                    }
+                  }) %>% unlist()
+      #construct ggplot command
+    lab_args <- paste("ggplot2::labs(", paste0(lab_args0,collapse=","), ")")
 
-    lapply(c(lab_args2,theme_args2,font_theme_args),function(x) eval(parse(text=x)))
+    # strng<-"ggplot2::element_text(colour=txt_col)"
+
+    #COLOR & FONT
+    # Define ggplot theme colour arguments for all of our non-NA parameters
+    font_args0<-sapply(1:nrow(d),function(i){
+                        paste0(d$item[i],"=",
+                               "ggplot2::element_text(colour='",
+                               d$col[i],
+                               "', face=",
+                               d$font_face[i],
+                               ")")})
+    # Put all arguments together in a theme() call
+    font_args<-paste0("ggplot2::theme(",paste0(font_args0,collapse=","),")")
+
+    #Add manual axis value labels if supplied
+    # lbl<-function(n){rep(x_val_txt,n)}
+    x_vals<-if(!is.na(x_val_txt)){
+      paste0("ggplot2::scale_x_discrete(labels=function(names.arg){rep(x_val_txt,length(names.arg))})")
+    }else{NULL}
+    y_vals<-if(!is.na(y_val_txt)){
+      paste0("ggplot2::scale_y_continuous(labels=function(names.arg){rep(y_val_txt,length(names.arg))})")
+    }else{NULL}
+
+    #Make a list of all ggplot function calls
+    lapply(c(lab_args,font_args,x_vals,y_vals),function(x) eval(parse(text=x)))
 }
 
 
