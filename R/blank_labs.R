@@ -4,8 +4,8 @@
 #'
 #' @param x_txt X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite.
 #' @param y_txt Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite
-#' @param x_val_txt For geom_boxplot or similar, replace factor labels (x-values) with this text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
-#' @param y_val_txt Replace y-axis values with custom text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
+#' @param xval_txt For geom_boxplot or similar, replace factor labels (x-values) with this text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
+#' @param yval_txt Replace y-axis values with custom text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has
 #' @param title_txt Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite
 #' @param txt_col Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)
 #' @param font_face style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x- and y-axis labels, and x- and y- values (in that order); default= 4
@@ -18,8 +18,8 @@
 
 blank_labs <- function( x_txt="ADD X-AXIS LABEL",
                         y_txt="ADD Y-AXIS LABEL",
-                        x_val_txt=NA,
-                        y_val_txt=NA,
+                        xval_txt=NA,
+                        yval_txt=NA,
                         title_txt="ADD FIGURE TITLE",
                         txt_col="gray92",
                         font_face=4,
@@ -32,7 +32,7 @@ blank_labs <- function( x_txt="ADD X-AXIS LABEL",
       }else{
       c(font_face[1],font_face[2],font_face[2],font_face[3],font_face[3])
     }
-    d0 <- dplyr::tibble(item=c("plot.title","axis.title.x","axis.title.y","axis.text.x","axis.text.y"),var=c("title_txt","x_txt","y_txt","x_val_txt","y_val_txt"),font_face=font_face,col=txt_col,lab_arg=c("title","x","y",NA,NA))
+    d0 <- dplyr::tibble(item=c("plot.title","axis.title.x","axis.title.y","axis.text.x","axis.text.y"),var=c("title_txt","x_txt","y_txt","xval_txt","yval_txt"),font_face=font_face,col=txt_col,lab_arg=c("title","x","y",NA,NA))
 
     #filter out rows that have NA variables (i.e. that we don't want to alter)
     #All items in d will be changed to custom "blank" text
@@ -63,12 +63,12 @@ blank_labs <- function( x_txt="ADD X-AXIS LABEL",
     font_args<-paste0("ggplot2::theme(",paste0(font_args0,collapse=","),")")
 
     #Add manual axis value labels if supplied
-    # lbl<-function(n){rep(x_val_txt,n)}
-    x_vals<-if(!is.na(x_val_txt)){
-      paste0("ggplot2::scale_x_discrete(labels=function(names.arg){rep(x_val_txt,length(names.arg))})")
+    # lbl<-function(n){rep(xval_txt,n)}
+    x_vals<-if(!is.na(xval_txt)){
+      paste0("ggplot2::scale_x_discrete(labels=function(names.arg){rep(xval_txt,length(names.arg))})")
     }else{NULL}
-    y_vals<-if(!is.na(y_val_txt)){
-      paste0("ggplot2::scale_y_continuous(labels=function(names.arg){rep(y_val_txt,length(names.arg))})")
+    y_vals<-if(!is.na(yval_txt)){
+      paste0("ggplot2::scale_y_continuous(labels=function(names.arg){rep(yval_txt,length(names.arg))})")
     }else{NULL}
 
     #Make a list of all ggplot function calls

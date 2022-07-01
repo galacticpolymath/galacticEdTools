@@ -7,21 +7,28 @@
 blank_labs(
   x_txt = "ADD X-AXIS LABEL",
   y_txt = "ADD Y-AXIS LABEL",
+  xval_txt = NA,
+  yval_txt = NA,
   title_txt = "ADD FIGURE TITLE",
   txt_col = "gray92",
-  font.face = 4
+  font_face = 4,
+  ...
 )
 }
 \arguments{
-\item{x_txt}{X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite}
+\item{x_txt}{X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite.}
 
 \item{y_txt}{Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite}
+
+\item{xval_txt}{For geom_boxplot or similar, replace factor labels (x-values) with this text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has}
+
+\item{yval_txt}{Replace y-axis values with custom text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has}
 
 \item{title_txt}{Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite}
 
 \item{txt_col}{Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)}
 
-\item{font.face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 4}
+\item{font_face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x- and y-axis labels, and x- and y- values (in that order); default= 4}
 }
 \description{
 A function to replace axis labels and/or graph title with light gray prompts for each field.
