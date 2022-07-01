@@ -56,37 +56,57 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">blank_labs</span><span class="op">(</span>
-  x_txt <span class="op">=</span> <span class="st">"ADD X-AXIS LABEL"</span>,
-  y_txt <span class="op">=</span> <span class="st">"ADD Y-AXIS LABEL"</span>,
-  title_txt <span class="op">=</span> <span class="st">"ADD FIGURE TITLE"</span>,
-  txt_col <span class="op">=</span> <span class="st">"gray92"</span>,
-  font.face <span class="op">=</span> <span class="fl">4</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">blank_labs</span><span class="op">(</span></span>
+<span>  x_txt <span class="op">=</span> <span class="st">"ADD X-AXIS LABEL"</span>,</span>
+<span>  y_txt <span class="op">=</span> <span class="st">"ADD Y-AXIS LABEL"</span>,</span>
+<span>  xval_txt <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  yval_txt <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  title_txt <span class="op">=</span> <span class="st">"ADD FIGURE TITLE"</span>,</span>
+<span>  txt_col <span class="op">=</span> <span class="st">"gray92"</span>,</span>
+<span>  font_face <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x_txt</dt>
-<dd><p>X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></dd>
+<dd><p>X-Axis Label prompt text (watermarked on blank); default= "ADD X-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite.</p></dd>
+
+
 <dt>y_txt</dt>
 <dd><p>Y-Axis Label prompt text (watermarked on blank); default= "ADD Y-AXIS LABEL"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></dd>
+
+
+<dt>xval_txt</dt>
+<dd><p>For geom_boxplot or similar, replace factor labels (x-values) with this text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has</p></dd>
+
+
+<dt>yval_txt</dt>
+<dd><p>Replace y-axis values with custom text; default=NA; Suggested text="Add LABEL". Needs to be repeated for as many labels as the original graph has</p></dd>
+
+
 <dt>title_txt</dt>
 <dd><p>Graph Title prompt text (watermarked on blank); default= "ADD FIGURE TITLE"; "" will keep spacing, with no text prompt; NA will pass-through label and not overwrite</p></dd>
+
+
 <dt>txt_col</dt>
 <dd><p>Color of prompt text; default= "gray92" (a very faint gray--you can use gray1 to gray99 to have the equivalent of changing transparency)</p></dd>
-<dt>font.face</dt>
-<dd><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 4</p></dd>
+
+
+<dt>font_face</dt>
+<dd><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x- and y-axis labels, and x- and y- values (in that order); default= 4</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggplot2</span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mpg</span>,y<span class="op">=</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mpg</span>,y<span class="op">=</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="blank_labs-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mpg</span>,y<span class="op">=</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu">blank_labs</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">mpg</span>,y<span class="op">=</span><span class="va">hp</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span><span class="fu">blank_labs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="blank_labs-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -102,7 +122,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

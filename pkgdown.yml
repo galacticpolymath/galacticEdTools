@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.3
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-05-19T18:05Z
+last_built: 2022-07-01T21:10Z
 urls:
   reference: https://galacticpolymath.github.io/galacticEdTools/reference
   article: https://galacticpolymath.github.io/galacticEdTools/articles

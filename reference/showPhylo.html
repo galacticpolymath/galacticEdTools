@@ -56,105 +56,160 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">showPhylo</span><span class="op">(</span>
-  <span class="va">speciesNames</span>,
-  <span class="va">nameType</span>,
-  dateTree <span class="op">=</span> <span class="cn">FALSE</span>,
-  labelType <span class="op">=</span> <span class="st">"b"</span>,
-  labelOffset <span class="op">=</span> <span class="fl">0.45</span>,
-  aspectRatio <span class="op">=</span> <span class="fl">1</span>,
-  pic <span class="op">=</span> <span class="st">"wiki"</span>,
-  dotsConnectText <span class="op">=</span> <span class="cn">FALSE</span>,
-  picSize <span class="op">=</span> <span class="fl">1</span>,
-  <span class="va">picSaveDir</span>,
-  optPicWidth <span class="op">=</span> <span class="fl">200</span>,
-  picBorderWidth <span class="op">=</span> <span class="fl">10</span>,
-  picBorderCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  openDir <span class="op">=</span> <span class="cn">FALSE</span>,
-  xAxisPad <span class="op">=</span> <span class="fl">0.2</span>,
-  xTitlePad <span class="op">=</span> <span class="fl">20</span>,
-  numXlabs <span class="op">=</span> <span class="fl">8</span>,
-  textScalar <span class="op">=</span> <span class="fl">1</span>,
-  xTitleScalar <span class="op">=</span> <span class="fl">1</span>,
-  phyloThickness <span class="op">=</span> <span class="fl">1.2</span>,
-  phyloCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  textCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  plotMar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.02</span>, r <span class="op">=</span> <span class="fl">0.5</span>, b <span class="op">=</span> <span class="fl">0.02</span>, l <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span>,
-  clearCache <span class="op">=</span> <span class="cn">FALSE</span>,
-  quiet <span class="op">=</span> <span class="cn">TRUE</span>,
-  silent <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">showPhylo</span><span class="op">(</span></span>
+<span>  <span class="va">speciesNames</span>,</span>
+<span>  <span class="va">nameType</span>,</span>
+<span>  dateTree <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  labelType <span class="op">=</span> <span class="st">"b"</span>,</span>
+<span>  labelOffset <span class="op">=</span> <span class="fl">0.45</span>,</span>
+<span>  aspectRatio <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  pic <span class="op">=</span> <span class="st">"wiki"</span>,</span>
+<span>  dotsConnectText <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  picSize <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">picSaveDir</span>,</span>
+<span>  optPicWidth <span class="op">=</span> <span class="fl">200</span>,</span>
+<span>  picBorderWidth <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  picBorderCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  openDir <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  xAxisPad <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  xTitlePad <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  numXlabs <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  textScalar <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  xTitleScalar <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  phyloThickness <span class="op">=</span> <span class="fl">1.2</span>,</span>
+<span>  phyloCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  textCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  plotMar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.02</span>, r <span class="op">=</span> <span class="fl">0.5</span>, b <span class="op">=</span> <span class="fl">0.02</span>, l <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span>,</span>
+<span>  clearCache <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>speciesNames</dt>
 <dd><p>a name or vector of common or scientific names of organisms of interest (in quotes)</p></dd>
+
+
 <dt>nameType</dt>
 <dd><p>what type of name are you supplying? Either "sci" or "common"</p></dd>
+
+
 <dt>dateTree</dt>
-<dd><p>try to scale the tree to estimated divergence times? Uses <code><a href="https://rdrr.io/pkg/datelife/man/datelife_search.html" class="external-link">datelife_search</a></code> with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken</p></dd>
+<dd><p>try to scale the tree to estimated divergence times? Uses <code><a href="http://phylotastic.org/datelife/reference/datelife_search.html" class="external-link">datelife_search</a></code> with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken</p></dd>
+
+
 <dt>labelType</dt>
 <dd><p>which names to label tree "leaves"? Options= "s" for scientific, "c" for common, and "b" for both (default="b")</p></dd>
+
+
 <dt>labelOffset</dt>
 <dd><p>how far from the tree tips do you want to put labels? default=0.3 (in proportion of x-axis units)</p></dd>
+
+
 <dt>aspectRatio</dt>
 <dd><p>doesn't actually work yet; the output phylogeny is always square for the moment</p></dd>
+
+
 <dt>pic</dt>
 <dd><p>what type of species image do you want to plot? options="wiki" (Wikipedia page profile image), "phylopic" (species' silhouette from the PhyloPic repository), "cust" (custom images: must be named .jpg or .png with names matching speciesNames in the picSaveDir folder), or "none"</p></dd>
+
+
 <dt>dotsConnectText</dt>
 <dd><p>do you want a dotted line to go from the text to the labels? default=FALSE</p></dd>
+
+
 <dt>picSize</dt>
 <dd><p>how big to scale images, where 1=100%; .5=50%; default=1</p></dd>
+
+
 <dt>picSaveDir</dt>
 <dd><p>location for saving downloaded images; default=fs::path(tempdir(),"showPhylo")</p></dd>
+
+
 <dt>optPicWidth</dt>
 <dd><p>picture width in pixels for optimized versions of images saved if using pic="cust"; default= 200</p></dd>
+
+
 <dt>picBorderWidth</dt>
 <dd><p>for pic="wiki" or "cust," what size border would you like around your image (as a %); default=10</p></dd>
+
+
 <dt>picBorderCol</dt>
 <dd><p>color of image border; default="# 363636" (a dark, near-black color)</p></dd>
+
+
 <dt>openDir</dt>
 <dd><p>for pic="wiki" or "cust," do you want to open the picSaveDir after processing files? default=FALSE</p></dd>
+
+
 <dt>xAxisPad</dt>
 <dd><p>spacing between the phylogeny and the x-axis (scale is 1 is the distance between two sister taxa); default=.2</p></dd>
+
+
 <dt>xTitlePad</dt>
 <dd><p>spacing between x-axis title and x numbers; default=20</p></dd>
+
+
 <dt>numXlabs</dt>
 <dd><p>the number of year markers on the x-axis; default=8</p></dd>
+
+
 <dt>textScalar</dt>
 <dd><p>multiplier of text size for labels and axis numbers; default=1</p></dd>
+
+
 <dt>xTitleScalar</dt>
 <dd><p>multiplier of x-axis title size; default=1</p></dd>
+
+
 <dt>phyloThickness</dt>
 <dd><p>how thick to make the phylogeny lines; default=1.2</p></dd>
+
+
 <dt>phyloCol</dt>
 <dd><p>color of the phylogeny lines; default= "# 363636"</p></dd>
+
+
 <dt>textCol</dt>
 <dd><p>color of the axis and tip labels; default= "# 363636"</p></dd>
+
+
 <dt>plotMar</dt>
 <dd><p>margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left</p></dd>
+
+
 <dt>clearCache</dt>
 <dd><p>delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p>suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE</p></dd>
+
+
 <dt>silent</dt>
 <dd><p>suppress all console output? (Mainly for R documentation); Default=FALSE</p></dd>
+
+
 <dt>...</dt>
 <dd><p>pass other parameters to <code><a href="https://rdrr.io/pkg/ggtree/man/ggtree.html" class="external-link">ggtree</a></code> (not very compatible right now)</p></dd>
+
+
 <dt>datelifePartialMatch</dt>
-<dd><p>use use source trees even if they only match some of the desired taxa; affects the <code>partial</code> paramter in <code><a href="https://rdrr.io/pkg/datelife/man/datelife_search.html" class="external-link">datelife_search</a></code>; default= TRUE</p></dd>
+<dd><p>use use source trees even if they only match some of the desired taxa; affects the <code>partial</code> paramter in <code><a href="http://phylotastic.org/datelife/reference/datelife_search.html" class="external-link">datelife_search</a></code>; default= TRUE</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>You have the ability to look up matching common or scientific names for taxa, plot them in an evolutionary tree based on the Open Tree of Life Project, date taxa using <code><a href="https://rdrr.io/pkg/datelife/man/datelife_search.html" class="external-link">datelife_search</a></code>, if data are available, plot a <a href="http://phylopic.org/" class="external-link">phylopic</a> (i.e. a silhouette of the organism) if available, pull down the profile image from each organism's Wikipedia page, or provide a custom image, and label the pictures with the scientific and common names. The result is a customizable ggplot2 object. This is a convenience wrapper that merges functionality from <span class="pkg">ggplot2</span>, <span class="pkg">ggtree</span>, <span class="pkg">datelife</span>, <span class="pkg">rotl</span>,and <span class="pkg">taxize</span>, among other packages.</p>
+    <p>You have the ability to look up matching common or scientific names for taxa, plot them in an evolutionary tree based on the Open Tree of Life Project, date taxa using <code><a href="http://phylotastic.org/datelife/reference/datelife_search.html" class="external-link">datelife_search</a></code>, if data are available, plot a <a href="http://phylopic.org/" class="external-link">phylopic</a> (i.e. a silhouette of the organism) if available, pull down the profile image from each organism's Wikipedia page, or provide a custom image, and label the pictures with the scientific and common names. The result is a customizable ggplot2 object. This is a convenience wrapper that merges functionality from <span class="pkg">ggplot2</span>, <span class="pkg">ggtree</span>, <span class="pkg">datelife</span>, <span class="pkg">rotl</span>,and <span class="pkg">taxize</span>, among other packages.</p>
 <p>The impetus for this package was the need to make a figure showing that the many animals we call "panthers" are actually really distantly related cat species. Our genetic rescue lesson, sponsored by <a href="http://swfitz.com/" class="external-link">Dr. Sarah Fitzpatrick's lab</a>, uses the example of the Florida panther as a charismatic application of her research (which mostly uses guppies as a model for understanding how gene flow can save small, highly inbred populations from extinction).</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>;<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://yulab-smu.top/treedata-book/" class="external-link">ggtree</a></span><span class="op">)</span><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>;<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://yulab-smu.top/treedata-book/" class="external-link">ggtree</a></span><span class="op">)</span><span class="op">}</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggtree</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">ggtree v3.4.0 For help: https://yulab-smu.top/treedata-book/</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
@@ -166,112 +221,111 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> trees with their covariates and other associated data. Methods in</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ecology and Evolution. 2017, 8(1):28-36. doi:10.1111/2041-210X.12628</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Guangchuang Yu. Using ggtree to visualize data on tree-like structures.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Current Protocols in Bioinformatics. 2020, 69:e96. doi:10.1002/cpbi.96</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> G Yu. Data Integration, Manipulation and Visualization of Phylogenetic</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Trees (1st ed.). Chapman and Hall/CRC. 2022. ISBN: 9781032233574</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> LG Wang, TTY Lam, S Xu, Z Dai, L Zhou, T Feng, P Guo, CW Dunn, BR</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Jones, T Bradley, H Zhu, Y Guan, Y Jiang, G Yu. treeio: an R package</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> for phylogenetic tree input and output with richly annotated and</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> associated data. Molecular Biology and Evolution. 2020, 37(2):599-603.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> doi: 10.1093/molbev/msz240 </span>
-<span class="r-in"><span class="co"># declare some species common names</span></span>
-<span class="r-in"><span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"puma"</span>,<span class="st">"leopard"</span>,<span class="st">"jaguar"</span>,<span class="st">"domestic cat"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Make a dated phylogeny with them (by default, median divergence times are estimated</span></span>
-<span class="r-in"><span class="co"># using the datelife package and images are added from Wikipedia)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># *Note* I'm using silent=TRUE to suppress all output to the console for this document;</span></span>
-<span class="r-in"><span class="co"># You will usually want to leave silent=FALSE (default) to see what's happening</span></span>
-<span class="r-in"><span class="co"># and diagnose problems. There are a lot of steps happening behind the scenes</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> S Xu, Z Dai, P Guo, X Fu, S Liu, L Zhou, W Tang, T Feng, M Chen, L</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Zhan, T Wu, E Hu, Y Jiang, X Bo, G Yu. ggtreeExtra: Compact</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> visualization of richly annotated phylogenetic data. Molecular Biology</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> and Evolution. 2021, 38(9):4039-4042. doi: 10.1093/molbev/msab166 </span>
+<span class="r-in"><span><span class="co"># declare some species common names</span></span></span>
+<span class="r-in"><span><span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"puma"</span>,<span class="st">"leopard"</span>,<span class="st">"jaguar"</span>,<span class="st">"domestic cat"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Make a dated phylogeny with them (by default, median divergence times are estimated</span></span></span>
+<span class="r-in"><span><span class="co"># using the datelife package and images are added from Wikipedia)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># *Note* I'm using silent=TRUE to suppress all output to the console for this document;</span></span></span>
+<span class="r-in"><span><span class="co"># You will usually want to leave silent=FALSE (default) to see what's happening</span></span></span>
+<span class="r-in"><span><span class="co"># and diagnose problems. There are a lot of steps happening behind the scenes</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="showPhylo-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># If a particular combination of organisms lacks divergence time data</span></span>
-<span class="r-in"><span class="co"># (especially extinct species), causing an error (e.g. this)</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,</span>
-<span class="r-in"><span class="st">"oarfish"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"common"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"><span class="co"># you can possibly still produce an undated phylogeny (cladogram) using the open</span></span>
-<span class="r-in"><span class="co"># tree of life data; also modified plot margin to have more space for taxa labels</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,</span>
-<span class="r-in"><span class="st">"oarfish"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"c"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,picSize<span class="op">=</span><span class="fl">.8</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># If a particular combination of organisms lacks divergence time data</span></span></span>
+<span class="r-in"><span><span class="co"># (especially extinct species), causing an error (e.g. this)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,</span></span>
+<span class="r-in"><span><span class="st">"oarfish"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"common"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="co"># you can possibly still produce an undated phylogeny (cladogram) using the open</span></span></span>
+<span class="r-in"><span><span class="co"># tree of life data; also modified plot margin to have more space for taxa labels</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,</span></span>
+<span class="r-in"><span><span class="st">"oarfish"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"c"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,picSize<span class="op">=</span><span class="fl">.8</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Double check output. You've got some matching scientific and common names. Did you supply the correct nameType?</span>
 <span class="r-plt img"><img src="showPhylo-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Instead of Wikipedia images for each species, we can try to find a phylopic (silhouette)</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,<span class="st">"oarfish"</span>,</span>
-<span class="r-in"><span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"c"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,pic<span class="op">=</span><span class="st">"phylopic"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Instead of Wikipedia images for each species, we can try to find a phylopic (silhouette)</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"potbellied seahorse"</span>,<span class="st">"leafy seadragon"</span>,<span class="st">"oarfish"</span>,</span></span>
+<span class="r-in"><span><span class="st">"Tyrannosaurus"</span><span class="op">)</span>,<span class="st">"c"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,pic<span class="op">=</span><span class="st">"phylopic"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Double check output. You've got some matching scientific and common names. Did you supply the correct nameType?</span>
 <span class="r-plt img"><img src="showPhylo-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># In the case above, the butterfly was the wrong image, so we could try searching using the genus,</span></span>
-<span class="r-in"><span class="co"># (note: change nameType to "scientific");</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hippocampus"</span>,<span class="st">"phycodurus"</span>,<span class="st">"Regalecus"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,</span>
-<span class="r-in"><span class="st">"scientific"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,pic<span class="op">=</span><span class="st">"p"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># In the case above, the butterfly was the wrong image, so we could try searching using the genus,</span></span></span>
+<span class="r-in"><span><span class="co"># (note: change nameType to "scientific");</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Hippocampus"</span>,<span class="st">"phycodurus"</span>,<span class="st">"Regalecus"</span>,<span class="st">"Tyrannosaurus"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="st">"scientific"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,pic<span class="op">=</span><span class="st">"p"</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="showPhylo-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Not great, but phylopic is open source,</span></span>
-<span class="r-in"><span class="co"># so you can upload your own silhouettes</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># If you have a ton of species, you can just say no pics</span></span>
-<span class="r-in"><span class="va">speciesNames</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rock hyrax"</span>,<span class="st">"Hippopotamus"</span>,<span class="st">"Eastern gray squirrel"</span>,<span class="st">"Asian elephant"</span>,</span>
-<span class="r-in"><span class="st">"African elephant"</span>,<span class="st">"groundhog"</span>,<span class="st">"meerkat"</span>,<span class="st">"wolverine"</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Not great, but phylopic is open source,</span></span></span>
+<span class="r-in"><span><span class="co"># so you can upload your own silhouettes</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># If you have a ton of species, you can just say no pics</span></span></span>
+<span class="r-in"><span><span class="va">speciesNames</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rock hyrax"</span>,<span class="st">"Hippopotamus"</span>,<span class="st">"Eastern gray squirrel"</span>,<span class="st">"Asian elephant"</span>,</span></span>
+<span class="r-in"><span><span class="st">"African elephant"</span>,<span class="st">"groundhog"</span>,<span class="st">"meerkat"</span>,<span class="st">"wolverine"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Neosciurus carolinensis are not matched</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in showPhylo_backend(speciesNames = speciesNames, nameType = "c",     dateTree = FALSE, pic = "n", silent = TRUE):</span> </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span>  *Some species records not matched. Try changing your search terms.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Doesn't look great, so we can connect the tree tips with the text</span></span>
-<span class="r-in"><span class="co"># and make the tree blue (why not?); Also, let's just show common names,</span></span>
-<span class="r-in"><span class="co"># and add more space in the right margin for all the text</span></span>
-<span class="r-in"><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,phyloCol<span class="op">=</span><span class="st">"royalblue1"</span>,</span>
-<span class="r-in">labelType<span class="op">=</span><span class="st">"c"</span>,plotMar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>r<span class="op">=</span><span class="st">".6"</span><span class="op">)</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Doesn't look great, so we can connect the tree tips with the text</span></span></span>
+<span class="r-in"><span><span class="co"># and make the tree blue (why not?); Also, let's just show common names,</span></span></span>
+<span class="r-in"><span><span class="co"># and add more space in the right margin for all the text</span></span></span>
+<span class="r-in"><span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,phyloCol<span class="op">=</span><span class="st">"royalblue1"</span>,</span></span>
+<span class="r-in"><span>labelType<span class="op">=</span><span class="st">"c"</span>,plotMar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>r<span class="op">=</span><span class="st">".6"</span><span class="op">)</span>,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Neosciurus carolinensis are not matched</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in showPhylo_backend(speciesNames = speciesNames, nameType = "c",     dateTree = FALSE, labelType = "c", pic = "n", phyloCol = "royalblue1",     plotMar = c(r = ".6"), silent = TRUE):</span> </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span>  *Some species records not matched. Try changing your search terms.</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># We could also shorten the gap between the tree and the text, add connecting dots,</span></span>
-<span class="r-in"><span class="co"># and increase text size</span></span>
-<span class="r-in"><span class="va">g</span><span class="op">&lt;-</span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,phyloCol<span class="op">=</span><span class="st">"royalblue1"</span>,dotsConnectText<span class="op">=</span><span class="cn">TRUE</span>,</span>
-<span class="r-in">labelType<span class="op">=</span><span class="st">"c"</span>,labelOffset<span class="op">=</span><span class="fl">.2</span>,textScalar<span class="op">=</span><span class="fl">1.2</span> ,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># We could also shorten the gap between the tree and the text, add connecting dots,</span></span></span>
+<span class="r-in"><span><span class="co"># and increase text size</span></span></span>
+<span class="r-in"><span><span class="va">g</span><span class="op">&lt;-</span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>,<span class="st">"c"</span>,pic<span class="op">=</span><span class="st">"n"</span>,dateTree<span class="op">=</span><span class="cn">FALSE</span>,phyloCol<span class="op">=</span><span class="st">"royalblue1"</span>,dotsConnectText<span class="op">=</span><span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>labelType<span class="op">=</span><span class="st">"c"</span>,labelOffset<span class="op">=</span><span class="fl">.2</span>,textScalar<span class="op">=</span><span class="fl">1.2</span> ,silent<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Neosciurus carolinensis are not matched</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in showPhylo_backend(speciesNames = speciesNames, nameType = "c",     dateTree = FALSE, labelType = "c", labelOffset = 0.2, pic = "n",     dotsConnectText = TRUE, textScalar = 1.2, phyloCol = "royalblue1",     silent = TRUE):</span> </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span>  *Some species records not matched. Try changing your search terms.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># once we're satisfied with the tree, we can edit it like any other ggplot</span></span>
-<span class="r-in"><span class="va">g2</span><span class="op">&lt;-</span><span class="va">g</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Phylogeny showing how weird rock hyraxes are:"</span>,</span>
-<span class="r-in">subtitle<span class="op">=</span><span class="st">"They look like groundhogs, but are much closer related to elephants"</span><span class="op">)</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">18</span><span class="op">)</span> <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># once we're satisfied with the tree, we can edit it like any other ggplot</span></span></span>
+<span class="r-in"><span><span class="va">g2</span><span class="op">&lt;-</span><span class="va">g</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Phylogeny showing how weird rock hyraxes are:"</span>,</span></span>
+<span class="r-in"><span>subtitle<span class="op">=</span><span class="st">"They look like groundhogs, but are much closer related to elephants"</span><span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">18</span><span class="op">)</span> <span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'g' not found</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># we can also use ggtree functions to do all sorts of stuff like highlight our key species</span></span>
-<span class="r-in"><span class="co"># (you can figure out which node that is here with g2$data)</span></span>
-<span class="r-in"><span class="va">g2</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/ggtree/man/geom-hilight.html" class="external-link">geom_highlight</a></span><span class="op">(</span>mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>subset<span class="op">=</span><span class="va">node</span><span class="op">==</span><span class="fl">6</span><span class="op">)</span>,fill<span class="op">=</span><span class="st">"salmon"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># we can also use ggtree functions to do all sorts of stuff like highlight our key species</span></span></span>
+<span class="r-in"><span><span class="co"># (you can figure out which node that is here with g2$data)</span></span></span>
+<span class="r-in"><span><span class="va">g2</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/ggtree/man/geom-hilight.html" class="external-link">geom_highlight</a></span><span class="op">(</span>mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>subset<span class="op">=</span><span class="va">node</span><span class="op">==</span><span class="fl">6</span><span class="op">)</span>,fill<span class="op">=</span><span class="st">"salmon"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'g2' not found</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># OK, let's simplify it, add divergence time and get some pics back; also reduce pic size</span></span>
-<span class="r-in"><span class="co"># and space between pic and text and only print 7 breaks in the x-scale</span></span>
-<span class="r-in"><span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="va">speciesNames</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">&lt;-</span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>, <span class="st">"c"</span> ,silent<span class="op">=</span><span class="cn">TRUE</span>,picSize<span class="op">=</span><span class="fl">.5</span>,labelOffset<span class="op">=</span><span class="fl">0.3</span>,</span>
-<span class="r-in">    numXlabs<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># OK, let's simplify it, add divergence time and get some pics back; also reduce pic size</span></span></span>
+<span class="r-in"><span><span class="co"># and space between pic and text and only print 7 breaks in the x-scale</span></span></span>
+<span class="r-in"><span><span class="va">speciesNames</span> <span class="op">&lt;-</span> <span class="va">speciesNames</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">5</span>,<span class="fl">6</span>,<span class="fl">7</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">&lt;-</span><span class="fu">showPhylo</span><span class="op">(</span><span class="va">speciesNames</span>, <span class="st">"c"</span> ,silent<span class="op">=</span><span class="cn">TRUE</span>,picSize<span class="op">=</span><span class="fl">.5</span>,labelOffset<span class="op">=</span><span class="fl">0.3</span>,</span></span>
+<span class="r-in"><span>    numXlabs<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Neosciurus carolinensis are not matched</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in showPhylo_backend(speciesNames = speciesNames, nameType = "c",     labelOffset = 0.3, picSize = 0.5, numXlabs = 7, silent = TRUE):</span> </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span>  *Some species records not matched. Try changing your search terms.</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Last tweaks: let's highlight the hyrax branch and add our titles</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/ggtree/man/geom-hilight.html" class="external-link">geom_highlight</a></span><span class="op">(</span>mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>subset<span class="op">=</span><span class="va">node</span><span class="op">==</span><span class="fl">4</span><span class="op">)</span>,fill<span class="op">=</span><span class="st">"salmon"</span><span class="op">)</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Phylogeny showing how weird rock hyraxes are:"</span>,</span>
-<span class="r-in">subtitle<span class="op">=</span><span class="st">"They look like groundhogs, but are much closer related to elephants"</span><span class="op">)</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">18</span><span class="op">)</span>,plot.subtitle<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">14</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Last tweaks: let's highlight the hyrax branch and add our titles</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/ggtree/man/geom-hilight.html" class="external-link">geom_highlight</a></span><span class="op">(</span>mapping<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>subset<span class="op">=</span><span class="va">node</span><span class="op">==</span><span class="fl">4</span><span class="op">)</span>,fill<span class="op">=</span><span class="st">"salmon"</span><span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"Phylogeny showing how weird rock hyraxes are:"</span>,</span></span>
+<span class="r-in"><span>subtitle<span class="op">=</span><span class="st">"They look like groundhogs, but are much closer related to elephants"</span><span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">18</span><span class="op">)</span>,plot.subtitle<span class="op">=</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">14</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'g3' not found</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># to get the right output dimensions, you may need to play around with setting height &amp; width</span></span>
-<span class="r-in"><span class="co"># e.g. ggsave("hyrax.jpeg",height=3,width=3)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># to get the right output dimensions, you may need to play around with setting height &amp; width</span></span></span>
+<span class="r-in"><span><span class="co"># e.g. ggsave("hyrax.jpeg",height=3,width=3)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -286,7 +340,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -56,30 +56,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getWikiPic</span><span class="op">(</span>
-  <span class="va">x</span>,
-  width <span class="op">=</span> <span class="fl">220</span>,
-  picSaveDir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,
-  quiet <span class="op">=</span> <span class="cn">T</span>,
-  openDir <span class="op">=</span> <span class="cn">F</span>,
-  clearCache <span class="op">=</span> <span class="cn">F</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getWikiPic</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">220</span>,</span>
+<span>  picSaveDir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">T</span>,</span>
+<span>  openDir <span class="op">=</span> <span class="cn">F</span>,</span>
+<span>  clearCache <span class="op">=</span> <span class="cn">F</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>search term for finding a Wikipedia page</p></dd>
+
+
 <dt>width</dt>
 <dd><p>the width of the downloaded image in pixels; default=220</p></dd>
+
+
 <dt>picSaveDir</dt>
 <dd><p>the location to download images to; default=tempdir(); use paste0(getwd(),"/wiki") to save to a subfolder in your working directory or file.choose() to pic a location on the fly</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p>suppress verbose feedback? default=T</p></dd>
+
+
 <dt>openDir</dt>
 <dd><p>open the picSaveDir location to browse images in finder/windows explorer? default=F</p></dd>
+
+
 <dt>clearCache</dt>
 <dd><p>WARNING delete the picSaveDir? This will delete the whole directory, so never set picSaveDir to getwd(); default=F</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -98,7 +109,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

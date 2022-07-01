@@ -56,126 +56,167 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">theme_galactic</span><span class="op">(</span>
-  base.theme <span class="op">=</span> <span class="st">"gray"</span>,
-  grid.wt.maj <span class="op">=</span> <span class="fl">0.7</span>,
-  grid.wt.min <span class="op">=</span> <span class="fl">0.4</span>,
-  grid.col <span class="op">=</span> <span class="cn">NA</span>,
-  bg.col <span class="op">=</span> <span class="cn">NA</span>,
-  border.wt <span class="op">=</span> <span class="fl">1</span>,
-  border.col <span class="op">=</span> <span class="st">"#6D6D6D"</span>,
-  font <span class="op">=</span> <span class="st">"Montserrat"</span>,
-  regular.wt <span class="op">=</span> <span class="fl">400</span>,
-  bold.wt <span class="op">=</span> <span class="fl">700</span>,
-  text.cex <span class="op">=</span> <span class="fl">1</span>,
-  font.face <span class="op">=</span> <span class="fl">1</span>,
-  title.col <span class="op">=</span> <span class="st">"#363636"</span>,
-  axis.lab.col <span class="op">=</span> <span class="st">"#363636"</span>,
-  axis.text.col <span class="op">=</span> <span class="st">"#6D6D6D"</span>,
-  axis.tick.length <span class="op">=</span> <span class="fl">6</span>,
-  pad.title <span class="op">=</span> <span class="fl">5</span>,
-  pad.xlab <span class="op">=</span> <span class="fl">5</span>,
-  pad.ylab <span class="op">=</span> <span class="fl">12</span>,
-  pad.legend <span class="op">=</span> <span class="fl">0</span>,
-  pad.outer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">theme_galactic</span><span class="op">(</span></span>
+<span>  base.theme <span class="op">=</span> <span class="st">"gray"</span>,</span>
+<span>  grid.wt.maj <span class="op">=</span> <span class="fl">0.7</span>,</span>
+<span>  grid.wt.min <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>  grid.col <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  bg.col <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  border.wt <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  border.col <span class="op">=</span> <span class="st">"#6D6D6D"</span>,</span>
+<span>  font <span class="op">=</span> <span class="st">"Montserrat"</span>,</span>
+<span>  regular.wt <span class="op">=</span> <span class="fl">400</span>,</span>
+<span>  bold.wt <span class="op">=</span> <span class="fl">700</span>,</span>
+<span>  text.cex <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  font.face <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  title.col <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  axis.lab.col <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  axis.text.col <span class="op">=</span> <span class="st">"#6D6D6D"</span>,</span>
+<span>  axis.tick.length <span class="op">=</span> <span class="fl">6</span>,</span>
+<span>  pad.title <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  pad.xlab <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  pad.ylab <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>  pad.legend <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  pad.outer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">5</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>base.theme</dt>
 <dd><p>ggplot2 base theme to be modified; default="gray"; other options are  "bw","light","linedraw", "dark","minimal","classic" and "void" as listed <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">in this gallery</a></p></dd>
+
+
 <dt>grid.wt.maj</dt>
 <dd><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.8</p></dd>
+
+
 <dt>grid.wt.min</dt>
 <dd><p>How heavy do you want grid lines to be? (in case printer makes things lighter); default=.6</p></dd>
+
+
 <dt>grid.col</dt>
 <dd><p>What color do you want the grid to be? Default: NA (maintain base theme); options are "gp_gray" or any custom color</p></dd>
+
+
 <dt>bg.col</dt>
 <dd><p>Background color for plot area; default=NA (base theme default)</p></dd>
+
+
 <dt>border.wt</dt>
 <dd><p>How heavy do you want the plot border to be?</p></dd>
+
+
 <dt>border.col</dt>
 <dd><p>Color of plot border. Default: same as font (#363636)</p></dd>
+
+
 <dt>font</dt>
 <dd><p>Google font to use, "Montserrat" by default; see options with sysfonts::font_families_google() or the <a href="https://fonts.google.com/" class="external-link">Google font gallery</a></p></dd>
+
+
 <dt>regular.wt</dt>
 <dd><p>font weight for regular font style</p></dd>
+
+
 <dt>bold.wt</dt>
 <dd><p>font weight for bold text</p></dd>
+
+
 <dt>text.cex</dt>
 <dd><p>Controls size of text; if a single value, a simple multiplier for scaling all text; if 4 values, a multiplier for title, axis labels, axis values, and legend title; default=1 (don't rescale font sizes)</p></dd>
+
+
 <dt>font.face</dt>
 <dd><p>style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x-axis label, y-axis label (in that order); default= 1 (plain)</p></dd>
+
+
 <dt>title.col</dt>
 <dd><p>color of title and subtitle (if present)</p></dd>
+
+
 <dt>axis.lab.col</dt>
 <dd><p>color of axis labels</p></dd>
+
+
 <dt>axis.text.col</dt>
 <dd><p>color of axis text (numbers, dates, etc)</p></dd>
+
+
 <dt>axis.tick.length</dt>
 <dd><p>length of axis ticks (in pt units)</p></dd>
+
+
 <dt>pad.title</dt>
 <dd><p>padding between title and plot; default=5 in "pt" units</p></dd>
+
+
 <dt>pad.xlab</dt>
 <dd><p>padding between x-axis values and x label; default=5 in "pt" units</p></dd>
+
+
 <dt>pad.ylab</dt>
 <dd><p>padding between x-axis values and x label; default=12 in "pt" units</p></dd>
+
+
 <dt>pad.legend</dt>
 <dd><p>padding between legend title and key; default=0 in "pt" units</p></dd>
+
+
 <dt>pad.outer</dt>
 <dd><p>set outer plot margins; default= c(20,5,5,5) for top, right, bottom, left in "pt" units</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#default plotting</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g</span><span class="op">&lt;-</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>,<span class="va">mpg</span>,col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#default plotting</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g</span><span class="op">&lt;-</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">wt</span>,<span class="va">mpg</span>,col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">gear</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#add ggplot themeing (intended to look good and be readable by</span></span>
-<span class="r-in"><span class="co">#data novices in printed &amp; projected formats)</span></span>
-<span class="r-in"><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#add ggplot themeing (intended to look good and be readable by</span></span></span>
+<span class="r-in"><span><span class="co">#data novices in printed &amp; projected formats)</span></span></span>
+<span class="r-in"><span><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#change the base theme</span></span>
-<span class="r-in"><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>base.theme<span class="op">=</span><span class="st">"dark"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#change the base theme</span></span></span>
+<span class="r-in"><span><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>base.theme<span class="op">=</span><span class="st">"dark"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#doesn't look great, let's change the palette to a color-blind-friendly</span></span>
-<span class="r-in"><span class="co">#Viridis theme (and the font while we're at it)</span></span>
-<span class="r-in"><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>font<span class="op">=</span><span class="st">"Architects Daughter"</span> <span class="op">)</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"inferno"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#doesn't look great, let's change the palette to a color-blind-friendly</span></span></span>
+<span class="r-in"><span><span class="co">#Viridis theme (and the font while we're at it)</span></span></span>
+<span class="r-in"><span><span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>font<span class="op">=</span><span class="st">"Architects Daughter"</span> <span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"inferno"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#Still not happy with the contrast...somewhere between the grays we've tried</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>font<span class="op">=</span><span class="st">"Architects Daughter"</span>,bg.col<span class="op">=</span><span class="st">"gray70"</span><span class="op">)</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"inferno"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Still not happy with the contrast...somewhere between the grays we've tried</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>font<span class="op">=</span><span class="st">"Architects Daughter"</span>,bg.col<span class="op">=</span><span class="st">"gray70"</span><span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_colour_viridis_d</a></span><span class="op">(</span>option<span class="op">=</span><span class="st">"inferno"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#let's add a title and change the legend title</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="va">g2</span><span class="op">+</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"What a good lookin' plot"</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/plotmath.html" class="external-link">atop</a></span><span class="op">(</span><span class="st">"Number"</span>,<span class="st">"of gears"</span><span class="op">)</span><span class="op">)</span>,parse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#let's add a title and change the legend title</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="va">g2</span><span class="op">+</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"What a good lookin' plot"</span>, col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu">atop</span><span class="op">(</span><span class="st">"Number"</span>,<span class="st">"of gears"</span><span class="op">)</span><span class="op">)</span>,parse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#Make all the text bigger with one multiplier (useful for quickly scaling</span></span>
-<span class="r-in"><span class="co">#for a different output size)</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fl">2</span>,grid.col<span class="op">=</span><span class="st">"gp_gray"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"That's too big"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Make all the text bigger with one multiplier (useful for quickly scaling</span></span></span>
+<span class="r-in"><span><span class="co">#for a different output size)</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fl">2</span>,grid.col<span class="op">=</span><span class="st">"gp_gray"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"That's too big"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-7.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># Note we lost all our customizations because we overwrote our theme.</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">#Add more space to the right side of the margin</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fl">0.8</span>,pad.outer<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Increased Outer Plot Margins"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Note we lost all our customizations because we overwrote our theme.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#Add more space to the right side of the margin</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fl">0.8</span>,pad.outer<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">40</span>,<span class="fl">50</span>,<span class="fl">30</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Increased Outer Plot Margins"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-8.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Change the size of each type of text</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.6</span>,<span class="fl">1.1</span>,<span class="fl">0.5</span>,<span class="fl">1.2</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"60% Title Text Size"</span>,</span>
-<span class="r-in">y<span class="op">=</span><span class="st">"Axes are 110% Text Size"</span>, x<span class="op">=</span><span class="st">"↑ Axis Values 50%↑ "</span>,col<span class="op">=</span><span class="st">"120% Legend\nText Size"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Change the size of each type of text</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.6</span>,<span class="fl">1.1</span>,<span class="fl">0.5</span>,<span class="fl">1.2</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"60% Title Text Size"</span>,</span></span>
+<span class="r-in"><span>y<span class="op">=</span><span class="st">"Axes are 110% Text Size"</span>, x<span class="op">=</span><span class="st">"↑ Axis Values 50%↑ "</span>,col<span class="op">=</span><span class="st">"120% Legend\nText Size"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-9.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Change padding between text labels and graph elements</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.8</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,pad.title<span class="op">=</span><span class="fl">30</span>,</span>
-<span class="r-in">pad.xlab<span class="op">=</span><span class="fl">0</span>,pad.ylab<span class="op">=</span><span class="fl">35</span>,pad.legend<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Custom padding for elements"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Change padding between text labels and graph elements</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">theme_galactic</span><span class="op">(</span>text.cex<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.8</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,pad.title<span class="op">=</span><span class="fl">30</span>,</span></span>
+<span class="r-in"><span>pad.xlab<span class="op">=</span><span class="fl">0</span>,pad.ylab<span class="op">=</span><span class="fl">35</span>,pad.legend<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Custom padding for elements"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="theme_galactic-10.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -191,7 +232,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

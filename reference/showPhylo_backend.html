@@ -56,96 +56,151 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">showPhylo_backend</span><span class="op">(</span>
-  <span class="va">speciesNames</span>,
-  <span class="va">nameType</span>,
-  dateTree <span class="op">=</span> <span class="cn">FALSE</span>,
-  labelType <span class="op">=</span> <span class="st">"b"</span>,
-  labelOffset <span class="op">=</span> <span class="fl">0.45</span>,
-  aspectRatio <span class="op">=</span> <span class="fl">1</span>,
-  pic <span class="op">=</span> <span class="st">"wiki"</span>,
-  dotsConnectText <span class="op">=</span> <span class="cn">FALSE</span>,
-  picSize <span class="op">=</span> <span class="fl">1</span>,
-  <span class="va">picSaveDir</span>,
-  optPicWidth <span class="op">=</span> <span class="fl">200</span>,
-  picBorderWidth <span class="op">=</span> <span class="fl">10</span>,
-  picBorderCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  openDir <span class="op">=</span> <span class="cn">FALSE</span>,
-  xAxisPad <span class="op">=</span> <span class="fl">0.2</span>,
-  xTitlePad <span class="op">=</span> <span class="fl">20</span>,
-  numXlabs <span class="op">=</span> <span class="fl">8</span>,
-  textScalar <span class="op">=</span> <span class="fl">1</span>,
-  xTitleScalar <span class="op">=</span> <span class="fl">1</span>,
-  phyloThickness <span class="op">=</span> <span class="fl">1.2</span>,
-  phyloCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  textCol <span class="op">=</span> <span class="st">"#363636"</span>,
-  plotMar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.02</span>, r <span class="op">=</span> <span class="fl">0.5</span>, b <span class="op">=</span> <span class="fl">0.02</span>, l <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span>,
-  clearCache <span class="op">=</span> <span class="cn">FALSE</span>,
-  datelifePartialMatch <span class="op">=</span> <span class="cn">TRUE</span>,
-  quiet <span class="op">=</span> <span class="cn">TRUE</span>,
-  silent <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">showPhylo_backend</span><span class="op">(</span></span>
+<span>  <span class="va">speciesNames</span>,</span>
+<span>  <span class="va">nameType</span>,</span>
+<span>  dateTree <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  labelType <span class="op">=</span> <span class="st">"b"</span>,</span>
+<span>  labelOffset <span class="op">=</span> <span class="fl">0.45</span>,</span>
+<span>  aspectRatio <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  pic <span class="op">=</span> <span class="st">"wiki"</span>,</span>
+<span>  dotsConnectText <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  picSize <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  <span class="va">picSaveDir</span>,</span>
+<span>  optPicWidth <span class="op">=</span> <span class="fl">200</span>,</span>
+<span>  picBorderWidth <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  picBorderCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  openDir <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  xAxisPad <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>  xTitlePad <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  numXlabs <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  textScalar <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  xTitleScalar <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  phyloThickness <span class="op">=</span> <span class="fl">1.2</span>,</span>
+<span>  phyloCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  textCol <span class="op">=</span> <span class="st">"#363636"</span>,</span>
+<span>  plotMar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>t <span class="op">=</span> <span class="fl">0.02</span>, r <span class="op">=</span> <span class="fl">0.5</span>, b <span class="op">=</span> <span class="fl">0.02</span>, l <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span>,</span>
+<span>  clearCache <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  datelifePartialMatch <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>speciesNames</dt>
 <dd><p>a name or vector of common or scientific names of organisms of interest (in quotes)</p></dd>
+
+
 <dt>nameType</dt>
 <dd><p>what type of name are you supplying? Either "sci" or "common"</p></dd>
+
+
 <dt>dateTree</dt>
-<dd><p>try to scale the tree to estimated divergence times? Uses <code><a href="https://rdrr.io/pkg/datelife/man/datelife_search.html" class="external-link">datelife_search</a></code> with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken</p></dd>
+<dd><p>try to scale the tree to estimated divergence times? Uses <code><a href="http://phylotastic.org/datelife/reference/datelife_search.html" class="external-link">datelife_search</a></code> with summary_format="phylo_median." default= F, because datelife seems to be somewhat broken</p></dd>
+
+
 <dt>labelType</dt>
 <dd><p>which names to label tree "leaves"? Options= "s" for scientific, "c" for common, and "b" for both (default="b")</p></dd>
+
+
 <dt>labelOffset</dt>
 <dd><p>how far from the tree tips do you want to put labels? default=0.3 (in proportion of x-axis units)</p></dd>
+
+
 <dt>aspectRatio</dt>
 <dd><p>doesn't actually work yet; the output phylogeny is always square for the moment</p></dd>
+
+
 <dt>pic</dt>
 <dd><p>what type of species image do you want to plot? options="wiki" (Wikipedia page profile image), "phylopic" (species' silhouette from the PhyloPic repository), "cust" (custom images: must be named .jpg or .png with names matching speciesNames in the picSaveDir folder), or "none"</p></dd>
+
+
 <dt>dotsConnectText</dt>
 <dd><p>do you want a dotted line to go from the text to the labels? default=FALSE</p></dd>
+
+
 <dt>picSize</dt>
 <dd><p>how big to scale images, where 1=100%; .5=50%; default=1</p></dd>
+
+
 <dt>picSaveDir</dt>
 <dd><p>location for saving downloaded images; default=fs::path(tempdir(),"showPhylo")</p></dd>
+
+
 <dt>optPicWidth</dt>
 <dd><p>picture width in pixels for optimized versions of images saved if using pic="cust"; default= 200</p></dd>
+
+
 <dt>picBorderWidth</dt>
 <dd><p>for pic="wiki" or "cust," what size border would you like around your image (as a %); default=10</p></dd>
+
+
 <dt>picBorderCol</dt>
 <dd><p>color of image border; default="# 363636" (a dark, near-black color)</p></dd>
+
+
 <dt>openDir</dt>
 <dd><p>for pic="wiki" or "cust," do you want to open the picSaveDir after processing files? default=FALSE</p></dd>
+
+
 <dt>xAxisPad</dt>
 <dd><p>spacing between the phylogeny and the x-axis (scale is 1 is the distance between two sister taxa); default=.2</p></dd>
+
+
 <dt>xTitlePad</dt>
 <dd><p>spacing between x-axis title and x numbers; default=20</p></dd>
+
+
 <dt>numXlabs</dt>
 <dd><p>the number of year markers on the x-axis; default=8</p></dd>
+
+
 <dt>textScalar</dt>
 <dd><p>multiplier of text size for labels and axis numbers; default=1</p></dd>
+
+
 <dt>xTitleScalar</dt>
 <dd><p>multiplier of x-axis title size; default=1</p></dd>
+
+
 <dt>phyloThickness</dt>
 <dd><p>how thick to make the phylogeny lines; default=1.2</p></dd>
+
+
 <dt>phyloCol</dt>
 <dd><p>color of the phylogeny lines; default= "# 363636"</p></dd>
+
+
 <dt>textCol</dt>
 <dd><p>color of the axis and tip labels; default= "# 363636"</p></dd>
+
+
 <dt>plotMar</dt>
 <dd><p>margins around the plot area in proportional screen width units; note the right margin is much wider to make room for tip labels; default=c(t=.02,r=.4,b=.02,l=.02) for top, right, bottom, left</p></dd>
+
+
 <dt>clearCache</dt>
 <dd><p>delete cached images and taxonomic names? Passed to getPhyloNames, getWikiPics, and also applies to optimized custom images; default=FALSE</p></dd>
+
+
 <dt>datelifePartialMatch</dt>
-<dd><p>use use source trees even if they only match some of the desired taxa; affects the <code>partial</code> paramter in <code><a href="https://rdrr.io/pkg/datelife/man/datelife_search.html" class="external-link">datelife_search</a></code>; default= TRUE</p></dd>
+<dd><p>use use source trees even if they only match some of the desired taxa; affects the <code>partial</code> paramter in <code><a href="http://phylotastic.org/datelife/reference/datelife_search.html" class="external-link">datelife_search</a></code>; default= TRUE</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p>suppress verbose feedback from the taxize package? Passed to getPhyloNames and get WikiPic helper functions. Default=TRUE</p></dd>
+
+
 <dt>silent</dt>
 <dd><p>suppress all console output? (Mainly for R documentation); Default=FALSE</p></dd>
+
+
 <dt>...</dt>
 <dd><p>pass other parameters to <code><a href="https://rdrr.io/pkg/ggtree/man/ggtree.html" class="external-link">ggtree</a></code> (not very compatible right now)</p></dd>
+
 </dl></div>
 
   </div>
@@ -160,7 +215,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

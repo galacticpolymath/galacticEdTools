@@ -56,30 +56,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">scale_x_yearmonth</span><span class="op">(</span>
-  abbrev <span class="op">=</span> <span class="fl">1</span>,
-  breaks.mnth <span class="op">=</span> <span class="fl">1</span>,
-  mnth.size <span class="op">=</span> <span class="fl">12</span>,
-  yr.var <span class="op">=</span> <span class="st">"Year"</span>,
-  yr.size <span class="op">=</span> <span class="fl">16</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scale_x_yearmonth</span><span class="op">(</span></span>
+<span>  abbrev <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  breaks.mnth <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  mnth.size <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>  yr.var <span class="op">=</span> <span class="st">"Year"</span>,</span>
+<span>  yr.size <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>abbrev</dt>
 <dd><p>How long to make months? Default=1 means just first letter of month; NA is full month name.</p></dd>
+
+
 <dt>breaks.mnth</dt>
 <dd><p>Frequency of month labels; default= 1 (every month)</p></dd>
+
+
 <dt>mnth.size</dt>
 <dd><p>Font size of month labels; default=12 (pts)</p></dd>
+
+
 <dt>yr.var</dt>
 <dd><p>Variable name for year; default= "Year"</p></dd>
+
+
 <dt>yr.size</dt>
 <dd><p>Font size of year labels; default=16 (pts)</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other arguments for <code><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_date</a></code></p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -88,35 +99,35 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="co">#Set up time series dataset</span></span>
-<span class="r-in"><span class="va">df</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1949</span><span class="op">:</span><span class="fl">1952</span>,<span class="kw">function</span><span class="op">(</span><span class="va">yr</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">yr</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,<span class="fl">1</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">passengers<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">AirPassengers</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">48</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span><span class="op">$</span><span class="va">year</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%.4s"</span>,<span class="va">df</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">date</span>,<span class="va">passengers</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#Set up time series dataset</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>date<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1949</span><span class="op">:</span><span class="fl">1952</span>,<span class="kw">function</span><span class="op">(</span><span class="va">yr</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">yr</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,<span class="fl">1</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>passengers<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">AirPassengers</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">48</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">year</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%.4s"</span>,<span class="va">df</span><span class="op">$</span><span class="va">date</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">date</span>,<span class="va">passengers</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="scale_x_yearmonth-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#Now break show months and year on x-axis</span></span>
-<span class="r-in"><span class="co">#(doesn't work, because it expects a year variable called "Year")</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"><span class="co">#Try that again</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#Now break show months and year on x-axis</span></span></span>
+<span class="r-in"><span><span class="co">#(doesn't work, because it expects a year variable called "Year")</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="co">#Try that again</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g2</span> <span class="op">&lt;-</span> <span class="va">g</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="scale_x_yearmonth-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#Now let's use GP styling for legibility from a distance.</span></span>
-<span class="r-in"><span class="co">#(Note themes have to come before the scaling layer).</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="va">g2</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span>base.theme<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#Now let's use GP styling for legibility from a distance.</span></span></span>
+<span class="r-in"><span><span class="co">#(Note themes have to come before the scaling layer).</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">g3</span> <span class="op">&lt;-</span> <span class="va">g2</span><span class="op">+</span><span class="fu"><a href="theme_galactic.html">theme_galactic</a></span><span class="op">(</span>base.theme<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
 <span class="r-plt img"><img src="scale_x_yearmonth-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#This is a bit packed; let's only show every 3 months</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>abbrev<span class="op">=</span><span class="fl">3</span>,breaks.mnth<span class="op">=</span><span class="fl">3</span>,yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#This is a bit packed; let's only show every 3 months</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>abbrev<span class="op">=</span><span class="fl">3</span>,breaks.mnth<span class="op">=</span><span class="fl">3</span>,yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
 <span class="r-plt img"><img src="scale_x_yearmonth-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co">#Note that if you want to show a trend line, you can't currently do this across years,</span></span>
-<span class="r-in"><span class="co">#because we're really faceting for each year to trick ggplot into making 2 types of axis label</span></span>
-<span class="r-in"><span class="va">g3</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>abbrev<span class="op">=</span><span class="fl">3</span>,breaks.mnth<span class="op">=</span><span class="fl">4</span>,yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#Note that if you want to show a trend line, you can't currently do this across years,</span></span></span>
+<span class="r-in"><span><span class="co">#because we're really faceting for each year to trick ggplot into making 2 types of axis label</span></span></span>
+<span class="r-in"><span><span class="va">g3</span><span class="op">+</span><span class="fu">scale_x_yearmonth</span><span class="op">(</span>abbrev<span class="op">=</span><span class="fl">3</span>,breaks.mnth<span class="op">=</span><span class="fl">4</span>,yr.var<span class="op">=</span><span class="st">"year"</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Scale for 'x' is already present. Adding another scale for 'x', which will</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> replace the existing scale.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> `geom_smooth()` using method = 'loess' and formula 'y ~ x'</span>
@@ -135,7 +146,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
