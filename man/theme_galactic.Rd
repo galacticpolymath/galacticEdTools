@@ -25,7 +25,7 @@ theme_galactic(
   pad.xlab = 5,
   pad.ylab = 12,
   pad.legend = 0,
-  pad.outer = c(20, 5, 5, 5)
+  pad.outer = c(20, 10, 5, 5)
 )
 }
 \arguments{
@@ -69,7 +69,7 @@ theme_galactic(
 
 \item{pad.legend}{padding between legend title and key; default=0 in "pt" units}
 
-\item{pad.outer}{set outer plot margins; default= c(20,5,5,5) for top, right, bottom, left in "pt" units}
+\item{pad.outer}{set outer plot margins; default= c(20,10,5,5) for top, right, bottom, left in "pt" units}
 }
 \description{
 A ggplot2 theme for Galactic Polymath styling. Sensible defaults for plots intended for presentations and worksheets. (Large text, thick grid lines, etc.)
