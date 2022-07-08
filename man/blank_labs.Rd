@@ -31,11 +31,31 @@ blank_labs(
 \item{font_face}{style of axis label and title fonts; 1=plain, 2= bold, 3=italic, 4=bold+italic; Provide 1 value for all or 3 values for title, x- and y-axis labels, and x- and y- values (in that order); default= 4}
 }
 \description{
-A function to replace axis labels and/or graph title with light gray prompts for each field.
+The counterpoint to \code{\link[=highlight_labs]{highlight_labs()}}. A function to replace axis labels and/or graph title with light gray prompts for each field.
+}
+\details{
+This is used to make student graphs with parts missing to be filled in.
 }
 \examples{
 require(ggplot2)
-ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+theme_galactic()
+(g0 <- ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+
+theme_galactic()+ggtitle("Normal graph") )
 
-ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+theme_galactic()+blank_labs()
+# Make student version with x- and y- axis labels blanked, but not title
+g0+blank_labs(title_txt=NA)+
+labs(title="Blanked Student Graph",subtitle="(Add the missing axis labels)")
+
+# Note this is will not look great until you save the file
+ggsave("blank graph.png",width=4,height=3)
+
+# Now make a teacher version of the graph with correct labels highlighted blue
+g0+highlight_labs(c(2,3))
+
+
+
 }
+\seealso{
+Other functions for enigmatizing graphs: 
+\code{\link{highlight_labs}()}
+}
+\concept{functions for enigmatizing graphs}

@@ -22,7 +22,7 @@
 #' @param pad.xlab padding between x-axis values and x label; default=5 in "pt" units
 #' @param pad.ylab padding between x-axis values and x label; default=12 in "pt" units
 #' @param pad.legend padding between legend title and key; default=0 in "pt" units
-#' @param pad.outer set outer plot margins; default= c(20,5,5,5) for top, right, bottom, left in "pt" units
+#' @param pad.outer set outer plot margins; default= c(20,10,5,5) for top, right, bottom, left in "pt" units
 #' @examples
 #' require(ggplot2)
 #' #default plotting
@@ -64,7 +64,28 @@
 #' pad.xlab=0,pad.ylab=35,pad.legend=0)+ggtitle("Custom padding for elements")
 #' @export
 
-theme_galactic<-function(base.theme="gray",grid.wt.maj=.7,grid.wt.min=.4,grid.col=NA,bg.col=NA,border.wt=1,border.col="#6D6D6D",font="Montserrat",regular.wt=400,bold.wt=700,text.cex=1,font.face=1,title.col="#363636",axis.lab.col="#363636",axis.text.col="#6D6D6D",axis.tick.length=6,pad.title=5,pad.xlab=5,pad.ylab=12,pad.legend=0,pad.outer=c(20,5,5,5)){
+theme_galactic<-function(base.theme = "gray",
+                         grid.wt.maj = .7,
+                         grid.wt.min = .4,
+                         grid.col = NA,
+                         bg.col = NA,
+                         border.wt = 1,
+                         border.col = "#6D6D6D",
+                         font = "Montserrat",
+                         regular.wt = 400,
+                         bold.wt = 700,
+                         text.cex = 1,
+                         font.face = 1,
+                         title.col = "#363636",
+                         axis.lab.col = "#363636",
+                         axis.text.col = "#6D6D6D",
+                         axis.tick.length = 6,
+                         pad.title = 5,
+                         pad.xlab = 5,
+                         pad.ylab = 12,
+                         pad.legend = 0,
+                         pad.outer = c(20, 10, 5, 5)
+){
 
   if(!is.na(grid.col)&grid.col=="gp_gray"){grid.col= "#C3C3C3"}
   showtext::showtext_auto()
