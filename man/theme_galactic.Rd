@@ -12,7 +12,7 @@ theme_galactic(
   bg.col = NA,
   border.wt = 1,
   border.col = "#6D6D6D",
-  font = "Montserrat",
+  font = "Noto Sans",
   regular.wt = 400,
   bold.wt = 700,
   text.cex = 1,

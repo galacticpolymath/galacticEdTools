@@ -1,7 +1,7 @@
 Package: galacticEdTools
 Title: Tools for inspiring K-16 students to become interdisciplinary experts and agents of change for a better tomorrow
-Version: 0.2.0
-Date: 2022-07-08
+Version: 0.2.5
+Date: 2026-05-08
 Authors@R: c(
     person(given = "Matt",
            family = "Wilkins",
@@ -17,33 +17,30 @@ Description: Tools for K-16 education and scicomm, developed to support Galactic
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
 URL: https://galacticpolymath.github.io/galacticEdTools
-Depends:
-    datelife (>= 0.3.2)
-biocViews:
 Imports:
     fs (>= 1.5.0),
-    ggimage (>= 0.2.9),
     ggplot2 (>= 3.3.5),
     pbapply (>= 1.5.0),
     png (>= 0.1.0),
     RCurl (>= 1.98),
     remotes (>= 2.0.0),
+    showtext (>= 0.9.0),
+    stringr (>= 1.4.0),
+    sysfonts (>= 0.8.5)
+Suggests:
+    BiocManager (>= 1.30.16),
+    ggimage (>= 0.2.9),
+    magick (>= 2.7.3),
     lifecycle (>= 1.0.0),
     ggtree (>= 3.0.4),
     ggtext (>= 0.1.1),
     rotl (>= 3.0.11),
     rvest (>= 1.0.1),
-    showtext (>= 0.9.0),
-    stringr (>= 1.4.0),
-    sysfonts (>= 0.8.5),
     taxize (>= 0.9.99),
     WikipediR (>= 1.5.0)
-Suggests:
-    BiocManager (>= 1.30.16),
-    magick (>= 2.7.3)
 Remotes:
     github::phylotastic/datelife,
+    github::ropensci/bold,
     bioc::ggtree
-
+Config/roxygen2/version: 8.0.0

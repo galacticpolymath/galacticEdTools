@@ -55,7 +55,7 @@ g0+highlight_labs(c(2,3))
 
 }
 \seealso{
-Other functions for enigmatizing graphs: 
-\code{\link{highlight_labs}()}
+Other functions for enigmatizing graphs:
+\code{\link[=highlight_labs]{highlight_labs()}}
 }
 \concept{functions for enigmatizing graphs}

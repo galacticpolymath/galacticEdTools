@@ -38,7 +38,7 @@ ggplot(mtcars,aes(x=mpg,y=hp))+geom_point()+
 theme_galactic()+highlight_labs(c(2,3))
 }
 \seealso{
-Other functions for enigmatizing graphs: 
-\code{\link{blank_labs}()}
+Other functions for enigmatizing graphs:
+\code{\link[=blank_labs]{blank_labs()}}
 }
 \concept{functions for enigmatizing graphs}
